@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>X-TRIM FIT GYM - Premium Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../CSS/dashboard.css">
+    <script src="../JS/dashboard.js" defer></script>
+</head>
+<body>
+    <!-- Logout Confirmation Modal -->
+    <div class="modal-overlay" id="logoutModal">
+        <div class="modal modal-center">
+            <div class="modal-body">
+                <div class="modal-logout-icon">
+                    <i class="fas fa-sign-out-alt"></i>
+                </div>
+                <h3 class="modal-logout-title">Are you sure you want to logout?</h3>
+                <p class="modal-logout-text">
+                    You'll need to log in again to access your account and continue your fitness journey.
+                </p>
+                <div class="modal-logout-actions">
+                    <button type="button" class="btn-secondary" onclick="closeLogoutModal()">
+                        <i class="fas fa-times"></i> Cancel
+                    </button>
+                    <button type="button" class="btn-primary" onclick="confirmLogout()">
+                        <i class="fas fa-sign-out-alt"></i> Yes, Logout
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="messageModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3><i class="fas fa-comment"></i> Message Coach Mike</h3>
+                <button class="modal-close" onclick="closeMessageModal()" title="Close" aria-label="Close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="message-form" onsubmit="sendMessage(event)">
+                    <div class="form-group">
+                        <label for="messageSubject">Subject</label>
+                        <input type="text" id="messageSubject" placeholder="e.g., Question about workout form" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="messageContent">Message</label>
+                        <textarea id="messageContent" placeholder="Type your message here..." required></textarea>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" onclick="closeMessageModal()" title="Cancel" aria-label="Cancel">
+                            <i class="fas fa-times"></i> Cancel
+                        </button>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-paper-plane"></i> Send Message
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification Container -->
+    <div id="toastContainer" style="
+        position: fixed;
+        bottom: 2rem;
+        right: 2rem;
+        z-index: 3000;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    "></div>
+
+    <div class="chat-panel" id="chatPanel">
+        <div class="chat-header">
+            <h3><i class="fas fa-comments"></i> Messages</h3>
+            <button class="modal-close" onclick="closeChatPanel()" title="Close" aria-label="Close">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+            <div class="message received">
+                <div class="message-avatar">CM</div>
+                <div>
+                    <div class="message-content">
+                        <div class="message-sender">Coach Mike</div>
+                        <div class="message-text">Hey Ashley! Great job on today's workout. Keep up the excellent form!</div>
+                        <div class="message-time">2 hours ago</div>
+                    </div>
+                </div>
+            </div>
+            <div class="message sent">
+                <div class="message-avatar">AQ</div>
+                <div>
+                    <div class="message-content">
+                        <div class="message-text">Thank you Coach! I'm feeling stronger already. Can we schedule an extra session this week?</div>
+                        <div class="message-time">1 hour ago</div>
+                    </div>
+                </div>
+            </div>
+            <div class="message received">
+                <div class="message-avatar">CM</div>
+                <div>
+                    <div class="message-content">
+                        <div class="message-sender">Coach Mike</div>
+                        <div class="message-text">Absolutely! I have slots available on Thursday at 7 PM. Does that work for you?</div>
+                        <div class="message-time">45 minutes ago</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="chat-input-area">
+            <div class="chat-input-wrapper">
+                <textarea class="chat-input" id="chatInput" placeholder="Type your message..." rows="1"></textarea>
+                <button class="chat-send-btn" onclick="sendChatMessage()" title="Send message" aria-label="Send message">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="notification-panel" id="notificationPanel">
+        <div class="notification-panel-header">
+            <h3><i class="fas fa-bell"></i> Notifications</h3>
+            <button class="modal-close" onclick="closeNotificationPanel()" title="Close" aria-label="Close">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="notification-panel-body">
+            <div class="notification-list-item unread">
+                <div style="display: flex; gap: 1rem;">
+                    <div class="notification-icon-box info">
+                        <i class="fas fa-calendar"></i>
+                    </div>
+                    <div style="flex: 1;">
+                        <h4 style="color: var(--text-primary); font-size: 0.95rem; font-weight: 500; margin-bottom: 0.4rem;">Session Reminder</h4>
+                        <p style="color: var(--text-secondary); font-size: 0.82rem; line-height: 1.5; margin-bottom: 0.5rem;">Upper Body Strength at 6:00 PM today</p>
+                        <span class="notification-time">2 minutes ago</span>
+                    </div>
+                </div>
+            </div>
+            <div class="notification-list-item unread">
+                <div style="display: flex; gap: 1rem;">
+                    <div class="notification-icon-box success">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <div style="flex: 1;">
+                        <h4 style="color: var(--text-primary); font-size: 0.95rem; font-weight: 500; margin-bottom: 0.4rem;">New Achievement!</h4>
+                        <p style="color: var(--text-secondary); font-size: 0.82rem; line-height: 1.5; margin-bottom: 0.5rem;">You've completed 5 workouts this week</p>
+                        <span class="notification-time">1 hour ago</span>
+                    </div>
+                </div>
+            </div>
+            <div class="notification-list-item">
+                <div style="display: flex; gap: 1rem;">
+                    <div class="notification-icon-box info">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <div style="flex: 1;">
+                        <h4 style="color: var(--text-primary); font-size: 0.95rem; font-weight: 500; margin-bottom: 0.4rem;">Coach Message</h4>
+                        <p style="color: var(--text-secondary); font-size: 0.82rem; line-height: 1.5; margin-bottom: 0.5rem;">Coach Mike: "Focus on form over weight - quality reps build strength!"</p>
+                        <span class="notification-time">3 hours ago</span>
+                    </div>
+                </div>
+            </div>
+            <div class="notification-list-item">
+                <div style="display: flex; gap: 1rem;">
+                    <div class="notification-icon-box success">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div style="flex: 1;">
+                        <h4 style="color: var(--text-primary); font-size: 0.95rem; font-weight: 500; margin-bottom: 0.4rem;">Workout Completed</h4>
+                        <p style="color: var(--text-secondary); font-size: 0.82rem; line-height: 1.5; margin-bottom: 0.5rem;">Upper Body Strength session completed successfully</p>
+                        <span class="notification-time">Yesterday</span>
+                    </div>
+                </div>
+            </div>
+            <div class="notification-list-item">
+                <div style="display: flex; gap: 1rem;">
+                    <div class="notification-icon-box info">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <div style="flex: 1;">
+                        <h4 style="color: var(--text-primary); font-size: 0.95rem; font-weight: 500; margin-bottom: 0.4rem;">New Meal Plan</h4>
+                        <p style="color: var(--text-secondary); font-size: 0.82rem; line-height: 1.5; margin-bottom: 0.5rem;">Your personalized meal plan for next week is ready</p>
+                        <span class="notification-time">2 days ago</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <nav class="top-navbar">
+        <div class="logo">
+            <img src="..//imgs/logo.png" alt="X-TRIM FIT GYM" class="logo-img">
+        </div>
+        <div class="nav-right">
+            <div class="chat-icon" onclick="toggleChatPanel()">
+                <i class="fas fa-comments"></i>
+            </div>
+            <div class="notification-icon" onclick="toggleNotificationPanel()">
+                <i class="fas fa-bell"></i>
+                <span class="notification-badge">3</span>
+            </div>
+            <div class="user-profile" onclick="event.stopPropagation(); toggleProfileDropdown();" id="userProfileDropdown">
+                <div class="user-avatar">AQ</div>
+                <div class="user-info">
+                    <h4>Ashley Quicho</h4>
+                    <p>PROMO Student Member</p>
+                </div>
+                <i class="fas fa-chevron-down"></i>
+                <div class="dropdown-menu">
+                    <a href="../HTML/settings.html" class="dropdown-item">
+                        <i class="fas fa-cog"></i>
+                        <span>Settings</span>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item" onclick="event.preventDefault(); openLogoutModal();">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Logout</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <aside class="sidebar" id="sidebar">
+        <ul class="sidebar-menu">
+            <li><a href="../HTML/dashboard.html" class="active"><i class="fas fa-home"></i><span>Dashboard</span></a></li>
+            <li><a href="../HTML/workouts.html"><i class="fas fa-dumbbell"></i><span>Workout Plans</span></a></li>
+            <li><a href="../HTML/schedule.html"><i class="fas fa-calendar-alt"></i><span>My Schedule</span></a></li>
+            <li><a href="../HTML/mealplan.html"><i class="fas fa-utensils"></i><span>Meal Plans</span></a></li>
+            <li><a href="../HTML/progress.html"><i class="fas fa-chart-line"></i><span>Progress</span></a></li>
+            <li><a href="../HTML/achievements.html"><i class="fas fa-trophy"></i><span>Achievements</span></a></li>
+            <li><a href="../HTML/coaches.html"><i class="fas fa-user-friends"></i><span>Coaches</span></a></li>
+            <li><a href="../HTML/membership.html"><i class="fas fa-credit-card"></i><span>Membership</span></a></li>
+        </ul>
+    </aside>
+
+    <main class="main-content">
+        <div class="welcome-section">
+            <h1>Welcome Back, Ashley! </h1>
+            <p>Ready to crush your fitness goals today? Let's make it happen!</p>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-dumbbell"></i>
+                </div>
+                <h3>Workouts This Month</h3>
+                <div class="stat-value">18</div>
+                <div class="stat-change"><i class="fas fa-arrow-up"></i> +3 from last month</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-fire"></i>
+                </div>
+                <h3>Calories Burned</h3>
+                <div class="stat-value">12,450</div>
+                <div class="stat-change"><i class="fas fa-arrow-up"></i> +8% this month</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <h3>Total Gym Time</h3>
+                <div class="stat-value">24h</div>
+                <div class="stat-change"><i class="fas fa-arrow-up"></i> +5 hours</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-trophy"></i>
+                </div>
+                <h3>Goals Achieved</h3>
+                <div class="stat-value">7/10</div>
+                <div class="stat-change"><i class="fas fa-arrow-up"></i> 70% complete</div>
+            </div>
+        </div>
+
+        <div class="content-grid">
+            <div>
+                <div class="section-card">
+                    <div class="section-header">
+                        <h2><i class="fas fa-user-tie"></i> Your Coach</h2>
+                    </div>
+                    <div class="coach-profile">
+                        <div class="coach-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="coach-info">
+                            <h3>Coach Mike Rodriguez</h3>
+                            <p>Strength & Conditioning Specialist</p>
+                            <p><i class="fas fa-star" style="color: #F9C513;"></i> 4.9 Rating • 10+ Years Experience</p>
+                            <div class="coach-contact">
+                                <button onclick="openMessageModal()"><i class="fas fa-comment"></i> Message</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Weekly Activity Chart -->
+                <div class="section-card">
+                    <div class="section-header">
+                        <h2><i class="fas fa-chart-bar"></i> Weekly Activity</h2>
+                    </div>
+                    <div class="weekly-chart">
+                        <div class="chart-bar" style="--height: 75%; --day: 'Mon'"></div>
+                        <div class="chart-bar" style="--height: 55%; --day: 'Tue'"></div>
+                        <div class="chart-bar" style="--height: 95%; --day: 'Wed'"></div>
+                        <div class="chart-bar" style="--height: 40%; --day: 'Thu'"></div>
+                        <div class="chart-bar" style="--height: 90%; --day: 'Fri'"></div>
+                        <div class="chart-bar" style="--height: 58%; --day: 'Sat'"></div>
+                        <div class="chart-bar" style="--height: 75%; --day: 'Sun'"></div>
+                    </div>
+                </div>
+
+                <div class="section-card">
+                    <div class="section-header">
+                        <h2><i class="fas fa-calendar-check"></i> Upcoming Sessions</h2>
+                        <a href="ClientSchedule.html" class="view-all">View Calendar <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="session-item">
+                        <div class="session-header">
+                            <span class="session-title">Upper Body Strength</span>
+                            <span class="session-time">Today, 6:00 PM</span>
+                        </div>
+                        <div class="session-details">
+                            <i class="fas fa-map-marker-alt"></i> Main Training Area • With Coach Mike
+                        </div>
+                    </div>
+                    <div class="session-item">
+                        <div class="session-header">
+                            <span class="session-title">Cardio & Core</span>
+                            <span class="session-time">Tomorrow, 7:00 AM</span>
+                        </div>
+                        <div class="session-details">
+                            <i class="fas fa-map-marker-alt"></i> Cardio Zone • Group Class
+                        </div>
+                    </div>
+                    <div class="session-item">
+                        <div class="session-header">
+                            <span class="session-title">Lower Body Training</span>
+                            <span class="session-time">Oct 11, 6:00 PM</span>
+                        </div>
+                        <div class="session-details">
+                            <i class="fas fa-map-marker-alt"></i> Weight Training Area • With Coach Mike
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <div class="section-card">
+                    <div class="section-header">
+                        <h2><i class="fas fa-bell"></i> Notifications</h2>
+                        <a href="#" class="view-all">See All <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="notification-item">
+                        <div class="notification-icon-box info">
+                            <i class="fas fa-calendar"></i>
+                        </div>
+                        <div class="notification-content">
+                            <h4>Session Reminder</h4>
+                            <p>Upper Body Strength at 6:00 PM today</p>
+                        </div>
+                    </div>
+                    <div class="notification-item">
+                        <div class="notification-icon-box success">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <div class="notification-content">
+                            <h4>New Achievement!</h4>
+                            <p>You've completed 5 workouts this week</p>
+                        </div>
+                    </div>
+                    <div class="notification-item">
+                        <div class="notification-icon-box info">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <div class="notification-content">
+                            <h4>Coach Message</h4>
+                            <p>Coach Mike: "Focus on form over weight - quality reps build strength!"</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>>

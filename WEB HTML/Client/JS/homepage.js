@@ -1,0 +1,1 @@
+// JavaScript for homepage functionality will go here

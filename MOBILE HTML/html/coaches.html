@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#13161f">
+    <title>My Coach - X-TRIM FIT GYM</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="..//css/coaches.css">
+    </head>
+<body>
+    <!-- Top Header -->
+    <header class="top-header">
+        <div class="header-content">
+            <h1 class="page-title">
+                <i class="fas fa-user-friends"></i>
+                My Coach
+            </h1>
+            <button class="icon-btn" id="overflowBtn" aria-label="More">
+                <i class="fas fa-ellipsis-v"></i>
+            </button>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <!-- Coach Profile Overview -->
+        <section class="section coach-section">
+            <div class="profile-card">
+                <div class="profile-left">
+                    <div class="profile-pic" aria-hidden="true">
+                        <i class="fas fa-user"></i>
+                    </div>
+                </div>
+                <div class="profile-body">
+                    <div class="coach-name">Coach Mike Rodriguez</div>
+                    <div class="coach-title">Strength &amp; Conditioning Specialist</div>
+                    <div class="coach-stats-inline">
+                        <span class="stat"><i class="fas fa-star"></i> 4.9</span>
+                        <span class="stat"><i class="fas fa-calendar"></i> 10+ yrs</span>
+                        <span class="stat"><i class="fas fa-users"></i> 150+ clients</span>
+                    </div>
+                    <p class="coach-short">Mike specializes in building muscle mass and strength training. His personalized approach combines science-based programming with motivational coaching to help clients transform their bodies.</p>
+                    <div class="profile-actions">
+                        <button class="btn-primary" id="messageCoachBtn">
+                            <i class="fas fa-comment-dots"></i>
+                            Message Coach
+                        </button>
+                        <button class="btn-secondary" id="viewProfileBtn">
+                            <i class="fas fa-info-circle"></i>
+                            View Profile
+                        </button>
+                    </div>
+                    <div class="coach-expertise-inline">
+                        <span class="expertise-tag">Strength Training</span>
+                        <span class="expertise-tag">Muscle Building</span>
+                        <span class="expertise-tag">Powerlifting</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- New from Coach -->
+        <section class="section updates-section">
+            <div class="section-header">
+                <h2>New from Coach</h2>
+            </div>
+
+            <div class="updates-list" id="updatesList">
+                <article class="item-card" data-id="u1">
+                    <div class="item-left"><i class="fas fa-comment"></i></div>
+                    <div class="item-body">
+                        <div class="item-title">Great job on today\'s workout</div>
+                        <div class="item-sub">"Hey John! Your form was excellent in today\'s session. Keep up the great work!" — Coach Mike</div>
+                    </div>
+                    <button class="item-action ack-btn acknowledged" aria-label="Acknowledged">
+                        <i class="fas fa-check-circle"></i>
+                    </button>
+                </article>
+
+                <article class="item-card" data-id="u2">
+                    <div class="item-left"><i class="fas fa-calendar-alt"></i></div>
+                    <div class="item-body">
+                        <div class="item-title">Session availability</div>
+                        <div class="item-sub">"I have slots available on Thursday at 7 PM. Does that work for you?" — Coach Mike</div>
+                    </div>
+                    <button class="item-action ack-btn" aria-label="Acknowledge">
+                        <i class="fas fa-check-circle"></i>
+                    </button>
+                </article>
+            </div>
+        </section>
+
+        <!-- Shared Resources -->
+        <section class="section resources-section">
+            <div class="section-header">
+                <h2>Shared Resources</h2>
+            </div>
+
+            <div class="resources-list" id="resourcesList">
+                <article class="resource-card" data-id="r1">
+                    <div class="resource-left">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <div class="resource-body">
+                        <div class="resource-title">Advanced Mass Building Nutrition Guide</div>
+                        <div class="resource-meta">PDF • 12 pages</div>
+                    </div>
+                    <div class="resource-actions">
+                        <button class="res-download" aria-label="Download" data-file="nutrition-guide.pdf"><i class="fas fa-download"></i></button>
+                        <button class="res-remove" aria-label="Remove"><i class="fas fa-times"></i></button>
+                    </div>
+                </article>
+
+                <article class="resource-card" data-id="r2">
+                    <div class="resource-left">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <div class="resource-body">
+                        <div class="resource-title">Mobility Routine (Video)</div>
+                        <div class="resource-meta">4m • Coach Mike Rodriguez</div>
+                    </div>
+                    <div class="resource-actions">
+                        <button class="res-download" aria-label="Download" data-file="mobility.mp4"><i class="fas fa-download"></i></button>
+                        <button class="res-remove" aria-label="Remove"><i class="fas fa-times"></i></button>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- CTA: Book 1:1 Session -->
+        <section class="section cta-section">
+            <button class="btn-primary btn-block" id="bookSessionBtn">
+                <i class="fas fa-calendar-plus"></i>
+                Book 1:1 Session
+            </button>
+        </section>
+    </main>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <a class="nav-item" href="dashboard.html">
+            <i class="fas fa-home"></i>
+            <span>Dashboard</span>
+        </a>
+        <a class="nav-item" href="workouts.html">
+            <i class="fas fa-dumbbell"></i>
+            <span>Workouts</span>
+        </a>
+        <a class="nav-item" href="progress.html">
+            <i class="fas fa-chart-line"></i>
+            <span>Progress</span>
+        </a>
+        <a class="nav-item active" href="coaches.html">
+            <i class="fas fa-user-friends"></i>
+            <span>Coach</span>
+        </a>
+    </nav>
+
+    <script src="..//js/coaches.js"></script>
+</body>
+</html>

@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Achievements - X-TRIM FIT GYM</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../CSS/achievements.css">
+    <script src="../JS/achievements.js" defer></script>
+</head>
+<body>
+    <nav class="top-navbar">
+        <div class="logo">
+            <img src="../imgs/logo.png" alt="X-TRIM FIT GYM" class="logo-img">
+        </div>
+        <div class="nav-right">
+            <div class="chat-icon" onclick="toggleChatPanel()">
+                <i class="fas fa-comments"></i>
+            </div>
+            <div class="notification-icon" onclick="toggleNotificationPanel()">
+                <i class="fas fa-bell"></i>
+                <span class="notification-badge">3</span>
+            </div>
+            <div class="user-profile" onclick="event.stopPropagation(); toggleProfileDropdown()">
+                <div class="user-avatar">AQ</div>
+                <div class="user-info">
+                    <h4>Ashley Quicho</h4>
+                    <p>PROMO Student Member</p>
+                </div>
+                <i class="fas fa-chevron-down"></i>
+                <div class="dropdown-menu">
+                    <a href="ClientSettings.html" class="dropdown-item">
+                        <i class="fas fa-cog"></i>
+                        <span>Settings</span>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Logout</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <aside class="sidebar" id="sidebar">
+        <ul class="sidebar-menu">
+            <li><a href="../HTML/dashboard.html"><i class="fas fa-home"></i><span>Dashboard</span></a></li>
+            <li><a href="../HTML/workouts.html"><i class="fas fa-dumbbell"></i><span>Workout Plans</span></a></li>
+            <li><a href="../HTML/schedule.html"><i class="fas fa-calendar-alt"></i><span>My Schedule</span></a></li>
+            <li><a href="../HTML/mealplan.html"><i class="fas fa-utensils"></i><span>Meal Plans</span></a></li>
+            <li><a href="../HTML/progress.html"><i class="fas fa-chart-line"></i><span>Progress</span></a></li>
+            <li><a href="../HTML/achievements.html" class="active"><i class="fas fa-trophy"></i><span>Achievements</span></a></li>
+            <li><a href="../HTML/coaches.html"><i class="fas fa-user-friends"></i><span>Coaches</span></a></li>
+            <li><a href="../HTML/membership.html"><i class="fas fa-credit-card"></i><span>Membership</span></a></li>
+        </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Page Header -->
+        <div class="page-header">
+            <h1><i class="fas fa-trophy"></i> Your Achievements</h1>
+            <p>Celebrate your fitness milestones and unlock new badges!</p>
+        </div>
+
+        <!-- Stats Overview -->
+        <div class="stats-overview">
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-medal"></i>
+                </div>
+                <h3>Total Achievements</h3>
+                <div class="stat-value">24/50</div>
+            </div>
+
+            <div class="stat-card achievement">
+                <div class="stat-icon glow">
+                    <i class="fas fa-gem"></i>
+                </div>
+                <h3>Achievement Points</h3>
+                <div class="stat-value">3,450</div>
+                <p class="stat-subtext">Next tier: <span>Platinum (5,000 pts)</span></p>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-crown"></i>
+                </div>
+                <h3>Current Level</h3>
+                <div class="stat-value">Gold Tier</div>
+            </div>
+
+            <div class="stat-card leaderboard">
+                <div class="stat-icon">
+                    <i class="fas fa-rocket"></i>
+                </div>
+                <h3>Leaderboard Rank</h3>
+                <div class="stat-value">#12</div>
+            </div>
+        </div>
+
+        <!-- Recent Achievements -->
+       <div class="recent-achievements">
+    <h2><i class="fas fa-sparkles"></i> Recently Unlocked</h2>
+    <div class="recent-grid">
+
+        <!-- CURRENT ACHIEVEMENT (highlighted) -->
+        <div class="achievement-card gold active">
+            <div class="achievement-badge-container">
+                <div class="achievement-badge gold">
+                    <i class="fas fa-fire"></i>
+                </div>
+                <span class="rarity-tag gold">Gold</span>
+            </div>
+            <div class="achievement-info">
+                <h3>30-Day Streak Master</h3>
+                <p>Worked out consistently for 30 days straight!</p>
+                <span class="achievement-date">
+                    <i class="fas fa-calendar-check"></i>
+                    Unlocked Oct 8, 2025
+                </span>
+            </div>
+        </div>
+
+        <!-- Other Achievements -->
+        <div class="achievement-card silver">
+            <div class="achievement-badge-container">
+                <div class="achievement-badge silver">
+                    <i class="fas fa-dumbbell"></i>
+                </div>
+                <span class="rarity-tag silver">Silver</span>
+            </div>
+            <div class="achievement-info">
+                <h3>Strength Warrior</h3>
+                <p>Completed 50 strength training workouts</p>
+                <span class="achievement-date">
+                    <i class="fas fa-calendar-check"></i>
+                    Unlocked Oct 5, 2025
+                </span>
+            </div>
+        </div>
+
+        <div class="achievement-card platinum">
+            <div class="achievement-badge-container">
+                <div class="achievement-badge platinum">
+                    <i class="fas fa-weight-hanging"></i>
+                </div>
+                <span class="rarity-tag platinum">Platinum</span>
+            </div>
+            <div class="achievement-info">
+                <h3>Goal Crusher</h3>
+                <p>Lost 20 pounds and achieved your weight goal!</p>
+                <span class="achievement-date">
+                    <i class="fas fa-calendar-check"></i>
+                    Unlocked Oct 1, 2025
+                </span>
+            </div>  
+        </div>
+
+    </div>
+</div>
+
+
+        <!-- Filters Section -->
+        <div class="filters-section">
+            <div class="filters-header">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search achievements..." id="searchInput">
+                </div>
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">
+                        <i class="fas fa-th"></i>
+                        All
+                    </button>
+                    <button class="filter-btn" data-filter="earned">
+                        <i class="fas fa-check-circle"></i>
+                        Earned
+                    </button>
+                    <button class="filter-btn" data-filter="progress">
+                        <i class="fas fa-hourglass-half"></i>
+                        In Progress
+                    </button>
+                    <button class="filter-btn" data-filter="locked">
+                        <i class="fas fa-lock"></i>
+                        Locked
+                    </button>
+                </div>
+            </div>
+            <div class="category-filters">
+                <button class="category-btn active" data-category="all">All Categories</button>
+                <button class="category-btn" data-category="workout">Workout</button>
+                <button class="category-btn" data-category="attendance">Attendance</button>
+                <button class="category-btn" data-category="goals">Goals</button>
+                <button class="category-btn" data-category="strength">Strength</button>
+                <button class="category-btn" data-category="special">Special Events</button>
+            </div>
+        </div>
+
+        <!-- Workout Milestones -->
+        <div class="achievements-section">
+            <h2 class="section-title">
+                <i class="fas fa-dumbbell"></i>
+                Workout Milestones
+            </h2>
+            <div class="achievements-grid">
+                <div class="achievement-card silver">
+                    <div class="achievement-badge-container">
+                        <div class="achievement-badge silver">
+                            <i class="fas fa-running"></i>
+                        </div>
+                        <span class="rarity-tag silver">Silver</span>
+                    </div>
+                    <div class="achievement-info">
+                        <h3>First Steps</h3>
+                        <p>Complete your first workout session</p>
+                        <span class="achievement-date">
+                            <i class="fas fa-calendar-check"></i>
+                            Unlocked Sep 1, 2025
+                        </span>
+                    </div>
+                </div>
+
+                <div class="achievement-card silver">
+                    <div class="achievement-badge-container">
+                        <div class="achievement-badge silver">
+                            <i class="fas fa-heartbeat"></i>
+                        </div>
+                        <span class="rarity-tag silver">Silver</span>
+                    </div>
+                    <div class="achievement-info">
+                        <h3>Cardio Champion</h3>
+                        <p>Complete 25 cardio workouts</p>
+                        <span class="achievement-date">
+                            <i class="fas fa-calendar-check"></i>
+                            Unlocked Sep 20, 2025
+                        </span>
+                    </div>
+                </div>
+
+                <div class="achievement-card locked">
+                    <div class="achievement-badge-container">
+                        <div class="achievement-badge locked">
+                            <i class="fas fa-lock"></i>
+                        </div>
+                        <span class="rarity-tag gold">Gold</span>
+                    </div>
+                    <div class="achievement-info">
+                        <h3>Century Club</h3>
+                        <p>Complete 100 total workouts</p>
+                        <div class="progress-section">
+                            <div class="progress-label">
+                                <span>Progress</span>
+                                <span>67/100</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 67%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="achievement-card locked">
+                    <div class="achievement-badge-container">
+                        <div class="achievement-badge locked">
+                            <i class="fas fa-lock"></i>
+                        </div>
+                        <span class="rarity-tag platinum">Platinum</span>
+                    </div>
+                    <div class="achievement-info">
+                        <h3>Elite Athlete</h3>
+                        <p>Complete 500 total workouts</p>
+                        <div class="progress-section">
+                            <div class="progress-label">
+                                <span>Progress</span>
+                                <span>67/500</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 13%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Streak Records -->
+        <div class="achievements-section">
+            <h2 class="section-title">
+                <i class="fas fa-fire"></i>
+                Streak Records
+            </h2>
+            <div class="achievements-grid">
+                <div class="achievement-card silver">
+                    <div class="achievement-badge-container">
+                        <div class="achievement-badge silver">
+                            <i class="fas fa-calendar-day"></i>
+                        </div>
+                        <span class="rarity-tag silver">Silver</span>
+                    </div>
+                    <div class="achievement-info">
+                        <h3>Consistency Starter</h3>
+                        <p>Maintain a 7-day workout streak</p>
+                        <span class="achievement-date">
+                            <i class="fas fa-calendar-check"></i>
+                            Unlocked Sep 8, 2025
+                        </span>
+                    </div>
+                </div>
+
+                <div class="achievement-card silver">
+                    <div class="achievement-badge-container">
+                        <div class="achievement-badge silver">
+                            <i class="fas fa-calendar-week"></i>
+                        </div>
+                        <span class="rarity-tag silver">Silver</span>
+                    </div>
+                    <div class="achievement-info">
+                        <h3>Two Week Warrior</h3>
+                        <p>Maintain a 14-day workout streak</p>
+                        <span class="achievement-date">
+                            <i class="fas fa-calendar-check"></i>
+                            Unlocked Sep 15, 2025
+                        </span>
+                    </div>
+                </div>
+
+                <div class="achievement-card gold">
+                    <div class="achievement-badge-container">
+                        <div class="achievement-badge gold">
+                            <i class="fas fa-fire"></i>
+                        </div>
+                        <span class="rarity-tag gold">Gold</span>
+                    </div>
+                    <div class="achievement-info">
+                        <h3>30-Day Streak Master</h3>
+                        <p>Maintain a 30-day workout streak</p>
+                        <span class="achievement-date">
+                            <i class="fas fa-calendar-check"></i>
+                            Unlocked Oct 8, 2025
+                        </span>
+                    </div>
+                </div>
+
+                <div class="achievement-card locked">
+                    <div class="achievement-badge-container">
+                        <div class="achievement-badge locked">
+                            <i class="fas fa-lock"></i>
+                        </div>
+                        <span class="rarity-tag platinum">Platinum</span>
+                    </div>
+                    <div class="achievement-info">
+                        <h3>Unstoppable Force</h3>
+                        <p>Maintain a 100-day workout streak</p>
+                        <div class="progress-section">
+                            <div class="progress-label">
+                                <span>Current Streak</span>
+                                <span>30/100 days</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 30%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Strength Achievements -->
+        <div class="achievements-section">
+            <h2 class="section-title">
+                <i class="fas fa-fist-raised"></i>
+                Strength Achievements
+            </h2>
+            <div class="achievements-grid">
+                <div class="achievement-card silver">
+                    <div class="achievement-badge-container">
+                        <div class="achievement-badge silver">
+                            <i class="fas fa-dumbbell"></i>
+                        </div>
+                        <span class="rarity-tag silver">Silver</span>
+                    </div>
+                    <div class="achievement-info">
+                        <h3>Strength Warrior</h3>
+                        <p>Complete 50 strength training workouts</p>
+                        <span class="achievement-date">
+                            <i class="fas fa-calendar-check"></i>
+                            Unlocked Oct 5, 2025
+                        </span>
+                    </div>
+                </div>
+
+                <div class="achievement-card locked">
+                    <div class="achievement-badge-container">
+                        <div class="achievement-badge locked">
+                            <i class="fas fa-lock"></i>
+                        </div>
+                        <span class="rarity-tag gold">Gold</span>
+                    </div>
+                    <div class="achievement-info">
+                        <h3>Iron Lifter</h3>
+                        <p>Bench press your body weight</p>
+                        <div class="progress-section">
+                            <div class="progress-label">
+                                <span>Current Max</span>
+                                <span>145/175 lbs</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 83%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="achievement-card locked">
+                    <div class="achievement-badge-container">
+                        <div class="achievement-badge locked">
+                            <i class="fas fa-lock"></i>
+                        </div>
+                        <span class="rarity-tag gold">Gold</span>
+                    </div>
+                    <div class="achievement-info">
+                        <h3>Squat King</h3>
+                        <p>Squat 1.5x your body weight</p>
+                        <div class="progress-section">
+                            <div class="progress-label">
+                                <span>Current Max</span>
+                                <span>200/262 lbs</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 76%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="achievement-card locked">
+                    <div class="achievement-badge-container">
+                        <div class="achievement-badge locked">
+                            <i class="fas fa-lock"></i>
+                        </div>
+                        <span class="rarity-tag platinum">Platinum</span>
+                    </div>
+                    <div class="achievement-info">
+                        <h3>Deadlift Legend</h3>
+                        <p>Deadlift 2x your body weight</p>
+                        <div class="progress-section">
+                            <div class="progress-label">
+                                <span>Current Max</span>
+                                <span>280/350 lbs</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 80%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Special Achievements -->
+        <div class="achievements-section">
+            <h2 class="section-title">
+                <i class="fas fa-star"></i>
+                Special Achievements
+            </h2>
+            <div class="achievements-grid">
+                <div class="achievement-card platinum">
+                    <div class="achievement-badge-container">
+                        <div class="achievement-badge platinum">
+                            <i class="fas fa-weight-hanging"></i>
+                        </div>
+                        <span class="rarity-tag platinum">Platinum</span>
+                    </div>
+                    <div class="achievement-info">
+                        <h3>Goal Crusher</h3>
+                        <p>Achieved your weight loss goal!</p>
+                        <span class="achievement-date">
+                            <i class="fas fa-calendar-check"></i>
+                            Unlocked Oct 1, 2025
+                        </span>
+                    </div>
+                </div>
+
+                <div class="achievement-card gold">
+                    <div class="achievement-badge-container">
+                        <div class="achievement-badge gold">
+                            <i class="fas fa-birthday-cake"></i>
+                        </div>
+                        <span class="rarity-tag gold">Gold</span>
+                    </div>
+                    <div class="achievement-info">
+                        <h3>One Month Strong</h3>
+                        <p>Celebrated 1 month as a gym member</p>
+                        <span class="achievement-date">
+                            <i class="fas fa-calendar-check"></i>
+                            Unlocked Sep 30, 2025
+                        </span>
+                    </div>
+                </div>
+
+                <div class="achievement-card locked">
+                    <div class="achievement-badge-container">
+                        <div class="achievement-badge locked">
+                            <i class="fas fa-lock"></i>
+                        </div>
+                        <span class="rarity-tag platinum">Platinum</span>
+                    </div>
+                    <div class="achievement-info">
+                        <h3>Six Month Veteran</h3>
+                        <p>Celebrate 6 months as a gym member</p>
+                        <div class="progress-section">
+                            <div class="progress-label">
+                                <span>Membership Duration</span>
+                                <span>1/6 months</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 17%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="achievement-card silver">
+                    <div class="achievement-badge-container">
+                        <div class="achievement-badge silver">
+                            <i class="fas fa-award"></i>
+                        </div>
+                        <span class="rarity-tag silver">Silver</span>
+                    </div>
+                    <div class="achievement-info">
+                        <h3>Coach's Recognition</h3>
+                        <p>Received special recognition from your coach</p>
+                        <span class="achievement-date">
+                            <i class="fas fa-calendar-check"></i>
+                            Unlocked Sep 25, 2025
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Chat Panel -->
+    <div class="chat-panel" id="chatPanel">
+        <div class="chat-header">
+            <h3><i class="fas fa-comments"></i> Messages</h3>
+            <button class="modal-close" onclick="closeChatPanel()" title="Close" aria-label="Close">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+            <div class="message received">
+                <div class="message-avatar">CM</div>
+                <div>
+                    <div class="message-content">
+                        <div class="message-sender">Coach Mike</div>
+                        <div class="message-text">Great job on unlocking that achievement! Keep up the excellent work!</div>
+                        <div class="message-time">2 hours ago</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="chat-input-area">
+            <div class="chat-input-wrapper">
+                <textarea class="chat-input" id="chatInput" placeholder="Type your message..." rows="1"></textarea>
+                <button class="chat-send-btn" onclick="sendChatMessage()" title="Send Message" aria-label="Send Message">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Panel -->
+    <div class="notification-panel" id="notificationPanel">
+        <div class="notification-panel-header">
+            <h3><i class="fas fa-bell"></i> Notifications</h3>
+            <button class="modal-close" onclick="closeNotificationPanel()" title="Close" aria-label="Close">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="notification-panel-body">
+            <div class="notification-list-item unread">
+                <div style="display: flex; gap: 1rem;">
+                    <div class="notification-icon-box success">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <div style="flex: 1;">
+                        <h4>New Achievement Unlocked!</h4>
+                        <p>You've earned the "30-Day Streak Master" achievement!</p>
+                        <span class="notification-time">3 hours ago</span>
+                    </div>
+                </div>
+            </div>
+            <div class="notification-list-item unread">
+                <div style="display: flex; gap: 1rem;">
+                    <div class="notification-icon-box info">
+                        <i class="fas fa-info-circle"></i>
+                    </div>
+                    <div style="flex: 1;">
+                        <h4>Leaderboard Update</h4>
+                        <p>You've moved up to rank #12 on the leaderboard!</p>
+                        <span class="notification-time">1 day ago</span>
+                    </div>
+                </div>
+            </div>
+            <div class="notification-list-item">
+                <div style="display: flex; gap: 1rem;">
+                    <div class="notification-icon-box success">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <div style="flex: 1;">
+                        <h4>Points Milestone</h4>
+                        <p>You've reached 3,450 achievement points! Keep going!</p>
+                        <span class="notification-time">2 days ago</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

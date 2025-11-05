@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - X-TRIM FIT GYM</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../CSS/settings.css">
+    <script src="../JS/settings.js" defer></script>
+</head>
+<body>
+    <!-- Logout Confirmation Modal -->
+    <div class="modal-overlay" id="logoutModal">
+        <div class="modal modal-center">
+            <div class="modal-body">
+                <div class="modal-logout-icon">
+                    <i class="fas fa-sign-out-alt"></i>
+                </div>
+                <h3 class="modal-logout-title">Are you sure you want to logout?</h3>
+                <p class="modal-logout-text">
+                    You'll need to log in again to access your admin account.
+                </p>
+                <div class="modal-logout-actions">
+                    <button type="button" class="btn-secondary" onclick="closeLogoutModal()">
+                        <i class="fas fa-times"></i> Cancel
+                    </button>
+                    <button type="button" class="btn-primary" onclick="confirmLogout()">
+                        <i class="fas fa-sign-out-alt"></i> Yes, Logout
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification Container -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <!-- Top Navbar -->
+    <nav class="top-navbar">
+        <div class="logo">
+            <img src="../../Client/imgs/logo.png" alt="X-TRIM FIT GYM" class="logo-img">
+        </div>
+        <div class="nav-right">
+            <div class="user-profile">
+                <div class="user-avatar">AD</div>
+                <div class="user-info">
+                    <h4>Admin User</h4>
+                    <p>System Administrator</p>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="page-header">
+            <div class="page-header-content">
+                <button class="btn-back" onclick="goBack()" title="Go Back" aria-label="Go Back">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <div>
+                    <h1><i class="fas fa-cog"></i> Settings</h1>
+                    <p>Manage your account information and system preferences</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Settings Sections -->
+        <div class="settings-container">
+            <!-- Account Information Section -->
+            <div class="settings-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-user"></i> Account Information</h2>
+                    <button class="btn-edit" onclick="toggleEditMode('account')" id="editAccountBtn">
+                        <i class="fas fa-edit"></i> Edit
+                    </button>
+                </div>
+                <div class="section-content">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <div class="input-wrapper">
+                                <input type="email" id="email" value="admin@xtrimfitness.com" readonly title="Email Address" aria-label="Email Address">
+                                <span class="field-status"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="role">Role</label>
+                            <div class="input-wrapper">
+                                <input type="text" id="role" value="System Administrator" readonly title="Role" aria-label="Role">
+                                <span class="field-status"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-actions hidden" id="accountActions">
+                        <button type="button" class="btn-secondary" onclick="cancelEdit('account')">
+                            <i class="fas fa-times"></i> Cancel
+                        </button>
+                        <button type="button" class="btn-primary" onclick="saveChanges('account')">
+                            <i class="fas fa-check"></i> Save Changes
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- System Preferences Section -->
+            <div class="settings-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-sliders-h"></i> System Preferences</h2>
+                    <button class="btn-edit" onclick="toggleEditMode('preferences')" id="editPreferencesBtn">
+                        <i class="fas fa-edit"></i> Edit
+                    </button>
+                </div>
+                <div class="section-content">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="timezone">Timezone</label>
+                            <div class="input-wrapper">
+                                <select id="timezone" disabled title="Timezone" aria-label="Timezone">
+                                    <option value="Asia/Manila" selected>Asia/Manila (GMT+8)</option>
+                                    <option value="UTC">UTC (GMT+0)</option>
+                                    <option value="America/New_York">America/New_York (GMT-5)</option>
+                                    <option value="Europe/London">Europe/London (GMT+0)</option>
+                                </select>
+                                <span class="field-status"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="dateFormat">Date Format</label>
+                            <div class="input-wrapper">
+                                <select id="dateFormat" disabled title="Date Format" aria-label="Date Format">
+                                    <option value="MM/DD/YYYY" selected>MM/DD/YYYY</option>
+                                    <option value="DD/MM/YYYY">DD/MM/YYYY</option>
+                                    <option value="YYYY-MM-DD">YYYY-MM-DD</option>
+                                </select>
+                                <span class="field-status"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="language">Language</label>
+                            <div class="input-wrapper">
+                                <select id="language" disabled title="Language" aria-label="Language">
+                                    <option value="en" selected>English</option>
+                                    <option value="fil">Filipino</option>
+                                </select>
+                                <span class="field-status"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="currency">Currency</label>
+                            <div class="input-wrapper">
+                                <select id="currency" disabled title="Currency" aria-label="Currency">
+                                    <option value="PHP" selected>Philippine Peso (₱)</option>
+                                    <option value="USD">US Dollar ($)</option>
+                                    <option value="EUR">Euro (€)</option>
+                                </select>
+                                <span class="field-status"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-actions hidden" id="preferencesActions">
+                        <button type="button" class="btn-secondary" onclick="cancelEdit('preferences')">
+                            <i class="fas fa-times"></i> Cancel
+                        </button>
+                        <button type="button" class="btn-primary" onclick="saveChanges('preferences')">
+                            <i class="fas fa-check"></i> Save Changes
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Notification Settings Section -->
+            <div class="settings-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-bell"></i> Notification Settings</h2>
+                    <button class="btn-edit" onclick="toggleEditMode('notifications')" id="editNotificationsBtn">
+                        <i class="fas fa-edit"></i> Edit
+                    </button>
+                </div>
+                <div class="section-content">
+                    <div class="notification-list">
+                        <div class="notification-item">
+                            <div class="notification-info">
+                                <h3>Email Notifications</h3>
+                                <p>Receive email alerts for important system events</p>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="emailNotifications" checked disabled>
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <div class="notification-item">
+                            <div class="notification-info">
+                                <h3>New Member Registration</h3>
+                                <p>Get notified when a new member registers</p>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="newMemberNotifications" checked disabled>
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <div class="notification-item">
+                            <div class="notification-info">
+                                <h3>Payment Alerts</h3>
+                                <p>Receive notifications for payment transactions</p>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="paymentNotifications" checked disabled>
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <div class="notification-item">
+                            <div class="notification-info">
+                                <h3>System Updates</h3>
+                                <p>Get notified about system maintenance and updates</p>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="systemNotifications" checked disabled>
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-actions hidden" id="notificationsActions">
+                        <button type="button" class="btn-secondary" onclick="cancelEdit('notifications')">
+                            <i class="fas fa-times"></i> Cancel
+                        </button>
+                        <button type="button" class="btn-primary" onclick="saveChanges('notifications')">
+                            <i class="fas fa-check"></i> Save Changes
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Account Security Section -->
+            <div class="settings-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-shield-alt"></i> Account Security</h2>
+                </div>
+                <div class="section-content">
+                    <div class="security-actions">
+                        <div class="security-item">
+                            <div class="security-info">
+                                <i class="fas fa-key"></i>
+                                <div>
+                                    <h3>Change Password</h3>
+                                    <p>Update your password to keep your account secure</p>
+                                </div>
+                            </div>
+                            <button class="btn-secondary" onclick="openChangePasswordModal()">
+                                <i class="fas fa-edit"></i> Change Password
+                            </button>
+                        </div>
+                        <div class="security-item">
+                            <div class="security-info">
+                                <i class="fas fa-history"></i>
+                                <div>
+                                    <h3>Login History</h3>
+                                    <p>View your recent login activity and sessions</p>
+                                </div>
+                            </div>
+                            <button class="btn-secondary" onclick="viewLoginHistory()">
+                                <i class="fas fa-eye"></i> View History
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Logout Button at Bottom -->
+        <div class="logout-section">
+            <button class="btn-logout-bottom" onclick="openLogoutModal()">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </button>
+        </div>
+    </main>
+
+    <!-- Change Password Modal -->
+    <div class="modal-overlay" id="changePasswordModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3><i class="fas fa-key"></i> Change Password</h3>
+                <button class="modal-close" onclick="closeChangePasswordModal()" title="Close" aria-label="Close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form id="changePasswordForm" onsubmit="handleChangePassword(event)">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="currentPassword">Current Password <span class="required">*</span></label>
+                        <input type="password" id="currentPassword" placeholder="Enter your current password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="newPassword">New Password <span class="required">*</span></label>
+                        <input type="password" id="newPassword" placeholder="Enter your new password" required>
+                        <small>Password must be at least 8 characters long</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmPassword">Confirm New Password <span class="required">*</span></label>
+                        <input type="password" id="confirmPassword" placeholder="Confirm your new password" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-secondary" onclick="closeChangePasswordModal()">
+                        <i class="fas fa-times"></i> Cancel
+                    </button>
+                    <button type="submit" class="btn-primary">
+                        <i class="fas fa-check"></i> Update Password
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Change Password Success Modal -->
+    <div class="modal-overlay" id="passwordSuccessModal">
+        <div class="modal modal-center">
+            <div class="modal-body">
+                <div class="modal-success-icon-large">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h3 class="modal-success-title">Password Updated Successfully!</h3>
+                <p class="modal-success-text">
+                    Your password has been changed. Please use your new password for future logins.
+                </p>
+                <div class="modal-button-center">
+                    <button class="btn-primary modal-button-full" onclick="closePasswordSuccessModal()">
+                        <i class="fas fa-check"></i> Got it
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login History Modal -->
+    <div class="modal-overlay" id="loginHistoryModal">
+        <div class="modal modal-large">
+            <div class="modal-header">
+                <h3><i class="fas fa-history"></i> Login History</h3>
+                <button class="modal-close" onclick="closeLoginHistoryModal()" title="Close" aria-label="Close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="login-history-list" id="loginHistoryList">
+                    <!-- Dynamically populated -->
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

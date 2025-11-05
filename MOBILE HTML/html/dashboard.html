@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Dashboard - X-TRIM FIT GYM</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="..//css/dashboard.css">
+</head>
+<body>
+    <!-- Top Header -->
+    <header class="top-header">
+        <div class="header-content">
+            <div class="user-greeting">
+                <div class="user-avatar">AQ</div>
+                <div class="greeting-text">
+                    <p class="greeting">Hello,</p>
+                    <h1 class="user-name">Ashley Quicho!</h1>
+                </div>
+            </div>
+            <div class="header-actions">
+                <button class="icon-btn notification-btn">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge">3</span>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Daily Goal Progress -->
+        <div class="daily-goal-card">
+            <div class="goal-header">
+                <div class="goal-info">
+                    <i class="fas fa-bullseye"></i>
+                    <span>Today's Goal</span>
+                </div>
+                <span class="goal-percentage">60%</span>
+            </div>
+            <div class="goal-progress-bar">
+                <div class="goal-progress-fill" style="width: 60%"></div>
+            </div>
+            <p class="goal-subtitle">Keep pushing! You're on track.</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Today's Focus Section -->
+        <section class="section today-focus">
+            <div class="section-header">
+                <h2>
+                    <i class="fas fa-dumbbell"></i>
+                    Today's Focus
+                </h2>
+            </div>
+            
+            <div class="workout-card featured">
+                <div class="workout-icon">
+                    <i class="fas fa-fire"></i>
+                </div>
+                <div class="workout-info">
+                    <h3 class="workout-title">Upper Body Strength</h3>
+                    <div class="workout-meta">
+                        <span><i class="fas fa-clock"></i> 45 min</span>
+                        <span><i class="fas fa-list"></i> 3 activities</span>
+                    </div>
+                    <p class="workout-time">Today, 6:00 PM</p>
+                </div>
+                <button class="btn-start-workout">
+                    <i class="fas fa-play"></i>
+                    Start
+                </button>
+            </div>
+        </section>
+
+        <!-- Progress Snapshot -->
+        <section class="section progress-snapshot">
+            <div class="section-header">
+                <h2>
+                    <i class="fas fa-chart-line"></i>
+                    Progress Snapshot
+                </h2>
+            </div>
+            
+            <div class="progress-cards-grid">
+                <div class="progress-card">
+                    <div class="progress-icon weight">
+                        <i class="fas fa-weight"></i>
+                    </div>
+                    <div class="progress-data">
+                        <p class="progress-label">Weight Lost</p>
+                        <p class="progress-value">-5 kg</p>
+                    </div>
+                </div>
+                
+                <div class="progress-card">
+                    <div class="progress-icon muscle">
+                        <i class="fas fa-dumbbell"></i>
+                    </div>
+                    <div class="progress-data">
+                        <p class="progress-label">Muscle Gain</p>
+                        <p class="progress-value">+3%</p>
+                    </div>
+                </div>
+                
+                <div class="progress-card">
+                    <div class="progress-icon streak">
+                        <i class="fas fa-fire"></i>
+                    </div>
+                    <div class="progress-data">
+                        <p class="progress-label">Streak</p>
+                        <p class="progress-value">7 Days</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Nutrition Card -->
+        <section class="section nutrition-section">
+            <div class="section-header">
+                <h2>
+                    <i class="fas fa-utensils"></i>
+                    Nutrition Today
+                </h2>
+                <a href="#" class="view-all">View Plan</a>
+            </div>
+            
+            <div class="nutrition-card">
+                <div class="calories-tracker">
+                    <div class="calories-circle">
+                        <svg class="progress-ring" width="120" height="120">
+                            <circle class="progress-ring-bg" cx="60" cy="60" r="50"></circle>
+                            <circle class="progress-ring-progress" cx="60" cy="60" r="50" 
+                                    style="stroke-dashoffset: 94.2"></circle>
+                        </svg>
+                        <div class="calories-text">
+                            <span class="calories-consumed">1,200</span>
+                            <span class="calories-goal">/ 1,800</span>
+                            <span class="calories-unit">kcal</span>
+                        </div>
+                    </div>
+                    <div class="calories-info">
+                        <div class="macro-item">
+                            <span class="macro-dot protein"></span>
+                            <span class="macro-label">Protein</span>
+                            <span class="macro-value">85g</span>
+                        </div>
+                        <div class="macro-item">
+                            <span class="macro-dot carbs"></span>
+                            <span class="macro-label">Carbs</span>
+                            <span class="macro-value">140g</span>
+                        </div>
+                        <div class="macro-item">
+                            <span class="macro-dot fats"></span>
+                            <span class="macro-label">Fats</span>
+                            <span class="macro-value">45g</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="meal-suggestion">
+                    <div class="meal-header">
+                        <i class="fas fa-lightbulb"></i>
+                        <span>Next Meal</span>
+                    </div>
+                    <div class="meal-content">
+                        <h4>Grilled Chicken Salad</h4>
+                        <p>520 cal • High Protein</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Latest Achievement -->
+        <section class="section achievement-section">
+            <div class="section-header">
+                <h2>
+                    <i class="fas fa-trophy"></i>
+                    Latest Achievement
+                </h2>
+                <a href="#" class="view-all">View All</a>
+            </div>
+            
+            <div class="achievement-card unlocked">
+                <div class="achievement-badge">
+                    <i class="fas fa-fire"></i>
+                </div>
+                <div class="achievement-info">
+                    <h3>30-Day Streak Master</h3>
+                    <p>Worked out consistently for 30 days straight!</p>
+                    <span class="achievement-date">
+                        <i class="fas fa-calendar-check"></i>
+                        Unlocked Oct 8, 2025
+                    </span>
+                </div>
+                <button class="btn-share">
+                    <i class="fas fa-share-alt"></i>
+                    Share
+                </button>
+            </div>
+        </section>
+
+        <!-- Coach Quick Access -->
+        <section class="section coach-section">
+            <div class="coach-quick-card">
+                <div class="coach-avatar">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="coach-info">
+                    <p class="coach-label">Your Coach</p>
+                    <h3>Coach Mike Rodriguez</h3>
+                    <p class="coach-specialty">Strength & Conditioning</p>
+                </div>
+                <button class="btn-message">
+                    <i class="fas fa-comment"></i>
+                    Message
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <button class="nav-item active">
+            <i class="fas fa-home"></i>
+            <span>Dashboard</span>
+        </button>
+        <a class="nav-item" href="workouts.html">
+            <i class="fas fa-dumbbell"></i>
+            <span>Workouts</span>
+        </a>
+        <button class="nav-item">
+            <i class="fas fa-chart-line"></i>
+            <span>Progress</span>
+        </button>
+        <button class="nav-item">
+            <i class="fas fa-user-friends"></i>
+            <span>Coach</span>
+        </button>
+    </nav>
+
+    <script src="..//js/dashboard.js"></script>
+</body>
+</html>

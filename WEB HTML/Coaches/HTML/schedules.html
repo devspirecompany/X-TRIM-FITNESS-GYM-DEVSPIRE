@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Schedule - X-TRIM FIT GYM</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../CSS/schedules.css">
+    <link rel="stylesheet" href="../CSS/booking-panel.css">
+    <script src="../JS/schedules.js" defer></script>
+    <script src="../JS/booking-panel.js" defer></script>
+    <script>
+        // Shared functions from Dashboard
+        function toggleChatPanel() {
+            showToast('Chat panel coming soon...', 'info');
+        }
+        
+        function toggleNotificationPanel() {
+            showToast('Notification panel coming soon...', 'info');
+        }
+    </script>
+</head>
+<body>
+    <!-- Top Navbar -->
+    <nav class="top-navbar">
+        <div class="logo">
+            <img src="../../Client/imgs/logo.png" alt="X-TRIM FIT GYM" class="logo-img">
+        </div>
+        <div class="nav-right">
+            <div class="chat-icon" onclick="window.location.href='../HTML/Messages.html'">
+                <i class="fas fa-comments"></i>
+            </div>
+            <div class="booking-icon" onclick="toggleBookingPanel()">
+                <i class="fas fa-calendar-check"></i>
+                <span class="booking-badge" id="bookingBadge">2</span>
+            </div>
+            <div class="notification-icon" onclick="toggleNotificationPanel()">
+                <i class="fas fa-bell"></i>
+                <span class="notification-badge">3</span>
+            </div>
+            <div class="user-profile" onclick="event.stopPropagation(); toggleProfileDropdown();" id="userProfileDropdown">
+                <div class="user-avatar">MR</div>
+                <div class="user-info">
+                    <h4>Mike Rodriguez</h4>
+                    <p>Strength Coach</p>
+                </div>
+                <i class="fas fa-chevron-down"></i>
+                <div class="dropdown-menu">
+                    <a href="../HTML/settings.html" class="dropdown-item">
+                        <i class="fas fa-cog"></i>
+                        <span>Settings</span>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item" onclick="event.preventDefault(); openLogoutModal();">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Logout</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <ul class="sidebar-menu">
+            <li><a href="../HTML/dashboard.html"><i class="fas fa-home"></i><span>Dashboard</span></a></li>
+            <li><a href="../HTML/MyClients.html"><i class="fas fa-users"></i><span>My Clients</span></a></li>
+            <li><a href="../HTML/workouts.html"><i class="fas fa-dumbbell"></i><span>Workout Plans</span></a></li>
+            <li><a href="../HTML/mealplans.html"><i class="fas fa-utensils"></i><span>Meal Plans</span></a></li>
+            <li><a href="../HTML/schedules.html" class="active"><i class="fas fa-calendar-alt"></i><span>My Schedule</span></a></li>
+            <li><a href="../HTML/progress.html"><i class="fas fa-chart-line"></i><span>Progress Review</span></a></li>
+        </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="page-header">
+            <div>
+                <h1><i class="fas fa-calendar-alt"></i> My Schedule</h1>
+                <p>Manage your training sessions and appointments with clients</p>
+            </div>
+            <div class="header-actions">
+                <button class="btn-secondary" onclick="switchView('calendar')" id="calendarViewBtn" title="Calendar view">
+                    <i class="fas fa-calendar"></i> Calendar
+                </button>
+                <button class="btn-secondary" onclick="switchView('list')" id="listViewBtn" title="List view">
+                    <i class="fas fa-list"></i> List
+                </button>
+                <button class="btn-primary" onclick="openCreateSessionModal()" title="Create new session">
+                    <i class="fas fa-plus"></i> Schedule Session
+                </button>
+            </div>
+        </div>
+
+        <!-- Search and Filter Bar -->
+        <div class="search-filter-bar">
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" id="searchInput" placeholder="Search sessions by client name or type..." onkeyup="filterSessions()">
+            </div>
+            <div class="filter-group">
+                <label for="clientFilter" class="filter-label">
+                    <i class="fas fa-filter"></i> Client
+                </label>
+                <select id="clientFilter" onchange="filterSessions()">
+                    <option value="all">All Clients</option>
+                    <option value="ashley-quicho">Ashley Quicho</option>
+                    <option value="john-dela-cruz">John Dela Cruz</option>
+                    <option value="maria-santos">Maria Santos</option>
+                    <option value="robert-lim">Robert Lim</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label for="typeFilter" class="filter-label">
+                    <i class="fas fa-filter"></i> Type
+                </label>
+                <select id="typeFilter" onchange="filterSessions()">
+                    <option value="all">All Types</option>
+                    <option value="personal-training">Personal Training</option>
+                    <option value="group-class">Group Class</option>
+                    <option value="consultation">Consultation</option>
+                    <option value="assessment">Assessment</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label for="statusFilter" class="filter-label">
+                    <i class="fas fa-filter"></i> Status
+                </label>
+                <select id="statusFilter" onchange="filterSessions()">
+                    <option value="all">All Status</option>
+                    <option value="upcoming">Upcoming</option>
+                    <option value="completed">Completed</option>
+                    <option value="cancelled">Cancelled</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Stats Cards -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon" style="background: rgba(20, 184, 166, 0.1);">
+                    <i class="fas fa-calendar-check" style="color: var(--primary-teal);"></i>
+                </div>
+                <div class="stat-content">
+                    <h3>12</h3>
+                    <p>Upcoming Sessions</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon" style="background: rgba(59, 130, 246, 0.1);">
+                    <i class="fas fa-users" style="color: var(--primary-blue);"></i>
+                </div>
+                <div class="stat-content">
+                    <h3>8</h3>
+                    <p>This Week</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon" style="background: rgba(6, 182, 212, 0.1);">
+                    <i class="fas fa-check-circle" style="color: var(--primary-cyan);"></i>
+                </div>
+                <div class="stat-content">
+                    <h3>45</h3>
+                    <p>This Month</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon" style="background: rgba(20, 184, 166, 0.1);">
+                    <i class="fas fa-percentage" style="color: var(--primary-teal);"></i>
+                </div>
+                <div class="stat-content">
+                    <h3>92%</h3>
+                    <p>Attendance Rate</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Calendar View -->
+        <div class="view-container" id="calendarView">
+            <div class="calendar-layout">
+                <!-- Calendar (Left Side) -->
+                <div class="calendar-wrapper">
+                    <div class="calendar-header">
+                        <button class="calendar-nav-btn" onclick="prevMonth()" title="Previous month">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <h2 id="currentMonthYear">November 2024</h2>
+                        <button class="calendar-nav-btn" onclick="nextMonth()" title="Next month">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                    <div class="calendar-weekdays">
+                        <div class="weekday">Sun</div>
+                        <div class="weekday">Mon</div>
+                        <div class="weekday">Tue</div>
+                        <div class="weekday">Wed</div>
+                        <div class="weekday">Thu</div>
+                        <div class="weekday">Fri</div>
+                        <div class="weekday">Sat</div>
+                    </div>
+                    <div class="calendar-grid" id="calendarGrid">
+                        <!-- Calendar days will be generated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Sessions Panel (Right Side) -->
+                <div class="sessions-panel">
+                    <div class="sessions-panel-header">
+                        <h3 id="sessionsPanelTitle">
+                            <i class="fas fa-calendar-check"></i> Select a Date
+                        </h3>
+                        <p id="sessionsPanelSubtitle">Click on a date with sessions to view details</p>
+                    </div>
+                    <div class="sessions-panel-content" id="sessionsPanelContent">
+                        <div class="empty-sessions-state">
+                            <div class="empty-icon">
+                                <i class="fas fa-calendar-day"></i>
+                            </div>
+                            <p>No date selected</p>
+                            <span>Click on a date in the calendar to view its sessions</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- List View -->
+        <div class="view-container" id="listView" style="display: none;">
+            <div class="sessions-list">
+                <!-- Session Item 1 -->
+                <div class="session-card" data-client="ashley-quicho" data-type="personal-training" data-status="upcoming" data-date="2024-11-05">
+                    <div class="session-date-time">
+                        <div class="session-date">
+                            <span class="date-day">05</span>
+                            <span class="date-month">NOV</span>
+                        </div>
+                        <div class="session-time">
+                            <i class="fas fa-clock"></i>
+                            <span>10:00 AM - 11:00 AM</span>
+                        </div>
+                    </div>
+                    <div class="session-details">
+                        <h3>Personal Training Session</h3>
+                        <div class="session-meta">
+                            <span class="session-client">
+                                <i class="fas fa-user"></i> Ashley Quicho
+                            </span>
+                            <span class="session-type personal-training">
+                                <i class="fas fa-dumbbell"></i> Personal Training
+                            </span>
+                            <span class="session-location">
+                                <i class="fas fa-map-marker-alt"></i> Main Training Area
+                            </span>
+                        </div>
+                        <p class="session-notes">Focus on upper body strength and form correction</p>
+                    </div>
+                    <div class="session-actions">
+                        <button class="btn-icon-small" onclick="viewSessionDetails('session-1')" title="View details">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                        <button class="btn-icon-small" onclick="editSession('session-1')" title="Edit session">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                        <button class="btn-icon-small" onclick="cancelSession('session-1')" title="Cancel session">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Session Item 2 -->
+                <div class="session-card" data-client="john-dela-cruz" data-type="personal-training" data-status="upcoming" data-date="2024-11-06">
+                    <div class="session-date-time">
+                        <div class="session-date">
+                            <span class="date-day">06</span>
+                            <span class="date-month">NOV</span>
+                        </div>
+                        <div class="session-time">
+                            <i class="fas fa-clock"></i>
+                            <span>2:00 PM - 3:00 PM</span>
+                        </div>
+                    </div>
+                    <div class="session-details">
+                        <h3>Muscle Building Program</h3>
+                        <div class="session-meta">
+                            <span class="session-client">
+                                <i class="fas fa-user"></i> John Dela Cruz
+                            </span>
+                            <span class="session-type personal-training">
+                                <i class="fas fa-dumbbell"></i> Personal Training
+                            </span>
+                            <span class="session-location">
+                                <i class="fas fa-map-marker-alt"></i> Weight Training Area
+                            </span>
+                        </div>
+                        <p class="session-notes">Progressive overload focus - chest and back</p>
+                    </div>
+                    <div class="session-actions">
+                        <button class="btn-icon-small" onclick="viewSessionDetails('session-2')" title="View details">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                        <button class="btn-icon-small" onclick="editSession('session-2')" title="Edit session">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                        <button class="btn-icon-small" onclick="cancelSession('session-2')" title="Cancel session">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Session Item 3 -->
+                <div class="session-card" data-client="maria-santos" data-type="consultation" data-status="upcoming" data-date="2024-11-07">
+                    <div class="session-date-time">
+                        <div class="session-date">
+                            <span class="date-day">07</span>
+                            <span class="date-month">NOV</span>
+                        </div>
+                        <div class="session-time">
+                            <i class="fas fa-clock"></i>
+                            <span>4:00 PM - 5:00 PM</span>
+                        </div>
+                    </div>
+                    <div class="session-details">
+                        <h3>Nutrition Consultation</h3>
+                        <div class="session-meta">
+                            <span class="session-client">
+                                <i class="fas fa-user"></i> Maria Santos
+                            </span>
+                            <span class="session-type consultation">
+                                <i class="fas fa-utensils"></i> Consultation
+                            </span>
+                            <span class="session-location">
+                                <i class="fas fa-map-marker-alt"></i> Office
+                            </span>
+                        </div>
+                        <p class="session-notes">Review meal plan adjustments and progress</p>
+                    </div>
+                    <div class="session-actions">
+                        <button class="btn-icon-small" onclick="viewSessionDetails('session-3')" title="View details">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                        <button class="btn-icon-small" onclick="editSession('session-3')" title="Edit session">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                        <button class="btn-icon-small" onclick="cancelSession('session-3')" title="Cancel session">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Session Item 4 -->
+                <div class="session-card" data-client="robert-lim" data-type="group-class" data-status="upcoming" data-date="2024-11-08">
+                    <div class="session-date-time">
+                        <div class="session-date">
+                            <span class="date-day">08</span>
+                            <span class="date-month">NOV</span>
+                        </div>
+                        <div class="session-time">
+                            <i class="fas fa-clock"></i>
+                            <span>6:00 PM - 7:00 PM</span>
+                        </div>
+                    </div>
+                    <div class="session-details">
+                        <h3>HIIT Group Class</h3>
+                        <div class="session-meta">
+                            <span class="session-client">
+                                <i class="fas fa-users"></i> Group Session
+                            </span>
+                            <span class="session-type group-class">
+                                <i class="fas fa-fire"></i> Group Class
+                            </span>
+                            <span class="session-location">
+                                <i class="fas fa-map-marker-alt"></i> Cardio Zone
+                            </span>
+                        </div>
+                        <p class="session-notes">High-intensity interval training with 8 participants</p>
+                    </div>
+                    <div class="session-actions">
+                        <button class="btn-icon-small" onclick="viewSessionDetails('session-4')" title="View details">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                        <button class="btn-icon-small" onclick="editSession('session-4')" title="Edit session">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                        <button class="btn-icon-small" onclick="cancelSession('session-4')" title="Cancel session">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Create/Edit Session Modal -->
+    <div class="modal-overlay" id="sessionModal">
+        <div class="modal modal-large">
+            <div class="modal-header">
+                <h3><i class="fas fa-calendar-plus"></i> <span id="modalTitle">Schedule New Session</span></h3>
+                <button class="modal-close" onclick="closeSessionModal()" title="Close" aria-label="Close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="sessionForm" onsubmit="saveSession(event)">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="sessionClient">
+                                <i class="fas fa-user"></i> Client <span class="required">*</span>
+                            </label>
+                            <select id="sessionClient" name="sessionClient" required>
+                                <option value="">Select a client</option>
+                                <option value="ashley-quicho">Ashley Quicho</option>
+                                <option value="john-dela-cruz">John Dela Cruz</option>
+                                <option value="maria-santos">Maria Santos</option>
+                                <option value="robert-lim">Robert Lim</option>
+                                <option value="group">Group Session</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="sessionType">
+                                <i class="fas fa-tag"></i> Session Type <span class="required">*</span>
+                            </label>
+                            <select id="sessionType" name="sessionType" required>
+                                <option value="">Select type</option>
+                                <option value="personal-training">Personal Training</option>
+                                <option value="group-class">Group Class</option>
+                                <option value="consultation">Consultation</option>
+                                <option value="assessment">Assessment</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="sessionDate">
+                                <i class="fas fa-calendar"></i> Date <span class="required">*</span>
+                            </label>
+                            <input type="date" id="sessionDate" name="sessionDate" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="sessionStartTime">
+                                <i class="fas fa-clock"></i> Start Time <span class="required">*</span>
+                            </label>
+                            <input type="time" id="sessionStartTime" name="sessionStartTime" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="sessionEndTime">
+                                <i class="fas fa-clock"></i> End Time <span class="required">*</span>
+                            </label>
+                            <input type="time" id="sessionEndTime" name="sessionEndTime" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="sessionLocation">
+                                <i class="fas fa-map-marker-alt"></i> Location <span class="required">*</span>
+                            </label>
+                            <select id="sessionLocation" name="sessionLocation" required>
+                                <option value="">Select location</option>
+                                <option value="main-training-area">Main Training Area</option>
+                                <option value="weight-training-area">Weight Training Area</option>
+                                <option value="cardio-zone">Cardio Zone</option>
+                                <option value="office">Office</option>
+                                <option value="studio">Studio</option>
+                            </select>
+                        </div>
+                        <div class="form-group full-width">
+                            <label for="sessionTitle">
+                                <i class="fas fa-heading"></i> Session Title
+                            </label>
+                            <input type="text" id="sessionTitle" name="sessionTitle" placeholder="e.g., Upper Body Strength Training">
+                        </div>
+                        <div class="form-group full-width">
+                            <label for="sessionNotes">
+                                <i class="fas fa-comment"></i> Notes (optional)
+                            </label>
+                            <textarea id="sessionNotes" name="sessionNotes" rows="3" placeholder="Any special instructions or focus areas..."></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-actions">
+                        <button type="button" class="btn-secondary" onclick="closeSessionModal()">
+                            <i class="fas fa-times"></i> Cancel
+                        </button>
+                        <button type="submit" class="btn-primary">
+                            <i class="fas fa-save"></i> Save Session
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Day Sessions Modal -->
+    <div class="modal-overlay" id="daySessionsModal">
+        <div class="modal modal-large">
+            <div class="modal-header">
+                <h3><i class="fas fa-calendar-day"></i> Sessions</h3>
+                <button class="modal-close" onclick="closeDaySessionsModal()" title="Close" aria-label="Close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body" id="daySessionsModalContent">
+                <!-- Content will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- View Session Details Modal -->
+    <div class="modal-overlay" id="viewModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3><i class="fas fa-eye"></i> Session Details</h3>
+                <button class="modal-close" onclick="closeViewModal()" title="Close" aria-label="Close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body" id="viewModalContent">
+                <!-- Content will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Cancel Session Confirmation Modal -->
+    <div class="modal-overlay" id="cancelModal">
+        <div class="modal modal-center">
+            <div class="modal-body">
+                <div class="modal-logout-icon">
+                    <i class="fas fa-times-circle"></i>
+                </div>
+                <h3 class="modal-logout-title">Cancel Session?</h3>
+                <p class="modal-logout-text">
+                    Are you sure you want to cancel this session? The client will be notified.
+                </p>
+                <div class="modal-logout-actions">
+                    <button type="button" class="btn-secondary" onclick="closeCancelModal()">
+                        <i class="fas fa-times"></i> No, Keep Session
+                    </button>
+                    <button type="button" class="btn-primary" onclick="confirmCancelSession()">
+                        <i class="fas fa-check"></i> Yes, Cancel Session
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Logout Modal -->
+    <div class="modal-overlay" id="logoutModal">
+        <div class="modal modal-center">
+            <div class="modal-body">
+                <div class="modal-logout-icon">
+                    <i class="fas fa-sign-out-alt"></i>
+                </div>
+                <h3 class="modal-logout-title">Are you sure you want to logout?</h3>
+                <p class="modal-logout-text">
+                    You'll need to log in again to access your coach account.
+                </p>
+                <div class="modal-logout-actions">
+                    <button type="button" class="btn-secondary" onclick="closeLogoutModal()">
+                        <i class="fas fa-times"></i> Cancel
+                    </button>
+                    <button type="button" class="btn-primary" onclick="confirmLogout()">
+                        <i class="fas fa-sign-out-alt"></i> Yes, Logout
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div id="toastContainer" style="
+        position: fixed;
+        bottom: 2rem;
+        right: 2rem;
+        z-index: 3000;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    "></div>
+
+    <!-- Booking Confirmation Panel -->
+    <div class="booking-panel" id="bookingPanel">
+        <div class="booking-panel-header">
+            <h3><i class="fas fa-calendar-check"></i> Booking Requests</h3>
+            <button class="modal-close" onclick="closeBookingPanel()" title="Close" aria-label="Close">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="booking-panel-body" id="bookingPanelBody">
+            <!-- Dynamically populated -->
+        </div>
+    </div>
+</body>
+</html>
+

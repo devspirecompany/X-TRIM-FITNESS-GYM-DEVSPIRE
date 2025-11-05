@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#1F2937">
+    <title>X-TRIM FIT GYM - Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="..//css/login.css">
+</head>
+<body>
+    <!-- Mobile Header -->
+    <header class="mobile-header">
+        <a href="..//html/homepage.html" class="back-btn" aria-label="Back to home">
+            <i class="fas fa-arrow-left"></i>
+        </a>
+        <div class="header-logo">
+            <img src="..//imgs/logo.png" alt="X-TRIM FIT GYM" class="logo-img">
+        </div>
+        <div class="header-spacer"></div>
+    </header>
+
+    <!-- Login Container -->
+    <main class="login-wrapper">
+        <div class="login-container">
+            <!-- Login Header -->
+            <div class="login-header">
+                <div class="login-icon">
+                    <i class="fas fa-dumbbell"></i>
+                </div>
+                <h1>Welcome Back</h1>
+                <p>Login to continue your fitness journey</p>
+            </div>
+
+            <!-- Error Message -->
+            <div class="error-message" id="errorMessage">
+                <i class="fas fa-exclamation-circle"></i>
+                <span id="errorText">Invalid email or password. Please try again.</span>
+            </div>
+
+            <!-- Login Form -->
+            <!-- Added action to navigate to dashboard.html so non-JS fallback works -->
+            <form id="loginForm" class="login-form" action="dashboard.html" method="get">
+                <!-- Email Input -->
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-envelope input-icon"></i>
+                        <input 
+                            type="email" 
+                            id="email" 
+                            name="email" 
+                            placeholder="Enter your email" 
+                            autocomplete="email"
+                            required
+                        >
+                    </div>
+                </div>
+
+                <!-- Password Input -->
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-lock input-icon"></i>
+                        <input 
+                            type="password" 
+                            id="password" 
+                            name="password" 
+                            placeholder="Enter your password"
+                            autocomplete="current-password"
+                            required
+                        >
+                        <button 
+                            type="button" 
+                            class="password-toggle" 
+                            id="togglePassword"
+                            aria-label="Toggle password visibility"
+                        >
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Form Options -->
+                <div class="form-options">
+                    <label class="remember-me">
+                        <input type="checkbox" id="remember" name="remember">
+                        <span class="checkbox-custom"></span>
+                        <span class="checkbox-label">Remember me</span>
+                    </label>
+                    <a href="#" class="forgot-password" id="forgotPassword">Forgot Password?</a>
+                </div>
+
+                <!-- Login Button -->
+                <button type="submit" class="btn-login" id="loginBtn">
+                    <span class="btn-text">Login</span>
+                    <span class="btn-loader" style="display: none;">
+                        <i class="fas fa-spinner fa-spin"></i>
+                    </span>
+                </button>
+
+                <!-- Biometric Login (if available) -->
+                <button type="button" class="btn-biometric" id="biometricBtn" style="display: none;">
+                    <i class="fas fa-fingerprint"></i>
+                    <span>Login with Biometrics</span>
+                </button>
+            </form>
+
+            <!-- Social Login Divider -->
+            <div class="divider">
+                <span>or continue with</span>
+            </div>
+
+            <!-- Social Login Buttons -->
+            <div class="social-login">
+                <button class="social-btn google" id="googleLogin">
+                    <i class="fab fa-google"></i>
+                </button>
+                <button class="social-btn facebook" id="facebookLogin">
+                    <i class="fab fa-facebook-f"></i>
+                </button>
+                <button class="social-btn apple" id="appleLogin">
+                    <i class="fab fa-apple"></i>
+                </button>
+            </div>
+
+            <!-- Sign Up Link -->
+            <div class="signup-link">
+                <p>Don't have an account? <a href="..//html/registration.html" id="signupLink">Sign Up Now</a></p>
+            </div>
+        </div>
+
+        <!-- Help Button -->
+        <button class="help-fab" id="helpBtn" aria-label="Help">
+            <i class="fas fa-question"></i>
+        </button>
+    </main>
+
+    <!-- Forgot Password Modal -->
+    <div class="modal" id="forgotPasswordModal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Reset Password</h3>
+                <button class="modal-close" id="closeModal" aria-label="Close modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Enter your email address and we'll send you a link to reset your password.</p>
+                <form id="resetForm">
+                    <div class="form-group">
+                        <label for="resetEmail">Email Address</label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-envelope input-icon"></i>
+                            <input 
+                                type="email" 
+                                id="resetEmail" 
+                                name="resetEmail" 
+                                placeholder="Enter your email"
+                                required
+                            >
+                        </div>
+                    </div>
+                    <button type="submit" class="btn-login">
+                        <span>Send Reset Link</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Toast -->
+    <div class="toast" id="successToast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastMessage">Login successful!</span>
+    </div>
+
+    <script src="..//js/login.js"></script>
+</body>
+</html>

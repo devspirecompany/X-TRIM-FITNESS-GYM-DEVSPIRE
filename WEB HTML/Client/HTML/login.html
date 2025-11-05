@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>X-TRIM FIT GYM - Login</title>
+    <link rel="stylesheet" href="../CSS/login.css">
+    <script src="../JS/login.js" defer></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">
+            <img src="../imgs/logo.png" alt="X-TRIM FIT GYM" class="logo-img">
+        </div>
+        <a href="../HTML/homepage.html" class="nav-link">
+            <i class="fas fa-arrow-left"></i> Back to Home
+        </a>
+    </nav>
+
+    <!-- Login Container -->
+    <div class="login-container">
+        <div class="login-card">
+            <!-- Left Sidebar -->
+            <div class="sidebar">
+                <div class="gym-logo">
+                    <i class="fas fa-dumbbell"></i>
+                </div>
+                
+                <div class="login-header">
+                    <h1>Welcome Back</h1>
+                    <p>Sign in to continue your fitness journey</p>
+                </div>
+
+                <!-- Features List -->
+                <div class="features-list">
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Access your personalized workout plans</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Track your progress and achievements</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Connect with expert coaches</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Manage your membership & schedule</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Content Area -->
+            <div class="content-area">
+                <form id="loginForm">
+                    <div class="form-step active">
+                        <h3 class="step-title">
+                            <i class="fas fa-sign-in-alt"></i>
+                            Login to Your Account
+                        </h3>
+                        <p class="step-description">Enter your credentials to access your dashboard</p>
+
+                        <div class="form-group full-width">
+                            <label for="email">Email Address <span class="required">*</span></label>
+                            <input type="email" id="email" name="email" placeholder="example@email.com" required>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="password">Password <span class="required">*</span></label>
+                            <div class="password-wrapper">
+                                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                                <button type="button" class="password-toggle" id="passwordToggle" onclick="togglePasswordVisibility()" title="Show password" aria-label="Show password">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="form-options">
+                            <div class="remember-me">
+                                <input type="checkbox" id="rememberMe" name="rememberMe">
+                                <label for="rememberMe">Remember me</label>
+                            </div>
+                            <a href="#" class="forgot-password" onclick="showForgotPasswordModal(event)">Forgot Password?</a>
+                        </div>
+
+                        <div class="button-container">
+                            <button type="submit" class="btn btn-submit">
+                                <i class="fas fa-sign-in-alt"></i>
+                                <span>Sign In</span>
+                            </button>
+                        </div>
+
+                        <div class="signup-link">
+                            <p>Don't have an account? <a href="../HTML/registration.html">Sign up here</a></p>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Forgot Password Modal -->
+    <div class="modal-overlay" id="forgotPasswordModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3><i class="fas fa-key"></i> Reset Password</h3>
+                <button class="modal-close" onclick="closeForgotPasswordModal()" title="Close" aria-label="Close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p class="modal-description">Enter your email address and we'll send you a link to reset your password.</p>
+                <form id="forgotPasswordForm" onsubmit="handleForgotPassword(event)">
+                    <div class="form-group full-width">
+                        <label for="resetEmail">Email Address <span class="required">*</span></label>
+                        <input type="email" id="resetEmail" name="resetEmail" placeholder="example@email.com" required>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-back" onclick="closeForgotPasswordModal()">
+                            <i class="fas fa-times"></i> Cancel
+                        </button>
+                        <button type="submit" class="btn btn-submit">
+                            <i class="fas fa-paper-plane"></i> Send Reset Link
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Forgot Password Success Modal -->
+    <div class="modal-overlay" id="forgotPasswordSuccessModal">
+        <div class="modal modal-center">
+            <div class="modal-body">
+                <div class="modal-success-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h3 class="modal-success-title">Reset Link Sent!</h3>
+                <p class="modal-success-text">
+                    We've sent a password reset link to your email address. Please check your inbox and follow the instructions to reset your password.
+                </p>
+                <div class="modal-button-center">
+                    <button class="btn btn-submit modal-button-full" onclick="closeForgotPasswordSuccessModal()">
+                        <i class="fas fa-check"></i> Got it
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

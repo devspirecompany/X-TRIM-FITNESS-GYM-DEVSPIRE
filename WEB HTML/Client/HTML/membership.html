@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>X-TRIM FIT GYM - Membership</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../CSS/membership.css">
+    <script src="../JS/membership.js" defer></script>
+</head>
+<body>
+    <!-- Chat Panel -->
+    <div class="chat-panel" id="chatPanel">
+        <div class="chat-header">
+            <h3><i class="fas fa-comments"></i> Messages</h3>
+            <button class="modal-close" onclick="closeChatPanel()" title="Close" aria-label="Close">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+            <div class="message received">
+                <div class="message-avatar">CM</div>
+                <div>
+                    <div class="message-content">
+                        <div class="message-sender">Coach Mike</div>
+                        <div class="message-text">Hey Ashley! Great job on today's workout. Keep up the excellent form!</div>
+                        <div class="message-time">2 hours ago</div>
+                    </div>
+                </div>
+            </div>
+            <div class="message sent">
+                <div class="message-avatar">AQ</div>
+                <div>
+                    <div class="message-content">
+                        <div class="message-text">Thank you Coach! I'm feeling stronger already. Can we schedule an extra session this week?</div>
+                        <div class="message-time">1 hour ago</div>
+                    </div>
+                </div>
+            </div>
+            <div class="message received">
+                <div class="message-avatar">CM</div>
+                <div>
+                    <div class="message-content">
+                        <div class="message-sender">Coach Mike</div>
+                        <div class="message-text">Absolutely! I have slots available on Thursday at 7 PM. Does that work for you?</div>
+                        <div class="message-time">45 minutes ago</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="chat-input-area">
+            <div class="chat-input-wrapper">
+                <textarea class="chat-input" id="chatInput" placeholder="Type your message..." rows="1"></textarea>
+                <button class="chat-send-btn" onclick="sendChatMessage()" title="Send message" aria-label="Send message">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Panel -->
+    <div class="notification-panel" id="notificationPanel">
+        <div class="notification-panel-header">
+            <h3><i class="fas fa-bell"></i> Notifications</h3>
+            <button class="modal-close" onclick="closeNotificationPanel()" title="Close" aria-label="Close">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="notification-panel-body">
+            <div class="notification-list-item unread">
+                <div class="notification-item-wrapper">
+                    <div class="notification-icon-box info">
+                        <i class="fas fa-calendar"></i>
+                    </div>
+                    <div class="notification-item-content">
+                        <h4 class="notification-item-title">Session Reminder</h4>
+                        <p class="notification-item-text">Upper Body Strength at 6:00 PM today</p>
+                        <span class="notification-time">2 minutes ago</span>
+                    </div>
+                </div>
+            </div>
+            <div class="notification-list-item unread">
+                <div class="notification-item-wrapper">
+                    <div class="notification-icon-box success">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <div class="notification-item-content">
+                        <h4 class="notification-item-title">New Achievement!</h4>
+                        <p class="notification-item-text">You've completed 5 workouts this week</p>
+                        <span class="notification-time">1 hour ago</span>
+                    </div>
+                </div>
+            </div>
+            <div class="notification-list-item">
+                <div class="notification-item-wrapper">
+                    <div class="notification-icon-box info">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <div class="notification-item-content">
+                        <h4 class="notification-item-title">Coach Message</h4>
+                        <p class="notification-item-text">Coach Mike: "Focus on form over weight - quality reps build strength!"</p>
+                        <span class="notification-time">3 hours ago</span>
+                    </div>
+                </div>
+            </div>
+            <div class="notification-list-item">
+                <div class="notification-item-wrapper">
+                    <div class="notification-icon-box success">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="notification-item-content">
+                        <h4 class="notification-item-title">Workout Completed</h4>
+                        <p class="notification-item-text">Upper Body Strength session completed successfully</p>
+                        <span class="notification-time">Yesterday</span>
+                    </div>
+                </div>
+            </div>
+            <div class="notification-list-item">
+                <div class="notification-item-wrapper">
+                    <div class="notification-icon-box info">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <div class="notification-item-content">
+                        <h4 class="notification-item-title">New Meal Plan</h4>
+                        <p class="notification-item-text">Your personalized meal plan for next week is ready</p>
+                        <span class="notification-time">2 days ago</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Top Navbar -->
+    <nav class="top-navbar">
+        <div class="logo">
+            <img src="../imgs/logo.png" alt="X-TRIM FIT GYM" class="logo-img">
+        </div>
+        <div class="nav-right">
+            <div class="chat-icon" onclick="toggleChatPanel()" title="Messages" aria-label="Messages">
+                <i class="fas fa-comments"></i>
+            </div>
+            <div class="notification-icon" onclick="toggleNotificationPanel()" title="Notifications" aria-label="Notifications">
+                <i class="fas fa-bell"></i>
+                <span class="notification-badge">3</span>
+            </div>
+            <div class="user-profile" onclick="event.stopPropagation(); toggleProfileDropdown();" id="userProfileDropdown">
+                <div class="user-avatar">AQ</div>
+                <div class="user-info">
+                    <h4>Ashley Quicho</h4>
+                    <p>PROMO Student Member</p>
+                </div>
+                <i class="fas fa-chevron-down"></i>
+                <!-- Dropdown Menu -->
+                <div class="dropdown-menu">
+                    <a href="../HTML/dashboard.html" class="dropdown-item">
+                        <i class="fas fa-cog"></i>
+                        <span>Settings</span>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Logout</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <ul class="sidebar-menu">
+            <li><a href="../HTML/dashboard.html"><i class="fas fa-home"></i><span>Dashboard</span></a></li>
+            <li><a href="../HTML/workouts.html"><i class="fas fa-dumbbell"></i><span>Workout Plans</span></a></li>
+            <li><a href="../HTML/schedule.html"><i class="fas fa-calendar-alt"></i><span>My Schedule</span></a></li>
+            <li><a href="../HTML/mealplan.html"><i class="fas fa-utensils"></i><span>Meal Plans</span></a></li>
+            <li><a href="../HTML/progress.html"><i class="fas fa-chart-line"></i><span>Progress</span></a></li>
+            <li><a href="../HTML/achievements.html"><i class="fas fa-trophy"></i><span>Achievements</span></a></li>
+            <li><a href="../HTML/coaches.html"><i class="fas fa-user-friends"></i><span>Coaches</span></a></li>
+            <li><a href="../HTML/membership.html" class="active"><i class="fas fa-credit-card"></i><span>Membership</span></a></li>
+        </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Page Header -->
+        <div class="page-header">
+            <h1><i class="fas fa-credit-card"></i> Membership Management</h1>
+            <p>Manage your gym membership, view plans, and track your payment history</p>
+        </div>
+
+        <!-- Current Membership Overview -->
+        <div class="membership-overview">
+            <div class="current-plan-card">
+                <div class="plan-badge">
+                    <i class="fas fa-crown"></i> YOUR CURRENT PLAN
+                </div>
+                <h2>PROMO Student Membership</h2>
+                <div class="plan-price">₱1,200<span>/3 months</span></div>
+                <p class="plan-description-text">Special 3-month promo for students - Best value!</p>
+                
+                <ul class="plan-features">
+                    <li><i class="fas fa-check-circle"></i> Unlimited gym access (24/7)</li>
+                    <li><i class="fas fa-check-circle"></i> Personal training sessions (8/month)</li>
+                    <li><i class="fas fa-check-circle"></i> Customized workout & meal plans</li>
+                    <li><i class="fas fa-check-circle"></i> Free fitness assessments</li>
+                    <li><i class="fas fa-check-circle"></i> Group classes included</li>
+                    <li><i class="fas fa-check-circle"></i> Locker & shower facilities</li>
+                    <li><i class="fas fa-check-circle"></i> Priority booking for classes</li>
+                </ul>
+            </div>
+
+            <div class="membership-status">
+                <div class="status-item">
+                    <div class="status-label">Status</div>
+                    <div class="status-value">
+                        <span class="status-badge">
+                            <i class="fas fa-check-circle"></i> Active
+                        </span>
+                    </div>
+                </div>
+
+                <div class="status-item">
+                    <div class="status-label">Member Since</div>
+                    <div class="status-value">January 15, 2024</div>
+                </div>
+
+                <div class="status-item">
+                    <div class="status-label">Next Billing Date</div>
+                    <div class="status-value">November 9, 2025</div>
+                </div>
+
+                <div class="days-remaining">
+                    <div class="number">30</div>
+                    <div class="label">Days Remaining</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Available Plans -->
+        <div class="section-card">
+            <div class="section-header">
+                <h2><i class="fas fa-th-large"></i> Available Membership Plans</h2>
+            </div>
+
+            <div class="plans-grid">
+                <!-- Student Plan -->
+                <div class="plan-card">
+                    <h3>Student</h3>
+                    <div class="price">₱500<span>/month</span></div>
+                    <p class="description">Perfect for students with valid student ID</p>
+                    <ul>
+                        <li><i class="fas fa-check"></i> Gym access (6am-10pm)</li>
+                        <li><i class="fas fa-check"></i> Basic equipment access</li>
+                        <li><i class="fas fa-check"></i> Locker facilities</li>
+                        <li><i class="fas fa-check"></i> 2 group classes/month</li>
+                        <li><i class="fas fa-times plan-feature-icon-disabled"></i> Personal training</li>
+                        <li><i class="fas fa-times plan-feature-icon-disabled"></i> Meal plans</li>
+                    </ul>
+                    <button class="btn secondary">Select Plan</button>
+                </div>
+
+                <!-- PROMO Student Plan (Current) -->
+                <div class="plan-card featured">
+                    <h3>PROMO Student</h3>
+                    <div class="price">₱1,200<span>/3 months</span></div>
+                    <p class="description">Special 3-month promo for students - Best value!</p>
+                    <ul>
+                        <li><i class="fas fa-check"></i> Gym access (6am-10pm)</li>
+                        <li><i class="fas fa-check"></i> All equipment access</li>
+                        <li><i class="fas fa-check"></i> Locker facilities</li>
+                        <li><i class="fas fa-check"></i> Unlimited group classes</li>
+                        <li><i class="fas fa-check"></i> Custom workout plans</li>
+                        <li><i class="fas fa-check"></i> Valid for 3 months</li>
+                    </ul>
+                    <button class="btn btn-disabled" disabled>Current Plan</button>
+                </div>
+
+                <!-- Non student Plan -->
+                <div class="plan-card">
+                    <h3>Non student</h3>
+                    <div class="price">₱1,300<span>/3 months</span></div>
+                    <p class="description">3-month membership for non-students</p>
+                    <ul>
+                        <li><i class="fas fa-check"></i> Gym access (6am-10pm)</li>
+                        <li><i class="fas fa-check"></i> All equipment access</li>
+                        <li><i class="fas fa-check"></i> Locker facilities</li>
+                        <li><i class="fas fa-check"></i> Unlimited group classes</li>
+                        <li><i class="fas fa-check"></i> Custom workout plans</li>
+                        <li><i class="fas fa-check"></i> Valid for 3 months</li>
+                    </ul>
+                    <button class="btn" onclick="upgradePlan('Non student')">Upgrade Plan</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Payment History -->
+        <div class="section-card">
+            <div class="section-header">
+                <h2><i class="fas fa-history"></i> Payment History</h2>
+            </div>
+
+            <table class="payment-table">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Description</th>
+                        <th>Amount</th>
+                        <th>Method</th>
+                        <th>Status</th>
+                        <th>Receipt</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Oct 9, 2025</td>
+                        <td>PROMO Student - 3 months</td>
+                        <td>₱2,500</td>
+                        <td><span class="payment-method"><i class="fas fa-mobile-alt"></i> GCash</span></td>
+                        <td><span class="payment-status"><i class="fas fa-check-circle"></i> Paid</span></td>
+                        <td><i class="fas fa-download download-btn" onclick="viewReceipt('OCT2025', 'Oct 9, 2025', 'PROMO Student - 3 months', 'GCash', '₱1,200')" title="View Receipt" aria-label="View Receipt"></i></td>
+                    </tr>
+                    <tr>
+                        <td>Sep 9, 2025</td>
+                        <td>PROMO Student - 3 months</td>
+                        <td>₱2,500</td>
+                        <td><span class="payment-method"><i class="fas fa-mobile-alt"></i> GCash</span></td>
+                        <td><span class="payment-status"><i class="fas fa-check-circle"></i> Paid</span></td>
+                        <td><i class="fas fa-download download-btn" onclick="viewReceipt('SEP2025', 'Sep 9, 2025', 'PROMO Student - 3 months', 'GCash', '₱1,200')" title="View Receipt" aria-label="View Receipt"></i></td>
+                    </tr>
+                    <tr>
+                        <td>Aug 9, 2025</td>
+                        <td>PROMO Student - 3 months</td>
+                        <td>₱2,500</td>
+                        <td><span class="payment-method"><i class="fas fa-mobile-alt"></i> GCash</span></td>
+                        <td><span class="payment-status"><i class="fas fa-check-circle"></i> Paid</span></td>
+                        <td><i class="fas fa-download download-btn" onclick="viewReceipt('AUG2025', 'Aug 9, 2025', 'PROMO Student - 3 months', 'GCash', '₱1,200')" title="View Receipt" aria-label="View Receipt"></i></td>
+                    </tr>
+                    <tr>
+                        <td>Jul 9, 2025</td>
+                        <td>PROMO Student - 3 months</td>
+                        <td>₱2,500</td>
+                        <td><span class="payment-method"><i class="fas fa-mobile-alt"></i> GCash</span></td>
+                        <td><span class="payment-status"><i class="fas fa-check-circle"></i> Paid</span></td>
+                        <td><i class="fas fa-download download-btn" onclick="viewReceipt('JUL2025', 'Jul 9, 2025', 'PROMO Student - 3 months', 'GCash', '₱1,200')" title="View Receipt" aria-label="View Receipt"></i></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Payment Methods -->
+        <div class="section-card">
+            <div class="section-header">
+                <h2><i class="fas fa-wallet"></i> Saved Payment Methods</h2>
+            </div>
+
+            <div class="payment-methods-grid">
+                <div class="payment-method-card">
+                    <div class="icon"><i class="fas fa-mobile-alt"></i></div>
+                    <h4>GCash</h4>
+                    <p>+63 ••• ••• 1234</p>
+                    <p class="payment-verified-text">Verified account</p>
+                    <div class="actions">
+                        <button onclick="removePaymentMethod('gcash')">Remove</button>
+                    </div>
+                </div>
+
+                <!-- Add Payment Method Card -->
+                <div class="payment-method-card add-payment-card" onclick="addPaymentMethod()">
+                    <div class="icon add-icon">
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <h4>Add Payment Method</h4>
+                    <p class="payment-method-text">
+                        As of the moment, only <strong>GCash</strong> is supported.
+                    </p>
+                    <div class="actions">
+                        <button class="btn-add-payment">
+                            <i class="fas fa-plus"></i> Add GCash
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA Section -->
+        <div class="cta-section">
+            <div class="cta-card">
+                <div class="icon"><i class="fas fa-sync-alt"></i></div>
+                <h3>Renew Membership</h3>
+                <p>Extend your current membership and keep enjoying all the benefits</p>
+                <button class="btn" onclick="renewMembership()">Renew Now</button>
+            </div>
+
+            <div class="cta-card">
+                <div class="icon"><i class="fas fa-arrow-up"></i></div>
+                <h3>Upgrade Plan</h3>
+                <p>Get more features and benefits by upgrading to a higher tier</p>
+                <button class="btn" onclick="showUpgradeOptions()">View Upgrades</button>
+            </div>
+
+            <div class="cta-card cta-card-danger">
+                <div class="icon"><i class="fas fa-times-circle"></i></div>
+                <h3>Cancel Subscription</h3>
+                <p>Need to pause or cancel? We're here to help you with the process</p>
+                <button class="btn danger" onclick="showCancelModal()">Cancel Subscription</button>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="page-footer">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="#"><i class="fas fa-question-circle"></i> FAQs</a>
+                    <a href="#"><i class="fas fa-headset"></i> Support</a>
+                    <a href="#"><i class="fas fa-file-contract"></i> Terms & Conditions</a>
+                    <a href="#"><i class="fas fa-shield-alt"></i> Privacy Policy</a>
+                </div>
+                <p class="modal-help-text">Need help? Contact us at support@xtrimfitgym.com</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- VIP Upgrade Modal -->
+    <div class="modal" id="upgradeModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeUpgradeModal()" title="Close" aria-label="Close"><i class="fas fa-times"></i></button>
+            <h3><i class="fas fa-crown modal-icon-primary"></i> Upgrade to Non student</h3>
+            <p>Upgrade your membership to Non student plan and continue your fitness journey.</p>
+            
+            <div class="modal-info-box">
+                <div class="modal-info-row">
+                    <span class="modal-info-label">Current Plan:</span>
+                    <span class="modal-info-value">PROMO Student - ₱1,200/3 months</span>
+                </div>
+                <div class="modal-info-row">
+                    <span class="modal-info-label">New Plan:</span>
+                    <span class="modal-info-value-primary">Non student - ₱1,300/3 months</span>
+                </div>
+                <div class="modal-divider"></div>
+                <div class="modal-info-row">
+                    <span class="modal-info-label" style="font-weight: 600;">Additional Cost:</span>
+                    <span class="modal-info-value-large">₱100/3 months</span>
+                </div>
+            </div>
+
+            <p style="margin-bottom: 1rem;"><strong class="modal-text-primary">New Benefits You'll Get:</strong></p>
+            <ul class="modal-benefit-list">
+                <li class="modal-benefit-item">
+                    <i class="fas fa-check-circle modal-benefit-icon"></i>
+                    <span>Private training area access</span>
+                </li>
+                <li class="modal-benefit-item">
+                    <i class="fas fa-check-circle modal-benefit-icon"></i>
+                    <span>Unlimited personal training sessions</span>
+                </li>
+                <li class="modal-benefit-item">
+                    <i class="fas fa-check-circle modal-benefit-icon"></i>
+                    <span>Dedicated nutrition coach</span>
+                </li>
+                <li class="modal-benefit-item">
+                    <i class="fas fa-check-circle modal-benefit-icon"></i>
+                    <span>Massage therapy (4 sessions/month)</span>
+                </li>
+                <li class="modal-benefit-item">
+                    <i class="fas fa-check-circle modal-benefit-icon"></i>
+                    <span>Guest passes (4 per month)</span>
+                </li>
+            </ul>
+
+            <p class="modal-help-text" style="margin-bottom: 1.5rem;">
+                <i class="fas fa-info-circle modal-icon-primary"></i>
+                Your upgrade will take effect immediately. The new rate will apply to your next billing cycle.
+            </p>
+
+            <div class="modal-actions">
+                <button class="btn secondary" onclick="closeUpgradeModal()">Cancel</button>
+                <button class="btn" onclick="confirmUpgrade()">Confirm Upgrade</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Upgrade Confirmation Modal -->
+    <div class="modal" id="upgradeConfirmModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeUpgradeConfirmModal()" title="Close" aria-label="Close"><i class="fas fa-times"></i></button>
+            <div class="modal-center-content">
+                <div class="modal-success-icon-box">
+                    <i class="fas fa-check-circle modal-success-icon"></i>
+                </div>
+                <h3 class="modal-success-title-large">
+                    Confirm Upgrade to Non student
+                </h3>
+            </div>
+            
+            <p class="modal-text-center">
+                You are about to upgrade your membership from <strong class="modal-text-primary-bold">PROMO Student</strong> to <strong class="modal-text-primary-strong">Non student</strong>.
+            </p>
+
+            <div class="modal-info-box">
+                <div class="modal-info-row">
+                    <span class="modal-info-label">Current Plan:</span>
+                    <span class="modal-info-value">PROMO Student - ₱1,200/3 months</span>
+                </div>
+                <div class="modal-info-row">
+                    <span class="modal-info-label">Upgrading To:</span>
+                    <span class="modal-info-value-primary">Non student - ₱1,300/3 months</span>
+                </div>
+                <div class="modal-divider"></div>
+                <div class="modal-info-row">
+                    <span class="modal-info-label">Additional Cost:</span>
+                    <span class="modal-info-value-large">₱100/3 months</span>
+                </div>
+                <div class="modal-info-row">
+                    <span class="modal-info-label">Next Billing Date:</span>
+                    <span class="modal-info-value">November 9, 2025</span>
+                </div>
+            </div>
+
+            <div style="background: rgba(0, 255, 157, 0.08); border-left: 3px solid var(--primary); border-radius: 8px; padding: 1rem; margin: 1.5rem 0;">
+                <p style="color: var(--text-primary); font-size: 0.9rem; margin: 0; display: flex; align-items: flex-start; gap: 0.8rem;">
+                    <i class="fas fa-info-circle" style="color: var(--primary); margin-top: 0.2rem; flex-shrink: 0;"></i>
+                    <span>Your upgrade will be processed immediately. The new Non student rate (₱1,300/3 months) will apply to your next billing cycle starting November 9, 2025.</span>
+                </p>
+            </div>
+
+            <!-- Non-Refundable Reminder -->
+            <div style="background: rgba(220, 38, 38, 0.1); border-left: 3px solid #DC2626; border-radius: 8px; padding: 1rem; margin-bottom: 1.5rem;">
+                <p style="color: var(--text-primary); font-size: 0.9rem; margin: 0; display: flex; align-items: flex-start; gap: 0.8rem;">
+                    <i class="fas fa-exclamation-triangle" style="color: #DC2626; margin-top: 0.2rem; flex-shrink: 0;"></i>
+                    <span><strong style="color: #DC2626;">Important:</strong> All payments are <strong style="color: #DC2626;">non-refundable</strong>. By proceeding, you acknowledge that this transaction cannot be reversed or refunded.</span>
+                </p>
+            </div>
+
+            <p style="color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 1.5rem; text-align: center;">
+                By clicking "Proceed to Payment", you agree to the new membership terms and authorize the payment.
+            </p>
+
+            <div class="modal-actions">
+                <button class="btn secondary" onclick="closeUpgradeConfirmModal()">Cancel</button>
+                <button class="btn" onclick="finalizeUpgrade()">Proceed to Payment</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Payment Processing Modal -->
+    <div class="modal" id="paymentModal">
+        <div class="modal-content wide">
+            <button class="modal-close" onclick="closePaymentModal()" title="Close" aria-label="Close"><i class="fas fa-times"></i></button>
+            <div style="text-align: center; margin-bottom: 1.5rem;">
+                <h3 style="font-family: 'Poppins', sans-serif; font-size: 1.5rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.5rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
+                    <i class="fas fa-credit-card" style="color: var(--primary);"></i>
+                    Complete Payment
+                </h3>
+                <p style="color: var(--text-secondary);">Upgrade to Non student Membership</p>
+            </div>
+
+            <!-- Order Summary -->
+            <div style="background: rgba(255, 255, 255, 0.03); border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem; border: 1px solid rgba(255, 255, 255, 0.05);">
+                <h4 style="color: var(--text-primary); font-weight: 600; margin-bottom: 1rem; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px;">Order Summary</h4>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.8rem; padding-bottom: 0.8rem; border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
+                    <span style="color: var(--text-secondary);">Plan Upgrade:</span>
+                    <span style="color: var(--text-primary); font-weight: 600;">PROMO Student → Non student</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.8rem; padding-bottom: 0.8rem; border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
+                    <span style="color: var(--text-secondary);">3-Month Rate:</span>
+                    <span style="color: var(--text-primary); font-weight: 600;">₱1,300/3 months</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.8rem;">
+                    <span style="color: var(--text-secondary);">Upgrade Fee (One-time):</span>
+                    <span style="color: var(--text-primary); font-weight: 600;">₱0</span>
+                </div>
+                <div style="height: 1px; background: rgba(255, 255, 255, 0.1); margin: 1rem 0;"></div>
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <span style="color: var(--text-primary); font-weight: 700; font-size: 1.1rem;">Total Today:</span>
+                    <span style="color: var(--primary); font-weight: 700; font-size: 1.5rem;">₱0</span>
+                </div>
+                <p style="color: var(--text-secondary); font-size: 0.8rem; margin-top: 0.8rem; text-align: center;">
+                    First charge of ₱5,000 will be on November 9, 2025
+                </p>
+            </div>
+
+            <!-- Payment Method Selection -->
+            <div style="margin-bottom: 1.5rem;">
+                <label style="display: block; color: var(--text-secondary); font-size: 0.85rem; font-weight: 600; margin-bottom: 0.8rem; text-transform: uppercase; letter-spacing: 0.5px;">
+                    Payment Method
+                </label>
+                <div style="display: grid; gap: 0.8rem;">
+                    <div style="display: flex; align-items: center; gap: 1rem; padding: 1rem; background: rgba(255, 255, 255, 0.05); border: 2px solid rgba(249, 197, 19, 0.3); border-radius: 12px;">
+                        <i class="fas fa-mobile-alt" style="font-size: 1.8rem; color: var(--primary-yellow);"></i>
+                        <div style="flex: 1;">
+                            <div style="color: var(--text-primary); font-weight: 600; margin-bottom: 0.2rem;">GCash</div>
+                            <div style="color: var(--text-secondary); font-size: 0.85rem;">+63 ••• ••• 1234</div>
+                        </div>
+                        <i class="fas fa-check-circle" style="color: var(--primary-yellow); font-size: 1.2rem;"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Non-Refundable Reminder -->
+            <div style="background: rgba(220, 38, 38, 0.1); border-left: 3px solid #DC2626; border-radius: 8px; padding: 1rem; margin-bottom: 1.5rem;">
+                <p style="color: var(--text-primary); font-size: 0.9rem; margin: 0; display: flex; align-items: flex-start; gap: 0.8rem;">
+                    <i class="fas fa-exclamation-triangle" style="color: #DC2626; margin-top: 0.2rem; flex-shrink: 0;"></i>
+                    <span><strong style="color: #DC2626;">Important:</strong> All payments are <strong style="color: #DC2626;">non-refundable</strong>. By proceeding, you acknowledge that this transaction cannot be reversed or refunded.</span>
+                </p>
+            </div>
+
+            <!-- Security Notice -->
+            <div style="background: rgba(0, 255, 157, 0.08); border-left: 3px solid var(--primary); border-radius: 8px; padding: 1rem; margin-bottom: 1.5rem; display: flex; align-items: flex-start; gap: 0.8rem;">
+                <i class="fas fa-shield-alt" style="color: var(--primary); margin-top: 0.2rem; flex-shrink: 0;"></i>
+                <div>
+                    <div style="color: var(--text-primary); font-weight: 600; font-size: 0.9rem; margin-bottom: 0.3rem;">Secure Payment</div>
+                    <div style="color: var(--text-secondary); font-size: 0.85rem;">Your payment information is encrypted and secure. We use industry-standard SSL encryption to protect your data.</div>
+                </div>
+            </div>
+
+            <!-- Terms and Conditions -->
+            <div style="margin-bottom: 1.5rem;">
+                <label style="display: flex; align-items: flex-start; gap: 0.8rem; cursor: pointer; padding: 0.8rem; background: rgba(255, 255, 255, 0.02); border-radius: 8px;">
+                    <input type="checkbox" id="agreeTerms" style="accent-color: var(--primary); margin-top: 0.2rem; cursor: pointer;">
+                    <span style="color: var(--text-secondary); font-size: 0.85rem; line-height: 1.5;">
+                        I agree to the <a href="#" style="color: var(--primary); text-decoration: none;">Terms and Conditions</a> and <a href="#" style="color: var(--primary); text-decoration: none;">Privacy Policy</a>. I authorize X-TRIM FIT GYM to charge my payment method for the Non student membership upgrade.
+                    </span>
+                </label>
+            </div>
+
+            <div class="modal-actions">
+                <button class="btn secondary" onclick="closePaymentModal()">Cancel</button>
+                <button class="btn" id="completePaymentBtn" onclick="processPayment()" disabled style="opacity: 0.6; cursor: not-allowed;">Complete Payment</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="modal" id="successModal">
+        <div class="modal-content">
+            <div style="text-align: center;">
+                <div class="modal-success-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h3 style="font-family: 'Poppins', sans-serif; font-size: 1.8rem; font-weight: 700; color: var(--text-primary); margin-bottom: 1rem;">
+                    Upgrade Successful!
+                </h3>
+                <p style="color: var(--text-secondary); font-size: 1.05rem; margin-bottom: 2rem; line-height: 1.6;">
+                    Congratulations! You've successfully upgraded to <strong style="color: var(--primary);">Non student Membership</strong>.
+                </p>
+
+                <div style="background: rgba(255, 255, 255, 0.03); border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; border: 1px solid rgba(255, 255, 255, 0.05);">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
+                        <span style="color: var(--text-secondary);">New Plan:</span>
+                        <span style="color: var(--primary); font-weight: 700; font-size: 1.2rem;">Non student</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
+                        <span style="color: var(--text-secondary);">3-Month Rate:</span>
+                        <span style="color: var(--text-primary); font-weight: 600;">₱1,300/3 months</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span style="color: var(--text-secondary);">Next Billing:</span>
+                        <span style="color: var(--text-primary); font-weight: 600;">November 9, 2025</span>
+                    </div>
+                </div>
+
+                <div style="background: rgba(0, 255, 157, 0.08); border-left: 3px solid var(--primary); border-radius: 8px; padding: 1rem; margin-bottom: 2rem;">
+                    <p style="color: var(--text-primary); font-size: 0.9rem; margin: 0; display: flex; align-items: flex-start; gap: 0.8rem;">
+                        <i class="fas fa-star" style="color: var(--primary); margin-top: 0.2rem; flex-shrink: 0;"></i>
+                        <span>Your Non student membership is now active! You now have access to all features including gym access, equipment access, unlimited group classes, custom workout plans, and more.</span>
+                    </p>
+                </div>
+
+                <!-- Receipt Section -->
+                <div style="background: rgba(255, 255, 255, 0.03); border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; border: 1px solid rgba(255, 255, 255, 0.05);">
+                    <h4 style="color: var(--text-primary); font-weight: 600; margin-bottom: 1rem; font-size: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                        <i class="fas fa-file-invoice" style="color: var(--primary-yellow);"></i>
+                        Payment Receipt
+                    </h4>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.8rem; padding-bottom: 0.8rem; border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
+                        <span style="color: var(--text-secondary);">Transaction ID:</span>
+                        <span style="color: var(--text-primary); font-weight: 600; font-family: 'Courier New', monospace; font-size: 0.9rem;" id="successReceiptTransactionId">TXN-2025-11-001</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.8rem; padding-bottom: 0.8rem; border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
+                        <span style="color: var(--text-secondary);">Payment Method:</span>
+                        <span style="color: var(--text-primary); font-weight: 600;">GCash</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.8rem;">
+                        <span style="color: var(--text-secondary);">Amount Paid:</span>
+                        <span style="color: var(--primary-yellow); font-weight: 700; font-size: 1.2rem;" id="successReceiptAmount">₱0</span>
+                    </div>
+                    <div style="height: 1px; background: rgba(255, 255, 255, 0.1); margin: 1rem 0;"></div>
+                    <div style="text-align: center;">
+                        <button class="btn secondary" onclick="viewFullReceipt()" style="width: 100%; margin-top: 0.5rem;">
+                            <i class="fas fa-file-invoice"></i> View Full Receipt
+                        </button>
+                    </div>
+                </div>
+
+                <div style="display: flex; flex-direction: column; gap: 1rem; margin-top: 2rem;">
+                    <button class="btn" onclick="closeSuccessModal()" style="width: 100%;">
+                        <i class="fas fa-check"></i> Continue
+                    </button>
+                    <button class="btn secondary" onclick="viewMembershipDetails()" style="width: 100%;">
+                        <i class="fas fa-info-circle"></i> View Membership Details
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Download Success Notification Modal -->
+    <div class="modal" id="downloadSuccessModal">
+        <div class="modal-content">
+            <div style="text-align: center;">
+                <div class="modal-success-icon" style="background: rgba(0, 255, 157, 0.15); width: 90px; height: 90px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem;">
+                    <i class="fas fa-check-circle" style="font-size: 2.75rem; color: var(--primary);"></i>
+                </div>
+                <h3 style="font-family: 'Poppins', sans-serif; font-size: 1.5rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.75rem;">
+                    Download Successful!
+                </h3>
+                <p style="color: var(--text-secondary); font-size: 1rem; margin-bottom: 1.5rem; line-height: 1.6;">
+                    Your receipt has been downloaded successfully.
+                </p>
+                
+                <div style="background: rgba(255, 255, 255, 0.03); border-radius: 12px; padding: 1.25rem; margin-bottom: 1.5rem; border: 1px solid rgba(255, 255, 255, 0.05);">
+                    <div style="display: flex; align-items: center; justify-content: center; gap: 0.75rem; margin-bottom: 0.75rem;">
+                        <i class="fas fa-file-pdf" style="font-size: 1.5rem; color: var(--primary);"></i>
+                        <div style="text-align: left;">
+                            <div style="color: var(--text-primary); font-weight: 600; font-size: 0.95rem;" id="downloadFileName"></div>
+                            <div style="color: var(--text-secondary); font-size: 0.85rem;">PDF Document</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="background: rgba(0, 255, 157, 0.08); border-left: 3px solid var(--primary); border-radius: 8px; padding: 1rem; margin-bottom: 1.5rem;">
+                    <p style="color: var(--text-primary); font-size: 0.9rem; margin: 0; display: flex; align-items: flex-start; gap: 0.8rem;">
+                        <i class="fas fa-info-circle" style="color: var(--primary); margin-top: 0.2rem; flex-shrink: 0;"></i>
+                        <span>Your receipt has been saved to your default download folder. Check your Downloads folder to access it.</span>
+                    </p>
+                </div>
+
+                <button class="btn" onclick="closeDownloadSuccessModal()" style="width: 100%;">
+                    <i class="fas fa-check"></i> Got it
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Receipt Download Modal -->
+    <div class="modal" id="receiptModal">
+        <div class="modal-content wide">
+            <button class="modal-close" onclick="closeReceiptModal()" title="Close" aria-label="Close"><i class="fas fa-times"></i></button>
+            <div style="text-align: center; margin-bottom: 1.5rem;">
+                <div style="width: 80px; height: 80px; background: rgba(0, 255, 157, 0.15); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem;">
+                    <i class="fas fa-file-invoice" style="font-size: 2.5rem; color: var(--primary);"></i>
+                </div>
+                <h3 style="font-family: 'Poppins', sans-serif; font-size: 1.5rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.5rem;">
+                    Payment Receipt
+                </h3>
+                <p style="color: var(--text-secondary); font-size: 0.95rem;" id="receiptPeriod"></p>
+            </div>
+
+            <!-- Receipt Details -->
+            <div style="background: rgba(255, 255, 255, 0.03); border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem; border: 1px solid rgba(255, 255, 255, 0.05);">
+                <div style="margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
+                    <div style="color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.5px;">Gym Information</div>
+                    <div style="color: var(--text-primary); font-weight: 700; font-size: 1.1rem; margin-bottom: 0.25rem;">X-TRIM FIT GYM</div>
+                    <div style="color: var(--text-secondary); font-size: 0.9rem;">123 Fitness Street, Manila, Philippines</div>
+                    <div style="color: var(--text-secondary); font-size: 0.9rem;">Email: support@xtrimfitgym.com</div>
+                    <div style="color: var(--text-secondary); font-size: 0.9rem;">Phone: +63 123 456 7890</div>
+                </div>
+
+                <div style="margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
+                    <div style="color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.5px;">Member Information</div>
+                    <div style="color: var(--text-primary); font-weight: 600; margin-bottom: 0.25rem;">Ashley Quicho</div>
+                    <div style="color: var(--text-secondary); font-size: 0.9rem;">PROMO Student Member</div>
+                    <div style="color: var(--text-secondary); font-size: 0.9rem;">Member ID: MEM-2024-001</div>
+                </div>
+
+                <div style="margin-bottom: 1.5rem;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.8rem; padding-bottom: 0.8rem; border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
+                        <span style="color: var(--text-secondary);">Transaction Date:</span>
+                        <span style="color: var(--text-primary); font-weight: 600;" id="receiptDate"></span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.8rem; padding-bottom: 0.8rem; border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
+                        <span style="color: var(--text-secondary);">Transaction ID:</span>
+                        <span style="color: var(--text-primary); font-weight: 600; font-family: 'Courier New', monospace; font-size: 0.9rem;" id="receiptTransactionId"></span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.8rem; padding-bottom: 0.8rem; border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
+                        <span style="color: var(--text-secondary);">Description:</span>
+                        <span style="color: var(--text-primary); font-weight: 600;" id="receiptDescription"></span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.8rem; padding-bottom: 0.8rem; border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
+                        <span style="color: var(--text-secondary);">Payment Method:</span>
+                        <span style="color: var(--text-primary); font-weight: 600;" id="receiptPaymentMethod"></span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.8rem;">
+                        <span style="color: var(--text-secondary);">Status:</span>
+                        <span style="display: inline-flex; align-items: center; gap: 0.4rem; background: rgba(0, 255, 157, 0.15); color: var(--primary); padding: 0.4rem 0.9rem; border-radius: 50px; font-size: 0.75rem; font-weight: 600;">
+                            <i class="fas fa-check-circle"></i> Paid
+                        </span>
+                    </div>
+                    <div style="height: 1px; background: rgba(255, 255, 255, 0.1); margin: 1rem 0;"></div>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span style="color: var(--text-primary); font-weight: 700; font-size: 1.2rem;">Total Amount:</span>
+                        <span style="color: var(--primary); font-weight: 700; font-size: 1.8rem;" id="receiptAmount"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Notice -->
+            <div style="background: rgba(0, 255, 157, 0.08); border-left: 3px solid var(--primary); border-radius: 8px; padding: 1rem; margin-bottom: 1.5rem;">
+                <p style="color: var(--text-primary); font-size: 0.85rem; margin: 0; display: flex; align-items: flex-start; gap: 0.8rem;">
+                    <i class="fas fa-info-circle" style="color: var(--primary); margin-top: 0.2rem; flex-shrink: 0;"></i>
+                    <span>This receipt serves as proof of payment. Please keep this for your records. You can download it as a PDF for your convenience.</span>
+                </p>
+            </div>
+
+            <div class="modal-actions">
+                <button class="btn secondary" onclick="closeReceiptModal()">Close</button>
+                <button class="btn" onclick="downloadReceiptPDF()" id="downloadReceiptBtn">
+                    <i class="fas fa-download"></i> Download PDF
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cancel Confirmation Modal -->
+    <div class="modal" id="cancelModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()" title="Close" aria-label="Close"><i class="fas fa-times"></i></button>
+            <h3>Cancel Subscription</h3>
+            <p>Are you sure you want to cancel your membership? You will lose access to all features at the end of your current billing period.</p>
+            <p style="color: #DC2626; margin-bottom: 1rem;"><i class="fas fa-exclamation-triangle"></i> This action cannot be undone.</p>
+            
+            <div style="background: rgba(220, 38, 38, 0.08); border-left: 3px solid #DC2626; border-radius: 8px; padding: 1rem; margin-bottom: 1.5rem;">
+                <p style="color: var(--text-primary); font-size: 0.9rem; margin: 0; display: flex; align-items: flex-start; gap: 0.8rem;">
+                    <i class="fas fa-ban" style="color: #DC2626; margin-top: 0.2rem; flex-shrink: 0;"></i>
+                    <span><strong style="color: #DC2626;">Important:</strong> Please note that cancelled memberships are <strong>non-refundable</strong>. You will not receive a refund for any remaining days in your current billing period. Your membership will remain active until the end of your current billing cycle.</span>
+                </p>
+            </div>
+
+            <div class="modal-actions">
+                <button class="btn secondary" onclick="closeModal()">Keep Membership</button>
+                <button class="btn danger" onclick="confirmCancel()">Yes, Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cancel Success Notification Modal -->
+    <div class="modal" id="cancelSuccessModal">
+        <div class="modal-content">
+            <div style="text-align: center;">
+                <div style="width: 90px; height: 90px; background: rgba(220, 38, 38, 0.15); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem;">
+                    <i class="fas fa-check-circle" style="font-size: 2.75rem; color: #DC2626;"></i>
+                </div>
+                <h3 style="font-family: 'Poppins', sans-serif; font-size: 1.5rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.75rem;">
+                    Subscription Cancelled
+                </h3>
+                <p style="color: var(--text-secondary); font-size: 1rem; margin-bottom: 1.5rem; line-height: 1.6;">
+                    Your membership cancellation has been processed successfully.
+                </p>
+                
+                <div style="background: rgba(255, 255, 255, 0.03); border-radius: 12px; padding: 1.25rem; margin-bottom: 1.5rem; border: 1px solid rgba(255, 255, 255, 0.05);">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.8rem; padding-bottom: 0.8rem; border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
+                        <span style="color: var(--text-secondary);">Current Plan:</span>
+                        <span style="color: var(--text-primary); font-weight: 600;">PROMO Student Membership</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.8rem; padding-bottom: 0.8rem; border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
+                        <span style="color: var(--text-secondary);">Access Until:</span>
+                        <span style="color: var(--text-primary); font-weight: 600;">November 9, 2025</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span style="color: var(--text-secondary);">Status:</span>
+                        <span style="display: inline-flex; align-items: center; gap: 0.4rem; background: rgba(245, 158, 11, 0.15); color: #F59E0B; padding: 0.4rem 0.9rem; border-radius: 50px; font-size: 0.75rem; font-weight: 600;">
+                            <i class="fas fa-clock"></i> Cancelled
+                        </span>
+                    </div>
+                </div>
+
+                <div style="background: rgba(220, 38, 38, 0.08); border-left: 3px solid #DC2626; border-radius: 8px; padding: 1rem; margin-bottom: 1.5rem;">
+                    <p style="color: var(--text-primary); font-size: 0.9rem; margin: 0; display: flex; align-items: flex-start; gap: 0.8rem;">
+                        <i class="fas fa-info-circle" style="color: #DC2626; margin-top: 0.2rem; flex-shrink: 0;"></i>
+                        <span>You will continue to have access to all features until November 9, 2025. After this date, your membership will be cancelled and you will lose access to all features. This cancellation cannot be undone.</span>
+                    </p>
+                </div>
+
+                <button class="btn secondary" onclick="closeCancelSuccessModal()" style="width: 100%;">
+                    <i class="fas fa-check"></i> Understood
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Renew Membership Confirmation Modal -->
+    <div class="modal" id="renewConfirmModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeRenewConfirmModal()" title="Close" aria-label="Close"><i class="fas fa-times"></i></button>
+            <div style="text-align: center; margin-bottom: 1.5rem;">
+                <div style="width: 80px; height: 80px; background: rgba(0, 255, 157, 0.15); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem;">
+                    <i class="fas fa-sync-alt" style="font-size: 2.5rem; color: var(--primary);"></i>
+                </div>
+                <h3 style="font-family: 'Poppins', sans-serif; font-size: 1.5rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.5rem;">
+                    Renew Membership
+                </h3>
+                <p style="color: var(--text-secondary); font-size: 0.95rem;">Extend your current membership and continue enjoying all the benefits</p>
+            </div>
+
+            <div style="background: rgba(255, 255, 255, 0.03); border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem; border: 1px solid rgba(255, 255, 255, 0.05);">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.8rem; padding-bottom: 0.8rem; border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
+                    <span style="color: var(--text-secondary);">Current Plan:</span>
+                    <span style="color: var(--text-primary); font-weight: 600;">PROMO Student Membership</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.8rem; padding-bottom: 0.8rem; border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
+                    <span style="color: var(--text-secondary);">3-Month Rate:</span>
+                    <span style="color: var(--text-primary); font-weight: 600;">₱1,200/3 months</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.8rem; padding-bottom: 0.8rem; border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
+                    <span style="color: var(--text-secondary);">Renewal Period:</span>
+                    <span style="color: var(--text-primary); font-weight: 600;">3 Months</span>
+                </div>
+                <div style="height: 1px; background: rgba(255, 255, 255, 0.1); margin: 1rem 0;"></div>
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <span style="color: var(--text-primary); font-weight: 700; font-size: 1.1rem;">Total Amount:</span>
+                    <span style="color: var(--primary); font-weight: 700; font-size: 1.5rem;">₱1,200</span>
+                </div>
+            </div>
+
+            <!-- Non-Refundable Reminder -->
+            <div style="background: rgba(220, 38, 38, 0.1); border-left: 3px solid #DC2626; border-radius: 8px; padding: 1rem; margin-bottom: 1rem;">
+                <p style="color: var(--text-primary); font-size: 0.9rem; margin: 0; display: flex; align-items: flex-start; gap: 0.8rem;">
+                    <i class="fas fa-exclamation-triangle" style="color: #DC2626; margin-top: 0.2rem; flex-shrink: 0;"></i>
+                    <span><strong style="color: #DC2626;">Important:</strong> All payments are <strong style="color: #DC2626;">non-refundable</strong>. By proceeding, you acknowledge that this transaction cannot be reversed or refunded.</span>
+                </p>
+            </div>
+
+            <div style="background: rgba(0, 255, 157, 0.08); border-left: 3px solid var(--primary); border-radius: 8px; padding: 1rem; margin-bottom: 1.5rem;">
+                <p style="color: var(--text-primary); font-size: 0.9rem; margin: 0; display: flex; align-items: flex-start; gap: 0.8rem;">
+                    <i class="fas fa-info-circle" style="color: var(--primary); margin-top: 0.2rem; flex-shrink: 0;"></i>
+                    <span>Your membership will be renewed for an additional month starting from November 9, 2025. The payment will be charged to your saved payment method (GCash).</span>
+                </p>
+            </div>
+
+            <div class="modal-actions">
+                <button class="btn secondary" onclick="closeRenewConfirmModal()">Cancel</button>
+                <button class="btn" onclick="confirmRenewal()">Confirm Renewal</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Renew Success Notification Modal -->
+    <div class="modal" id="renewSuccessModal">
+        <div class="modal-content">
+            <div style="text-align: center;">
+                <div class="modal-success-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h3 style="font-family: 'Poppins', sans-serif; font-size: 1.8rem; font-weight: 700; color: var(--text-primary); margin-bottom: 1rem;">
+                    Membership Renewed!
+                </h3>
+                <p style="color: var(--text-secondary); font-size: 1.05rem; margin-bottom: 2rem; line-height: 1.6;">
+                    Your membership has been successfully renewed. Thank you for continuing with X-TRIM FIT GYM!
+                </p>
+                
+                <div style="background: rgba(255, 255, 255, 0.03); border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; border: 1px solid rgba(255, 255, 255, 0.05);">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
+                        <span style="color: var(--text-secondary);">Plan:</span>
+                        <span style="color: var(--primary); font-weight: 700; font-size: 1.2rem;">PROMO Student Membership</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
+                        <span style="color: var(--text-secondary);">Amount Paid:</span>
+                        <span style="color: var(--text-primary); font-weight: 600;">₱1,200</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
+                        <span style="color: var(--text-secondary);">Renewed Until:</span>
+                        <span style="color: var(--text-primary); font-weight: 600;">December 9, 2025</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span style="color: var(--text-secondary);">Next Billing:</span>
+                        <span style="color: var(--text-primary); font-weight: 600;">December 9, 2025</span>
+                    </div>
+                </div>
+
+                <div style="background: rgba(0, 255, 157, 0.08); border-left: 3px solid var(--primary); border-radius: 8px; padding: 1rem; margin-bottom: 2rem;">
+                    <p style="color: var(--text-primary); font-size: 0.9rem; margin: 0; display: flex; align-items: flex-start; gap: 0.8rem;">
+                        <i class="fas fa-star" style="color: var(--primary); margin-top: 0.2rem; flex-shrink: 0;"></i>
+                        <span>Your membership has been extended for an additional 3 months. Continue enjoying all features, unlimited access, and exclusive benefits!</span>
+                    </p>
+                </div>
+
+                <div style="display: flex; flex-direction: column; gap: 1rem; margin-top: 2rem;">
+                    <button class="btn" onclick="closeRenewSuccessModal()" style="width: 100%;">
+                        <i class="fas fa-check"></i> Continue
+                    </button>
+                    <button class="btn secondary" onclick="viewMembershipAfterRenew()" style="width: 100%;">
+                        <i class="fas fa-info-circle"></i> View Membership Details
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add GCash Payment Method Modal -->
+    <div class="modal-overlay" id="addGCashModal">
+        <div class="modal" style="max-width: 500px;">
+            <div class="modal-header">
+                <h3><i class="fas fa-mobile-alt"></i> Add GCash Account</h3>
+                <button class="modal-close" onclick="closeAddGCashModal()" title="Close" aria-label="Close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p style="margin-bottom: 1.5rem; color: var(--text-secondary);">Add your GCash account to use it as a payment method for your membership.</p>
+                
+                <div class="form-group">
+                    <label for="gcashNumber">GCash Mobile Number</label>
+                    <div style="display: flex; align-items: center; gap: 0.5rem; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 0.5rem 1rem;">
+                        <span style="color: var(--text-secondary); font-size: 0.9rem;">+63</span>
+                        <input type="tel" id="gcashNumber" placeholder="912 345 6789" maxlength="10" style="flex: 1; background: transparent; border: none; color: var(--text-primary); font-size: 0.95rem; padding: 0.5rem 0; outline: none;" />
+                    </div>
+                    <small style="color: var(--text-secondary); font-size: 0.8rem; margin-top: 0.5rem; display: block;">Enter your 10-digit GCash mobile number</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="gcashName">Account Name (Optional)</label>
+                    <input type="text" id="gcashName" placeholder="e.g., Ashley Quicho" style="width: 100%; padding: 0.9rem; border-radius: 12px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); color: var(--text-primary); font-family: 'Inter', sans-serif;">
+                </div>
+
+                <div style="background: rgba(249, 197, 19, 0.1); border-left: 3px solid var(--primary-yellow); border-radius: 8px; padding: 1rem; margin-bottom: 1.5rem;">
+                    <p style="color: var(--text-primary); font-size: 0.85rem; margin: 0; display: flex; align-items: flex-start; gap: 0.8rem;">
+                        <i class="fas fa-info-circle" style="color: var(--primary-yellow); margin-top: 0.2rem; flex-shrink: 0;"></i>
+                        <span>Make sure your GCash account is verified and active. You will receive a verification code to confirm your account.</span>
+                    </p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn-secondary" onclick="closeAddGCashModal()">
+                    <i class="fas fa-times"></i> Cancel
+                </button>
+                <button type="button" class="btn-primary" onclick="submitAddGCash()" id="submitGCashBtn">
+                    <i class="fas fa-check"></i> Add GCash
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add GCash Success Modal -->
+    <div class="modal-overlay" id="addGCashSuccessModal">
+        <div class="modal" style="max-width: 450px;">
+            <div class="modal-body" style="text-align: center; padding: 3rem 2rem;">
+                <div style="font-size: 4rem; color: var(--primary-yellow); margin-bottom: 1.5rem;">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h3 style="margin-bottom: 1rem; font-family: 'Poppins', sans-serif; color: var(--text-primary);">GCash Added Successfully!</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 2rem;">Your GCash account has been added and verified. You can now use it for payments.</p>
+                <button type="button" class="btn-primary" onclick="closeAddGCashSuccessModal()" style="width: 100%; display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
+                    <i class="fas fa-check"></i> <span>Got it</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

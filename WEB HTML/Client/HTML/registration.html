@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>X-TRIM FIT GYM - Join Us</title>
+    <link rel="stylesheet" href="..//CSS/registration.css">
+    <script src="..//JS/registration.js" defer></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">
+            <img src="..//imgs/logo.png" alt="X-TRIM FIT GYM" class="logo-img">
+        </div>
+        <a href="..//HTML/homepage.html" class="nav-link">
+            <i class="fas fa-arrow-left"></i> Back to Home
+        </a>
+    </nav>
+
+    <!-- Signup Container -->
+    <div class="signup-container">
+        <div class="signup-card">
+            <!-- Left Sidebar -->
+            <div class="sidebar">
+                <div class="gym-logo">
+                    <i class="fas fa-dumbbell"></i>
+                </div>
+                
+                <div class="signup-header">
+                    <h1>Join X-TRIM FIT GYM</h1>
+                    <p>Start your fitness journey</p>
+                </div>
+
+                <!-- Progress Steps -->
+                <div class="progress-steps">
+                    <div class="progress-step active" data-step-num="1">
+                        <div class="step-number">1</div>
+                        <div class="step-info">
+                            <span class="step-label">Basic Info</span>
+                            <span class="step-desc">Personal details</span>
+                        </div>
+                    </div>
+                    <div class="progress-step" data-step-num="2">
+                        <div class="step-number">2</div>
+                        <div class="step-info">
+                            <span class="step-label">Contact</span>
+                            <span class="step-desc">Address & emergency</span>
+                        </div>
+                    </div>
+                    <div class="progress-step" data-step-num="3">
+                        <div class="step-number">3</div>
+                        <div class="step-info">
+                            <span class="step-label">Gym Info</span>
+                            <span class="step-desc">Plan & preferences</span>
+                        </div>
+                    </div>
+                    <div class="progress-step" data-step-num="4">
+                        <div class="step-number">4</div>
+                        <div class="step-info">
+                            <span class="step-label">Health</span>
+                            <span class="step-desc">Medical information</span>
+                        </div>
+                    </div>
+                    <div class="progress-step" data-step-num="5">
+                        <div class="step-number">5</div>
+                        <div class="step-info">
+                            <span class="step-label">Agreements</span>
+                            <span class="step-desc">Terms & conditions</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Content Area -->
+            <div class="content-area">
+                <!-- Multi-Step Form -->
+                <form id="signupForm">
+                    <!-- Step 1: Basic Information -->
+                    <div class="form-step active" data-step="1">
+                        <h3 class="step-title">
+                            <i class="fas fa-user"></i>
+                            Basic Information
+                        </h3>
+                        <p class="step-description">Let's start with your basic details</p>
+
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="firstName">First Name <span class="required">*</span></label>
+                                <input type="text" id="firstName" name="firstName" placeholder="Enter your first name" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="lastName">Last Name <span class="required">*</span></label>
+                                <input type="text" id="lastName" name="lastName" placeholder="Enter your last name" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">Email Address <span class="required">*</span></label>
+                                <input type="email" id="email" name="email" placeholder="example@email.com" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="phone">Phone Number <span class="required">*</span></label>
+                                <input type="tel" id="phone" name="phone" placeholder="+63 XXX XXX XXXX" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="dob">Date of Birth <span class="required">*</span></label>
+                                <input type="date" id="dob" name="dob" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="gender">Gender</label>
+                                <select id="gender" name="gender">
+                                    <option value="">Select Gender</option>
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                    <option value="other">Other</option>
+                                    <option value="prefer-not-to-say">Prefer not to say</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 2: Contact & Address -->
+                    <div class="form-step" data-step="2">
+                        <h3 class="step-title">
+                            <i class="fas fa-map-marker-alt"></i>
+                            Contact & Address
+                        </h3>
+                        <p class="step-description">Where can we reach you?</p>
+
+                        <div class="form-group full-width">
+                            <label for="address">Complete Address <span class="required">*</span></label>
+                            <textarea id="address" name="address" rows="3" placeholder="Street, Barangay, City, Province" required></textarea>
+                        </div>
+
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="emergencyName">Emergency Contact Name <span class="required">*</span></label>
+                                <input type="text" id="emergencyName" name="emergencyName" placeholder="Contact name" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="emergencyPhone">Emergency Contact Number <span class="required">*</span></label>
+                                <input type="tel" id="emergencyPhone" name="emergencyPhone" placeholder="+63 XXX XXX XXXX" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 3: Gym Information -->
+                    <div class="form-step" data-step="3">
+                        <h3 class="step-title">
+                            <i class="fas fa-dumbbell"></i>
+                            Gym Information
+                        </h3>
+                        <p class="step-description">Help us customize your gym experience</p>
+
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="membershipPlan">Membership Plan <span class="required">*</span></label>
+                                <select id="membershipPlan" name="membershipPlan" required>
+                                    <option value="">Select Plan</option>
+                                    <option value="student">Student (₱500/month)</option>
+                                    <option value="promo-student">PROMO Student (₱1,200/3 months)</option>
+                                    <option value="non-student">Non student (₱1,300/3 months)</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="fitnessGoal">Primary Fitness Goal <span class="required">*</span></label>
+                                <select id="fitnessGoal" name="fitnessGoal" required>
+                                    <option value="">Select Goal</option>
+                                    <option value="weight-loss">Weight Loss</option>
+                                    <option value="muscle-gain">Muscle Building</option>
+                                    <option value="general-fitness">General Fitness</option>
+                                    <option value="strength-training">Strength Training</option>
+                                    <option value="endurance">Endurance</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="workoutTime">Preferred Workout Time <span class="required">*</span></label>
+                                <select id="workoutTime" name="workoutTime" required>
+                                    <option value="">Select Time</option>
+                                    <option value="morning">Morning (5AM - 11AM)</option>
+                                    <option value="afternoon">Afternoon (12PM - 5PM)</option>
+                                    <option value="evening">Evening (6PM - 10PM)</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="hearAboutUs">How did you hear about us?</label>
+                                <select id="hearAboutUs" name="hearAboutUs">
+                                    <option value="">Select Option</option>
+                                    <option value="social-media">Social Media</option>
+                                    <option value="friend">Friend/Family</option>
+                                    <option value="online-search">Online Search</option>
+                                    <option value="flyer">Flyer/Poster</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 4: Health Information -->
+                    <div class="form-step" data-step="4">
+                        <h3 class="step-title">
+                            <i class="fas fa-heartbeat"></i>
+                            Health Information
+                        </h3>
+                        <p class="step-description">Help us ensure your safety and create the best workout plan</p>
+
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="medicalConditions">Medical Conditions</label>
+                                <input type="text" id="medicalConditions" name="medicalConditions" placeholder="e.g., Asthma, High Blood Pressure">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="medications">Current Medications</label>
+                                <input type="text" id="medications" name="medications" placeholder="List any medications">
+                            </div>
+
+                            <div class="form-group full-width">
+                                <label for="experienceLevel">Gym Experience <span class="required">*</span></label>
+                                <select id="experienceLevel" name="experienceLevel" required>
+                                    <option value="">Select Experience Level</option>
+                                    <option value="beginner">Beginner (0-6 months)</option>
+                                    <option value="intermediate">Intermediate (6 months - 2 years)</option>
+                                    <option value="advanced">Advanced (2+ years)</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 5: Terms & Agreements -->
+                    <div class="form-step" data-step="5">
+                        <h3 class="step-title">
+                            <i class="fas fa-file-contract"></i>
+                            Terms & Agreements
+                        </h3>
+                        <p class="step-description">Please read and agree to complete your registration</p>
+
+                        <div class="agreement-section">
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="terms" name="terms" required>
+                                <label for="terms">I agree to the <a href="#" onclick="showTerms(event)">Terms and Conditions</a> <span class="required">*</span></label>
+                            </div>
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="privacy" name="privacy" required>
+                                <label for="privacy">I agree to the <a href="#" onclick="showPrivacy(event)">Privacy Policy</a> <span class="required">*</span></label>
+                            </div>
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="waiver" name="waiver" required>
+                                <label for="waiver">I agree to the <a href="#" onclick="showWaiver(event)">Liability Waiver</a> <span class="required">*</span></label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Navigation Buttons -->
+                    <div class="button-container">
+                        <button type="button" class="btn btn-back hidden" id="backBtn" onclick="previousStep()">
+                            <i class="fas fa-arrow-left"></i>
+                            <span>Back</span>
+                        </button>
+                        <button type="button" class="btn btn-next" id="nextBtn" onclick="nextStep()">
+                            <span>Next</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                        <button type="submit" class="btn btn-submit hidden" id="submitBtn">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Complete Sign Up</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#13161f">
+    <title>Progress - X-TRIM FIT GYM</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="..//css/progress.css">
+</head>
+<body>
+    <!-- Top Header -->
+    <header class="top-header progress-header">
+        <div class="header-content">
+            <h1 class="page-title">
+                <i class="fas fa-chart-line"></i>
+                Progress
+            </h1>
+            <button class="icon-btn search-btn" id="searchBtn">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+
+        <!-- Date Range Tabs -->
+        <div class="date-range-wrap" id="dateRangeWrap" role="tablist" aria-label="Date ranges">
+            <button class="date-range active" data-range="7">Last 7 Days</button>
+            <button class="date-range" data-range="30">Last 30 Days</button>
+            <button class="date-range" data-range="month">This Month</button>
+            <button class="date-range" data-range="all">All Time</button>
+            <button class="date-range" data-range="custom">Custom</button>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <!-- Overview Summary Cards -->
+        <section class="overview-section">
+            <div class="overview-scroll">
+                <article class="overview-card">
+                    <div class="card-icon"><i class="fas fa-dumbbell"></i></div>
+                    <div class="card-body">
+                        <div class="card-title">Total Workouts</div>
+                        <div class="card-value" id="totalWorkouts">0</div>
+                    </div>
+                </article>
+
+                <article class="overview-card">
+                    <div class="card-icon"><i class="fas fa-clock"></i></div>
+                    <div class="card-body">
+                        <div class="card-title">Total Time</div>
+                        <div class="card-value" id="totalTime">0h 0m</div>
+                    </div>
+                </article>
+
+                <article class="overview-card">
+                    <div class="card-icon"><i class="fas fa-fire"></i></div>
+                    <div class="card-body">
+                        <div class="card-title">Est. Calories</div>
+                        <div class="card-value" id="estCalories">0 kcal</div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Visual Trends / Charts -->
+        <section class="trends-section">
+            <div class="section-header">
+                <h2 id="chartTitle">Weight Tracker</h2>
+                <div class="goal-indicator">Your Goal: <strong id="goalWeight">75 kg</strong></div>
+            </div>
+
+            <div class="chart-card">
+                <!-- SVG chart placeholder -->
+                <svg id="chartSvg" class="chart-svg" viewBox="0 0 300 140" preserveAspectRatio="none" aria-label="Weight chart"></svg>
+                <div class="chart-legend">Showing: <span id="chartRangeLabel">Last 7 Days</span></div>
+            </div>
+
+            <!-- Chart type navigation -->
+            <div class="chart-nav" id="chartNav">
+                <button class="chart-type active" data-type="weight" aria-label="Weight Tracker">
+                    <i class="fas fa-weight"></i>
+                    <span>Weight</span>
+                </button>
+                <button class="chart-type" data-type="frequency" aria-label="Workout Frequency">
+                    <i class="fas fa-calendar-check"></i>
+                    <span>Frequency</span>
+                </button>
+                <button class="chart-type" data-type="measurements" aria-label="Body Measurements">
+                    <i class="fas fa-ruler"></i>
+                    <span>Measurements</span>
+                </button>
+                <button class="chart-type" data-type="calories" aria-label="Calories Burned">
+                    <i class="fas fa-fire"></i>
+                    <span>Calories</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- Personal Bests -->
+        <section class="bests-section">
+            <div class="section-header">
+                <h2>Personal Bests</h2>
+            </div>
+
+            <div class="bests-list">
+                <div class="best-card">
+                    <div class="best-info">
+                        <div class="best-title">Deadlift</div>
+                        <div class="best-value">140 kg <span class="badge new">NEW PR!</span></div>
+                    </div>
+                    <div class="best-meta">Nov 2, 2025</div>
+                </div>
+
+                <div class="best-card">
+                    <div class="best-info">
+                        <div class="best-title">Squat</div>
+                        <div class="best-value">120 kg</div>
+                    </div>
+                    <div class="best-meta">Sep 12, 2025</div>
+                </div>
+
+                <div class="best-card">
+                    <div class="best-info">
+                        <div class="best-title">Cardio Endurance</div>
+                        <div class="best-value">+15% <span class="badge">Improved</span></div>
+                    </div>
+                    <div class="best-meta">This Month</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Bottom Navigation (consistent with other pages) -->
+    <nav class="bottom-nav">
+        <a class="nav-item" href="dashboard.html">
+            <i class="fas fa-home"></i>
+            <span>Dashboard</span>
+        </a>
+        <a class="nav-item" href="workouts.html">
+            <i class="fas fa-dumbbell"></i>
+            <span>Workouts</span>
+        </a>
+        <a class="nav-item active" href="progress.html">
+            <i class="fas fa-chart-line"></i>
+            <span>Progress</span>
+        </a>
+        <a class="nav-item" href="coaches.html">
+            <i class="fas fa-user-friends"></i>
+            <span>Coach</span>
+        </a>
+    </nav>
+
+    <script src="..//js/progress.js"></script>
+</body>
+</html>

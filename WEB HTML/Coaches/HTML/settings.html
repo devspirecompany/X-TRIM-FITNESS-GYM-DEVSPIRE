@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - X-TRIM FIT GYM</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../CSS/settings.css">
+    <script src="../JS/settings.js" defer></script>
+</head>
+<body>
+    <!-- Logout Confirmation Modal -->
+    <div class="modal-overlay" id="logoutModal">
+        <div class="modal modal-center">
+            <div class="modal-body">
+                <div class="modal-logout-icon">
+                    <i class="fas fa-sign-out-alt"></i>
+                </div>
+                <h3 class="modal-logout-title">Are you sure you want to logout?</h3>
+                <p class="modal-logout-text">
+                    You'll need to log in again to access your coach account.
+                </p>
+                <div class="modal-logout-actions">
+                    <button type="button" class="btn-secondary" onclick="closeLogoutModal()">
+                        <i class="fas fa-times"></i> Cancel
+                    </button>
+                    <button type="button" class="btn-primary" onclick="confirmLogout()">
+                        <i class="fas fa-sign-out-alt"></i> Yes, Logout
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Top Navbar -->
+    <nav class="top-navbar">
+        <div class="logo">
+            <img src="../../Client/imgs/logo.png" alt="X-TRIM FIT GYM" class="logo-img">
+        </div>
+        <div class="nav-right">
+            <div class="user-profile">
+                <div class="user-avatar">MR</div>
+                <div class="user-info">
+                    <h4>Mike Rodriguez</h4>
+                    <p>Strength Coach</p>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="page-header">
+            <div class="page-header-content">
+                <button class="btn-back" onclick="goBack()" title="Go Back" aria-label="Go Back">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <div>
+                    <h1><i class="fas fa-cog"></i> Settings</h1>
+                    <p>Manage your account information and preferences</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Settings Sections -->
+        <div class="settings-container">
+            <!-- Personal Information Section -->
+            <div class="settings-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-user"></i> Personal Information</h2>
+                    <button class="btn-edit" onclick="toggleEditMode('personal')" id="editPersonalBtn">
+                        <i class="fas fa-edit"></i> Edit
+                    </button>
+                </div>
+                <div class="section-content">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="firstName">First Name</label>
+                            <div class="input-wrapper">
+                                <input type="text" id="firstName" value="Mike" readonly title="First Name" aria-label="First Name">
+                                <span class="field-status"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Last Name</label>
+                            <div class="input-wrapper">
+                                <input type="text" id="lastName" value="Rodriguez" readonly title="Last Name" aria-label="Last Name">
+                                <span class="field-status"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <div class="input-wrapper">
+                                <input type="email" id="email" value="mike.rodriguez@xtrimfitness.com" readonly title="Email Address" aria-label="Email Address">
+                                <span class="field-status"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <div class="input-wrapper">
+                                <input type="tel" id="phone" value="+63 912 345 6777" readonly title="Phone Number" aria-label="Phone Number">
+                                <span class="field-status"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="dob">Date of Birth</label>
+                            <div class="input-wrapper">
+                                <input type="date" id="dob" value="1985-03-15" readonly title="Date of Birth" aria-label="Date of Birth">
+                                <span class="field-status"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="gender">Gender</label>
+                            <div class="input-wrapper">
+                                <select id="gender" disabled title="Gender" aria-label="Gender">
+                                    <option value="male" selected>Male</option>
+                                    <option value="female">Female</option>
+                                    <option value="other">Other</option>
+                                    <option value="prefer-not-to-say">Prefer not to say</option>
+                                </select>
+                                <span class="field-status"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-actions hidden" id="personalActions">
+                        <button type="button" class="btn-secondary" onclick="cancelEdit('personal')">
+                            <i class="fas fa-times"></i> Cancel
+                        </button>
+                        <button type="button" class="btn-primary" onclick="saveChanges('personal')">
+                            <i class="fas fa-check"></i> Save Changes
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact & Address Section -->
+            <div class="settings-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-map-marker-alt"></i> Contact & Address</h2>
+                    <button class="btn-edit" onclick="toggleEditMode('contact')" id="editContactBtn">
+                        <i class="fas fa-edit"></i> Edit
+                    </button>
+                </div>
+                <div class="section-content">
+                    <div class="form-group full-width">
+                        <label for="address">Complete Address</label>
+                        <div class="input-wrapper">
+                            <textarea id="address" rows="3" readonly title="Complete Address" aria-label="Complete Address">456 Fitness Avenue, Barangay Strong, Makati City, Metro Manila</textarea>
+                            <span class="field-status"></span>
+                        </div>
+                    </div>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="emergencyName">Emergency Contact Name</label>
+                            <div class="input-wrapper">
+                                <input type="text" id="emergencyName" value="Maria Rodriguez" readonly title="Emergency Contact Name" aria-label="Emergency Contact Name">
+                                <span class="field-status"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="emergencyPhone">Emergency Contact Number</label>
+                            <div class="input-wrapper">
+                                <input type="tel" id="emergencyPhone" value="+63 912 345 6778" readonly title="Emergency Contact Number" aria-label="Emergency Contact Number">
+                                <span class="field-status"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-actions hidden" id="contactActions">
+                        <button type="button" class="btn-secondary" onclick="cancelEdit('contact')">
+                            <i class="fas fa-times"></i> Cancel
+                        </button>
+                        <button type="button" class="btn-primary" onclick="saveChanges('contact')">
+                            <i class="fas fa-check"></i> Save Changes
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Professional Information Section -->
+            <div class="settings-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-briefcase"></i> Professional Information</h2>
+                    <button class="btn-edit" onclick="toggleEditMode('professional')" id="editProfessionalBtn">
+                        <i class="fas fa-edit"></i> Edit
+                    </button>
+                </div>
+                <div class="section-content">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="specialization">Primary Specialization</label>
+                            <div class="input-wrapper">
+                                <select id="specialization" disabled title="Primary Specialization" aria-label="Primary Specialization">
+                                    <option value="strength" selected>Strength & Conditioning</option>
+                                    <option value="cardio">Cardio & Endurance</option>
+                                    <option value="weight-loss">Weight Loss</option>
+                                    <option value="muscle-building">Muscle Building</option>
+                                    <option value="powerlifting">Powerlifting</option>
+                                    <option value="bodybuilding">Bodybuilding</option>
+                                    <option value="functional">Functional Training</option>
+                                    <option value="yoga">Yoga & Flexibility</option>
+                                    <option value="nutrition">Nutrition Coaching</option>
+                                    <option value="general">General Fitness</option>
+                                </select>
+                                <span class="field-status"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="yearsExperience">Years of Experience</label>
+                            <div class="input-wrapper">
+                                <select id="yearsExperience" disabled title="Years of Experience" aria-label="Years of Experience">
+                                    <option value="10+">10+ years</option>
+                                    <option value="5-10">5-10 years</option>
+                                    <option value="3-5">3-5 years</option>
+                                    <option value="1-3">1-3 years</option>
+                                    <option value="0-1">Less than 1 year</option>
+                                </select>
+                                <span class="field-status"></span>
+                            </div>
+                        </div>
+                        <div class="form-group full-width">
+                            <label for="bio">Professional Bio</label>
+                            <div class="input-wrapper">
+                                <textarea id="bio" rows="4" readonly title="Professional Bio" aria-label="Professional Bio">Experienced strength and conditioning coach with over 10 years of expertise in helping clients achieve their fitness goals. Specialized in powerlifting, strength training, and athletic performance enhancement.</textarea>
+                                <span class="field-status"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-actions hidden" id="professionalActions">
+                        <button type="button" class="btn-secondary" onclick="cancelEdit('professional')">
+                            <i class="fas fa-times"></i> Cancel
+                        </button>
+                        <button type="button" class="btn-primary" onclick="saveChanges('professional')">
+                            <i class="fas fa-check"></i> Save Changes
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Account Security Section -->
+            <div class="settings-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-shield-alt"></i> Account Security</h2>
+                </div>
+                <div class="section-content">
+                    <div class="security-actions">
+                        <div class="security-item">
+                            <div class="security-info">
+                                <i class="fas fa-key"></i>
+                                <div>
+                                    <h3>Change Password</h3>
+                                    <p>Update your password to keep your account secure</p>
+                                </div>
+                            </div>
+                            <button class="btn-secondary" onclick="openChangePasswordModal()">
+                                <i class="fas fa-edit"></i> Change Password
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Logout Button at Bottom -->
+        <div class="logout-section">
+            <button class="btn-logout-bottom" onclick="openLogoutModal()">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </button>
+        </div>
+    </main>
+
+    <!-- Change Password Modal -->
+    <div class="modal-overlay" id="changePasswordModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3><i class="fas fa-key"></i> Change Password</h3>
+                <button class="modal-close" onclick="closeChangePasswordModal()" title="Close" aria-label="Close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="changePasswordForm" onsubmit="handleChangePassword(event)">
+                    <div class="form-group">
+                        <label for="currentPassword">Current Password <span class="required">*</span></label>
+                        <input type="password" id="currentPassword" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="newPassword">New Password <span class="required">*</span></label>
+                        <input type="password" id="newPassword" required>
+                        <small>Password must be at least 8 characters long</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmPassword">Confirm New Password <span class="required">*</span></label>
+                        <input type="password" id="confirmPassword" required>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn-secondary" onclick="closeChangePasswordModal()">
+                            <i class="fas fa-times"></i> Cancel
+                        </button>
+                        <button type="submit" class="btn-primary">
+                            <i class="fas fa-check"></i> Update Password
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Change Password Success Modal -->
+    <div class="modal-overlay" id="passwordSuccessModal">
+        <div class="modal modal-center">
+            <div class="modal-body">
+                <div class="modal-success-icon-large">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h3 class="modal-success-title">Password Updated Successfully!</h3>
+                <p class="modal-success-text">
+                    Your password has been changed. Please use your new password for future logins.
+                </p>
+                <div class="modal-button-center">
+                    <button class="btn-primary modal-button-full" onclick="closePasswordSuccessModal()">
+                        <i class="fas fa-check"></i> Got it
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
+

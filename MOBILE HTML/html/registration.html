@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#1F2937">
+    <title>X-TRIM FIT GYM - Sign Up</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="..//css/registration.css">
+</head>
+<body>
+    <!-- Mobile Header -->
+    <header class="mobile-header">
+        <a href="..//html/homepage.html" class="back-btn" aria-label="Back to home">
+            <i class="fas fa-arrow-left"></i>
+        </a>
+        <div class="header-logo">
+            <img src="..//imgs/logo.png" alt="X-TRIM FIT GYM" class="logo-img">
+        </div>
+        <div class="header-spacer"></div>
+    </header>
+
+    <!-- Progress Indicator -->
+    <div class="progress-container">
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+        <div class="progress-text">
+            <span id="currentStep">1</span> of <span id="totalSteps">4</span>
+        </div>
+    </div>
+
+    <!-- Signup Container -->
+    <main class="signup-wrapper">
+        <div class="signup-container">
+            <!-- Signup Header -->
+            <div class="signup-header">
+                <div class="signup-icon">
+                    <i class="fas fa-user-plus"></i>
+                </div>
+                <h1>Join X-TRIM FIT GYM</h1>
+                <p>Start your fitness journey with us today</p>
+            </div>
+
+            <!-- Multi-Step Form -->
+            <form id="signupForm" class="signup-form">
+                <!-- Step 1: Basic Information -->
+                <div class="form-step active" data-step="1">
+                    <div class="step-header">
+                        <h3><i class="fas fa-user"></i> Basic Information</h3>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="firstName">First Name <span class="required">*</span></label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-user input-icon"></i>
+                            <input 
+                                type="text" 
+                                id="firstName" 
+                                name="firstName" 
+                                placeholder="Enter your first name"
+                                autocomplete="given-name"
+                                required
+                            >
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="lastName">Last Name <span class="required">*</span></label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-user input-icon"></i>
+                            <input 
+                                type="text" 
+                                id="lastName" 
+                                name="lastName" 
+                                placeholder="Enter your last name"
+                                autocomplete="family-name"
+                                required
+                            >
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address <span class="required">*</span></label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-envelope input-icon"></i>
+                            <input 
+                                type="email" 
+                                id="email" 
+                                name="email" 
+                                placeholder="example@email.com"
+                                autocomplete="email"
+                                required
+                            >
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone Number <span class="required">*</span></label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-phone input-icon"></i>
+                            <input 
+                                type="tel" 
+                                id="phone" 
+                                name="phone" 
+                                placeholder="+63 XXX XXX XXXX"
+                                autocomplete="tel"
+                                required
+                            >
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="dob">Date of Birth <span class="required">*</span></label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-calendar input-icon"></i>
+                            <input 
+                                type="date" 
+                                id="dob" 
+                                name="dob"
+                                autocomplete="bday"
+                                required
+                            >
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="gender">Gender</label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-venus-mars input-icon"></i>
+                            <select id="gender" name="gender">
+                                <option value="">Select Gender</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                                <option value="other">Other</option>
+                                <option value="prefer-not-to-say">Prefer not to say</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 2: Contact & Address -->
+                <div class="form-step" data-step="2">
+                    <div class="step-header">
+                        <h3><i class="fas fa-map-marker-alt"></i> Contact & Address</h3>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="address">Complete Address <span class="required">*</span></label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-home input-icon"></i>
+                            <textarea 
+                                id="address" 
+                                name="address" 
+                                rows="3" 
+                                placeholder="Street, Barangay, City, Province"
+                                autocomplete="street-address"
+                                required
+                            ></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="emergencyName">Emergency Contact Name <span class="required">*</span></label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-user-shield input-icon"></i>
+                            <input 
+                                type="text" 
+                                id="emergencyName" 
+                                name="emergencyName" 
+                                placeholder="Enter emergency contact name"
+                                required
+                            >
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="emergencyPhone">Emergency Contact Number <span class="required">*</span></label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-phone-alt input-icon"></i>
+                            <input 
+                                type="tel" 
+                                id="emergencyPhone" 
+                                name="emergencyPhone" 
+                                placeholder="+63 XXX XXX XXXX"
+                                required
+                            >
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 3: Gym Information -->
+                <div class="form-step" data-step="3">
+                    <div class="step-header">
+                        <h3><i class="fas fa-dumbbell"></i> Gym Information</h3>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="membershipPlan">Membership Plan <span class="required">*</span></label>
+                        <div class="plan-cards">
+                            <label class="plan-card">
+                                <input type="radio" name="membershipPlan" value="basic" required>
+                                <div class="plan-content">
+                                    <div class="plan-name">Basic</div>
+                                    <div class="plan-price">₱1,500<span>/month</span></div>
+                                    <div class="plan-features">
+                                        <i class="fas fa-check"></i> Gym Access
+                                    </div>
+                                </div>
+                            </label>
+                            <label class="plan-card popular">
+                                <div class="plan-badge">Popular</div>
+                                <input type="radio" name="membershipPlan" value="premium" required>
+                                <div class="plan-content">
+                                    <div class="plan-name">Premium</div>
+                                    <div class="plan-price">₱2,500<span>/month</span></div>
+                                    <div class="plan-features">
+                                        <i class="fas fa-check"></i> Gym + Classes
+                                    </div>
+                                </div>
+                            </label>
+                            <label class="plan-card">
+                                <input type="radio" name="membershipPlan" value="vip" required>
+                                <div class="plan-content">
+                                    <div class="plan-name">VIP</div>
+                                    <div class="plan-price">₱3,500<span>/month</span></div>
+                                    <div class="plan-features">
+                                        <i class="fas fa-check"></i> All Access + PT
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="fitnessGoal">Primary Fitness Goal <span class="required">*</span></label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-bullseye input-icon"></i>
+                            <select id="fitnessGoal" name="fitnessGoal" required>
+                                <option value="">Select Goal</option>
+                                <option value="weight-loss">Weight Loss</option>
+                                <option value="muscle-gain">Muscle Building</option>
+                                <option value="general-fitness">General Fitness</option>
+                                <option value="strength-training">Strength Training</option>
+                                <option value="endurance">Endurance</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="workoutTime">Preferred Workout Time <span class="required">*</span></label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-clock input-icon"></i>
+                            <select id="workoutTime" name="workoutTime" required>
+                                <option value="">Select Time</option>
+                                <option value="morning">Morning (5AM - 11AM)</option>
+                                <option value="afternoon">Afternoon (12PM - 5PM)</option>
+                                <option value="evening">Evening (6PM - 10PM)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="experienceLevel">Gym Experience <span class="required">*</span></label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-chart-line input-icon"></i>
+                            <select id="experienceLevel" name="experienceLevel" required>
+                                <option value="">Select Experience Level</option>
+                                <option value="beginner">Beginner (0-6 months)</option>
+                                <option value="intermediate">Intermediate (6 months - 2 years)</option>
+                                <option value="advanced">Advanced (2+ years)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="hearAboutUs">How did you hear about us?</label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-lightbulb input-icon"></i>
+                            <select id="hearAboutUs" name="hearAboutUs">
+                                <option value="">Select Option</option>
+                                <option value="social-media">Social Media</option>
+                                <option value="friend">Friend/Family</option>
+                                <option value="online-search">Online Search</option>
+                                <option value="flyer">Flyer/Poster</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 4: Health & Agreement -->
+                <div class="form-step" data-step="4">
+                    <div class="step-header">
+                        <h3><i class="fas fa-heartbeat"></i> Health Information</h3>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="medicalConditions">Medical Conditions</label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-notes-medical input-icon"></i>
+                            <input 
+                                type="text" 
+                                id="medicalConditions" 
+                                name="medicalConditions" 
+                                placeholder="e.g., Asthma, High Blood Pressure"
+                            >
+                        </div>
+                        <small class="form-hint">Leave blank if none</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="medications">Current Medications</label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-pills input-icon"></i>
+                            <input 
+                                type="text" 
+                                id="medications" 
+                                name="medications" 
+                                placeholder="List any medications"
+                            >
+                        </div>
+                        <small class="form-hint">Leave blank if none</small>
+                    </div>
+
+                    <div class="agreement-section">
+                        <h4><i class="fas fa-file-contract"></i> Terms & Agreements</h4>
+                        <p class="agreement-text">Please read and agree to the following:</p>
+                        
+                        <label class="checkbox-group">
+                            <input type="checkbox" id="terms" name="terms" required>
+                            <span class="checkbox-custom"></span>
+                            <span class="checkbox-label">
+                                I agree to the <a href="#" id="termsLink">Terms and Conditions</a> <span class="required">*</span>
+                            </span>
+                        </label>
+
+                        <label class="checkbox-group">
+                            <input type="checkbox" id="privacy" name="privacy" required>
+                            <span class="checkbox-custom"></span>
+                            <span class="checkbox-label">
+                                I agree to the <a href="#" id="privacyLink">Privacy Policy</a> <span class="required">*</span>
+                            </span>
+                        </label>
+
+                        <label class="checkbox-group">
+                            <input type="checkbox" id="waiver" name="waiver" required>
+                            <span class="checkbox-custom"></span>
+                            <span class="checkbox-label">
+                                I agree to the <a href="#" id="waiverLink">Liability Waiver</a> <span class="required">*</span>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Navigation Buttons -->
+                <div class="form-navigation">
+                    <button type="button" class="btn-nav btn-prev" id="prevBtn" style="display: none;">
+                        <i class="fas fa-arrow-left"></i> Previous
+                    </button>
+                    <button type="button" class="btn-nav btn-next" id="nextBtn">
+                        Next <i class="fas fa-arrow-right"></i>
+                    </button>
+                    <button type="submit" class="btn-nav btn-submit" id="submitBtn" style="display: none;">
+                        <i class="fas fa-check-circle"></i> Complete Sign Up
+                    </button>
+                </div>
+            </form>
+
+            <!-- Login Link -->
+            <div class="login-link">
+                <p>Already have an account? <a href="..//html/login.html" id="loginLink">Log In</a></p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Terms Modal -->
+    <div class="modal" id="termsModal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Terms and Conditions</h3>
+                <button class="modal-close" id="closeTerms" aria-label="Close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>By signing up for X-TRIM FIT GYM, you agree to:</p>
+                <ul>
+                    <li>Follow all gym rules and regulations</li>
+                    <li>Respect other members and staff</li>
+                    <li>Maintain proper gym etiquette</li>
+                    <li>Use equipment responsibly</li>
+                    <li>Pay membership fees on time</li>
+                </ul>
+                <p>Full terms and conditions document would be displayed here.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Toast -->
+    <div class="toast" id="successToast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastMessage">Success!</span>
+    </div>
+
+    <script src="..//js/registration.js"></script>
+</body>
+</html>

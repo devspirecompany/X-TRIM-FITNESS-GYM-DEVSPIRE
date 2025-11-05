@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - X-TRIM FIT GYM</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../CSS/dashboard.css">
+    <script src="../JS/dashboard.js" defer></script>
+</head>
+<body>
+    <!-- Logout Confirmation Modal -->
+    <div class="modal-overlay" id="logoutModal">
+        <div class="modal modal-center">
+            <div class="modal-body">
+                <div class="modal-logout-icon">
+                    <i class="fas fa-sign-out-alt"></i>
+                </div>
+                <h3 class="modal-logout-title">Are you sure you want to logout?</h3>
+                <p class="modal-logout-text">
+                    You'll need to log in again to access your admin account.
+                </p>
+                <div class="modal-logout-actions">
+                    <button type="button" class="btn-secondary" onclick="closeLogoutModal()">
+                        <i class="fas fa-times"></i> Cancel
+                    </button>
+                    <button type="button" class="btn-primary" onclick="confirmLogout()">
+                        <i class="fas fa-sign-out-alt"></i> Yes, Logout
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification Container -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <!-- Top Navbar -->
+    <nav class="top-navbar">
+        <div class="logo">
+            <img src="../../Client/imgs/logo.png" alt="X-TRIM FIT GYM" class="logo-img">
+        </div>
+        <div class="nav-right">
+            <div class="user-profile" onclick="event.stopPropagation(); toggleProfileDropdown();" id="userProfileDropdown">
+                <div class="user-avatar">AD</div>
+                <div class="user-info">
+                    <h4>Admin User</h4>
+                    <p>System Administrator</p>
+                </div>
+                <i class="fas fa-chevron-down"></i>
+                <div class="dropdown-menu">
+                    <a href="../HTML/settings.html" class="dropdown-item">
+                        <i class="fas fa-cog"></i>
+                        <span>Settings</span>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item" onclick="event.preventDefault(); openLogoutModal();">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Logout</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <ul class="sidebar-menu">
+            <li><a href="../HTML/dashboard.html" class="active"><i class="fas fa-home"></i><span>Dashboard</span></a></li>
+            <li><a href="../HTML/membermanagement.html"><i class="fas fa-users"></i><span>Member Management</span></a></li>
+            <li><a href="../HTML/coachmanagement.html"><i class="fas fa-user-tie"></i><span>Coach Management</span></a></li>
+            <li><a href="../HTML/membershipmanagement.html"><i class="fas fa-credit-card"></i><span>Membership Management</span></a></li>
+            <li><a href="../HTML/reports.html"><i class="fas fa-chart-bar"></i><span>Reports & Analytics</span></a></li>
+        </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="welcome-section">
+            <h1>Welcome Back, Admin!</h1>
+            <p>Manage your gym operations, members, coaches, and track your business performance.</p>
+        </div>
+
+        <!-- Stats Grid -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h3>Total Members</h3>
+                <div class="stat-value" id="totalMembers">4</div>
+                <div class="stat-change"><i class="fas fa-arrow-up"></i> <span id="newMembers">+1</span> this month</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-user-tie"></i>
+                </div>
+                <h3>Total Coaches</h3>
+                <div class="stat-value" id="totalCoaches">4</div>
+                <div class="stat-change"><i class="fas fa-info-circle"></i> Active coaches</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-dollar-sign"></i>
+                </div>
+                <h3>Monthly Revenue</h3>
+                <div class="stat-value" id="monthlyRevenue">₱10,000</div>
+                <div class="stat-change"><i class="fas fa-arrow-up"></i> +15% from last month</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-credit-card"></i>
+                </div>
+                <h3>Active Subscriptions</h3>
+                <div class="stat-value" id="activeSubscriptions">4</div>
+                <div class="stat-change"><i class="fas fa-check-circle"></i> All active</div>
+            </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="quick-actions-section">
+            <div class="section-card quick-actions-card">
+                <div class="section-header">
+                    <h2><i class="fas fa-bolt"></i> Quick Actions</h2>
+                </div>
+                <div class="quick-actions">
+                    <button class="quick-action-btn" onclick="window.location.href='../HTML/membermanagement.html'">
+                        <i class="fas fa-user-plus"></i>
+                        <span>Add Member</span>
+                    </button>
+                    <button class="quick-action-btn" onclick="window.location.href='../HTML/coachmanagement.html'">
+                        <i class="fas fa-user-tie"></i>
+                        <span>Add Coach</span>
+                    </button>
+                    <button class="quick-action-btn" onclick="window.location.href='../HTML/membershipmanagement.html'">
+                        <i class="fas fa-credit-card"></i>
+                        <span>Manage Plans</span>
+                    </button>
+                    <button class="quick-action-btn" onclick="window.location.href='../HTML/reports.html'">
+                        <i class="fas fa-chart-bar"></i>
+                        <span>View Reports</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Content Grid -->
+        <div class="content-grid">
+            <!-- Left Column -->
+            <div class="left-column">
+                <!-- Recent Members Section -->
+                <div class="section-card">
+                    <div class="section-header">
+                        <h2><i class="fas fa-users"></i> Recent Members</h2>
+                        <a href="../HTML/membermanagement.html" class="view-all">View All <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="members-list" id="recentMembersList">
+                        <!-- Dynamically populated -->
+                    </div>
+                </div>
+
+                <!-- Recent Coaches Section -->
+                <div class="section-card">
+                    <div class="section-header">
+                        <h2><i class="fas fa-user-tie"></i> Coaches</h2>
+                        <a href="../HTML/coachmanagement.html" class="view-all">View All <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="coaches-list" id="coachesList">
+                        <!-- Dynamically populated -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column -->
+            <div class="right-column">
+                <!-- Revenue Overview -->
+                <div class="section-card">
+                    <div class="section-header">
+                        <h2><i class="fas fa-chart-line"></i> Revenue Overview</h2>
+                        <select class="period-select" id="revenuePeriod" title="Select revenue period" aria-label="Select revenue period" onchange="updateRevenueChart()">
+                            <option value="month">This Month</option>
+                            <option value="week">This Week</option>
+                            <option value="year">This Year</option>
+                        </select>
+                    </div>
+                    <div class="revenue-chart">
+                        <div class="revenue-bar revenue-bar-week1"></div>
+                        <div class="revenue-bar revenue-bar-week2"></div>
+                        <div class="revenue-bar revenue-bar-week3"></div>
+                        <div class="revenue-bar revenue-bar-week4"></div>
+                    </div>
+                    <div class="revenue-summary">
+                        <div class="revenue-item">
+                            <span class="revenue-label">Total Revenue</span>
+                            <span class="revenue-value" id="totalRevenue">₱10,000</span>
+                        </div>
+                        <div class="revenue-item">
+                            <span class="revenue-label">Avg. per Member</span>
+                            <span class="revenue-value" id="avgRevenue">₱2,500</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Membership Distribution -->
+                <div class="section-card">
+                    <div class="section-header">
+                        <h2><i class="fas fa-chart-pie"></i> Membership Distribution</h2>
+                    </div>
+                    <div class="membership-distribution">
+                        <div class="membership-item">
+                            <div class="membership-info">
+                                <div class="membership-color student"></div>
+                                <span class="membership-name">Student</span>
+                            </div>
+                            <div class="membership-stats">
+                                <span class="membership-count" id="studentCount">1</span>
+                                <span class="membership-percentage">25%</span>
+                            </div>
+                        </div>
+                        <div class="membership-item">
+                            <div class="membership-info">
+                                <div class="membership-color promo-student"></div>
+                                <span class="membership-name">PROMO Student</span>
+                            </div>
+                            <div class="membership-stats">
+                                <span class="membership-count" id="promoStudentCount">3</span>
+                                <span class="membership-percentage">75%</span>
+                            </div>
+                        </div>
+                        <div class="membership-item">
+                            <div class="membership-info">
+                                <div class="membership-color non-student"></div>
+                                <span class="membership-name">Non student</span>
+                            </div>
+                            <div class="membership-stats">
+                                <span class="membership-count" id="nonStudentCount">0</span>
+                                <span class="membership-percentage">0%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
+

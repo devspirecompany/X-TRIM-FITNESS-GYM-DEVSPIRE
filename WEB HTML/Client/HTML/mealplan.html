@@ -1,0 +1,2416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meal Plan - X-TRIM FIT GYM</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../CSS/mealplan.css">
+    <script src="../JS/mealplan.js" defer></script>
+</head>
+<body>
+    <nav class="top-navbar">
+        <div class="logo">
+            <img src="../imgs/logo.png" alt="X-TRIM FIT GYM" class="logo-img">
+        </div>
+        <div class="nav-right">
+            <div class="chat-icon" onclick="toggleChatPanel()">
+                <i class="fas fa-comments"></i>
+            </div>
+            <div class="notification-icon" onclick="toggleNotificationPanel()">
+                <i class="fas fa-bell"></i>
+                <span class="notification-badge">3</span>
+            </div>
+            <div class="user-profile" onclick="event.stopPropagation(); toggleProfileDropdown()">
+                <div class="user-avatar">AQ</div>
+                <div class="user-info">
+                    <h4>Ashley Quicho</h4>
+                    <p>PROMO Student Member</p>
+                </div>
+                <i class="fas fa-chevron-down"></i>
+                <div class="dropdown-menu">
+                    <a href="ClientSettings.html" class="dropdown-item">
+                        <i class="fas fa-cog"></i>
+                        <span>Settings</span>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Logout</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <ul class="sidebar-menu">
+            <li><a href="../HTML/dashboard.html"><i class="fas fa-home"></i><span>Dashboard</span></a></li>
+            <li><a href="../HTML/workouts.html"><i class="fas fa-dumbbell"></i><span>Workout Plans</span></a></li>
+            <li><a href="../HTML/schedule.html"><i class="fas fa-calendar-alt"></i><span>My Schedule</span></a></li>
+            <li><a href="../HTML/mealplan.html" class="active"><i class="fas fa-utensils"></i><span>Meal Plans</span></a></li>
+            <li><a href="../HTML/progress.html"><i class="fas fa-chart-line"></i><span>Progress</span></a></li>
+            <li><a href="../HTML/achievements.html"><i class="fas fa-trophy"></i><span>Achievements</span></a></li>
+            <li><a href="../HTML/coaches.html"><i class="fas fa-user-friends"></i><span>Coaches</span></a></li>
+            <li><a href="../HTML/membership.html"><i class="fas fa-credit-card"></i><span>Membership</span></a></li>
+        </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="page-title">
+                <h1><i class="fas fa-utensils"></i> My Meal Plan</h1>
+            </div>
+            <div class="header-actions">
+                <div class="view-toggle">
+                    <button class="active" onclick="switchView('daily')">Daily</button>
+                    <button onclick="switchView('weekly')">Weekly</button>
+                </div>
+                <button class="btn btn-secondary" onclick="downloadPlan()">
+                    <i class="fas fa-download"></i> Download
+                </button>
+                <button class="btn btn-primary" onclick="requestAdjustment()">
+                    <i class="fas fa-edit"></i> Request Adjustment
+                </button>
+            </div>
+        </div>
+
+        <!-- Summary Cards -->
+        <div class="summary-grid">
+            <div class="summary-card">
+                <h3>Daily Target</h3>
+                <div class="summary-value">2,200 <span>Calories</span></div>
+            </div>
+            <div class="summary-card">
+                <h3>Protein</h3>
+                <div class="summary-value">165 <span>Grams Protein</span></div>
+            </div>
+            <div class="summary-card">
+                <h3>Carbs</h3>
+                <div class="summary-value">220 <span>Grams Carbs</span></div>
+            </div>
+            <div class="summary-card">
+                <h3>Fats</h3>
+                <div class="summary-value">73 <span>Grams Fats</span></div>
+            </div>
+        </div>
+
+        <!-- Meal Plan Container -->
+        <div class="meal-plan-container" id="dailyView">
+            <!-- Monday -->
+            <div class="day-section">
+                <div class="day-header">
+                    <h2><i class="fas fa-calendar-day"></i> Monday</h2>
+                    <div class="day-totals">
+                        <span><i class="fas fa-fire"></i> Total: <strong>2,185 Calories</strong></span>
+                        <span><i class="fas fa-drumstick-bite"></i> <strong>162 Grams</strong> Protein</span>
+                        <span><i class="fas fa-bread-slice"></i> <strong>218 Grams</strong> Carbs</span>
+                        <span><i class="fas fa-cheese"></i> <strong>71 Grams</strong> Fats</span>
+                    </div>
+                </div>
+
+                <div class="meals-grid">
+                    <!-- Breakfast -->
+                    <div class="meal-card">
+                        <div class="meal-header-info">
+                            <div class="meal-type">
+                                <div class="meal-icon">
+                                    <i class="fas fa-sun"></i>
+                                </div>
+                                <div class="meal-type-info">
+                                    <h3>Breakfast</h3>
+                                    <p class="meal-time"><i class="fas fa-clock"></i> 7:00 AM</p>
+                                </div>
+                            </div>
+                            <div class="meal-calories">
+                                <div class="cal-value">520</div>
+                                <div class="cal-label">Calories</div>
+                            </div>
+                        </div>
+                        <p class="meal-description">
+                            Start your day with a nutritious and energizing breakfast packed with complex carbohydrates, quality protein, and healthy fats to fuel your morning workout.
+                        </p>
+                        <div class="meal-macros">
+                            <div class="macro-item">
+                                <div class="macro-label">Protein</div>
+                                <div class="macro-value">35 Grams</div>
+                            </div>
+                            <div class="macro-item">
+                                <div class="macro-label">Carbs</div>
+                                <div class="macro-value">62 Grams</div>
+                            </div>
+                            <div class="macro-item">
+                                <div class="macro-label">Fats</div>
+                                <div class="macro-value">15 Grams</div>
+                            </div>
+                        </div>
+                        <div class="meal-portions">
+                            <h4><i class="fas fa-list"></i> Portions</h4>
+                            <div class="portions-list">
+                                <div class="portion-item">
+                                    <span>Oatmeal (cooked)</span>
+                                    <span>1 cup</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Mixed berries</span>
+                                    <span>½ cup</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Scrambled eggs</span>
+                                    <span>3 whole eggs</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Whole wheat toast</span>
+                                    <span>2 slices</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Almond butter</span>
+                                    <span>1 tbsp</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Mid-Morning Snack -->
+                    <div class="meal-card">
+                        <div class="meal-header-info">
+                            <div class="meal-type">
+                                <div class="meal-icon">
+                                    <i class="fas fa-apple-alt"></i>
+                                </div>
+                                <div class="meal-type-info">
+                                    <h3>Mid-Morning Snack</h3>
+                                    <p class="meal-time"><i class="fas fa-clock"></i> 10:00 AM</p>
+                                </div>
+                            </div>
+                            <div class="meal-calories">
+                                <div class="cal-value">195</div>
+                                <div class="cal-label">Calories</div>
+                            </div>
+                        </div>
+                        <p class="meal-description">
+                            A light snack to keep your energy levels stable and prevent mid-morning hunger.
+                        </p>
+                        <div class="meal-macros">
+                            <div class="macro-item">
+                                <div class="macro-label">Protein</div>
+                                <div class="macro-value">12 Grams</div>
+                            </div>
+                            <div class="macro-item">
+                                <div class="macro-label">Carbs</div>
+                                <div class="macro-value">18 Grams</div>
+                            </div>
+                            <div class="macro-item">
+                                <div class="macro-label">Fats</div>
+                                <div class="macro-value">9 Grams</div>
+                            </div>
+                        </div>
+                        <div class="meal-portions">
+                            <h4><i class="fas fa-list"></i> Portions</h4>
+                            <div class="portions-list">
+                                <div class="portion-item">
+                                    <span>Greek yogurt (plain)</span>
+                                    <span>1 cup</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Almonds</span>
+                                    <span>10 pieces</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Honey</span>
+                                    <span>1 tsp</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Lunch -->
+                    <div class="meal-card">
+                        <div class="meal-header-info">
+                            <div class="meal-type">
+                                <div class="meal-icon">
+                                    <i class="fas fa-cloud-sun"></i>
+                                </div>
+                                <div class="meal-type-info">
+                                    <h3>Lunch</h3>
+                                    <p class="meal-time"><i class="fas fa-clock"></i> 12:30 PM</p>
+                                </div>
+                            </div>
+                            <div class="meal-calories">
+                                <div class="cal-value">680</div>
+                                <div class="cal-label">Calories</div>
+                            </div>
+                        </div>
+                        <p class="meal-description">
+                            A balanced meal with lean protein, complex carbohydrates, and plenty of vegetables to support muscle recovery and sustained energy.
+                        </p>
+                        <div class="meal-macros">
+                            <div class="macro-item">
+                                <div class="macro-label">Protein</div>
+                                <div class="macro-value">52 Grams</div>
+                            </div>
+                            <div class="macro-item">
+                                <div class="macro-label">Carbs</div>
+                                <div class="macro-value">65 Grams</div>
+                            </div>
+                            <div class="macro-item">
+                                <div class="macro-label">Fats</div>
+                                <div class="macro-value">18 Grams</div>
+                            </div>
+                        </div>
+                        <div class="meal-portions">
+                            <h4><i class="fas fa-list"></i> Portions</h4>
+                            <div class="portions-list">
+                                <div class="portion-item">
+                                    <span>Grilled chicken breast</span>
+                                    <span>6 oz</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Brown rice (cooked)</span>
+                                    <span>1 cup</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Steamed broccoli</span>
+                                    <span>1 cup</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Steamed carrots</span>
+                                    <span>½ cup</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Olive oil (for cooking)</span>
+                                    <span>1 tbsp</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Afternoon Snack -->
+                    <div class="meal-card">
+                        <div class="meal-header-info">
+                            <div class="meal-type">
+                                <div class="meal-icon">
+                                    <i class="fas fa-cookie-bite"></i>
+                                </div>
+                                <div class="meal-type-info">
+                                    <h3>Afternoon Snack</h3>
+                                    <p class="meal-time"><i class="fas fa-clock"></i> 3:30 PM</p>
+                                </div>
+                            </div>
+                            <div class="meal-calories">
+                                <div class="cal-value">200</div>
+                                <div class="cal-label">Calories</div>
+                            </div>
+                        </div>
+                        <p class="meal-description">
+                            Pre-workout fuel to energize your evening training session.
+                        </p>
+                        <div class="meal-macros">
+                            <div class="macro-item">
+                                <div class="macro-label">Protein</div>
+                                <div class="macro-value">8 Grams</div>
+                            </div>
+                            <div class="macro-item">
+                                <div class="macro-label">Carbs</div>
+                                <div class="macro-value">28 Grams</div>
+                            </div>
+                            <div class="macro-item">
+                                <div class="macro-label">Fats</div>
+                                <div class="macro-value">7 Grams</div>
+                            </div>
+                        </div>
+                        <div class="meal-portions">
+                            <h4><i class="fas fa-list"></i> Portions</h4>
+                            <div class="portions-list">
+                                <div class="portion-item">
+                                    <span>Banana</span>
+                                    <span>1 medium</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Peanut butter</span>
+                                    <span>1 tbsp</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Protein bar</span>
+                                    <span>½ bar</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dinner -->
+                    <div class="meal-card">
+                        <div class="meal-header-info">
+                            <div class="meal-type">
+                                <div class="meal-icon">
+                                    <i class="fas fa-moon"></i>
+                                </div>
+                                <div class="meal-type-info">
+                                    <h3>Dinner</h3>
+                                    <p class="meal-time"><i class="fas fa-clock"></i> 7:00 PM</p>
+                                </div>
+                            </div>
+                            <div class="meal-calories">
+                                <div class="cal-value">590</div>
+                                <div class="cal-label">Calories</div>
+                            </div>
+                        </div>
+                        <p class="meal-description">
+                            A lighter dinner with omega-3 rich salmon, quinoa, and fresh vegetables to support recovery and prepare your body for rest.
+                        </p>
+                        <div class="meal-macros">
+                            <div class="macro-item">
+                                <div class="macro-label">Protein</div>
+                                <div class="macro-value">45 Grams</div>
+                            </div>
+                            <div class="macro-item">
+                                <div class="macro-label">Carbs</div>
+                                <div class="macro-value">45 Grams</div>
+                            </div>
+                            <div class="macro-item">
+                                <div class="macro-label">Fats</div>
+                                <div class="macro-value">22 Grams</div>
+                            </div>
+                        </div>
+                        <div class="meal-portions">
+                            <h4><i class="fas fa-list"></i> Portions</h4>
+                            <div class="portions-list">
+                                <div class="portion-item">
+                                    <span>Baked salmon</span>
+                                    <span>5 oz</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Quinoa (cooked)</span>
+                                    <span>¾ cup</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Mixed green salad</span>
+                                    <span>2 cups</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Cherry tomatoes</span>
+                                    <span>½ cup</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Olive oil dressing</span>
+                                    <span>1 tbsp</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Lemon juice</span>
+                                    <span>Juice of 1 Lemon</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tuesday -->
+            <div class="day-section">
+                <div class="day-header">
+                    <h2><i class="fas fa-calendar-day"></i> Tuesday</h2>
+                    <div class="day-totals">
+                        <span><i class="fas fa-fire"></i> Total: <strong>2,210 cal</strong></span>
+                        <span><i class="fas fa-drumstick-bite"></i> <strong>168g</strong> Protein</span>
+                        <span><i class="fas fa-bread-slice"></i> <strong>215g</strong> Carbs</span>
+                        <span><i class="fas fa-cheese"></i> <strong>75g</strong> Fats</span>
+                    </div>
+                </div>
+
+                <div class="meals-grid">
+                    <!-- Breakfast -->
+                    <div class="meal-card">
+                        <div class="meal-header-info">
+                            <div class="meal-type">
+                                <div class="meal-icon">
+                                    <i class="fas fa-sun"></i>
+                                </div>
+                                <div class="meal-type-info">
+                                    <h3>Breakfast</h3>
+                                    <p class="meal-time"><i class="fas fa-clock"></i> 7:00 AM</p>
+                                </div>
+                            </div>
+                            <div class="meal-calories">
+                                <div class="cal-value">545</div>
+                                <div class="cal-label">Calories</div>
+                            </div>
+                        </div>
+                        <p class="meal-description">
+                            High-protein breakfast with whole grains and healthy fats to kickstart your day.
+                        </p>
+                        <div class="meal-macros">
+                            <div class="macro-item">
+                                <div class="macro-label">Protein</div>
+                                <div class="macro-value">38 Grams</div>
+                            </div>
+                            <div class="macro-item">
+                                <div class="macro-label">Carbs</div>
+                                <div class="macro-value">58 Grams</div>
+                            </div>
+                            <div class="macro-item">
+                                <div class="macro-label">Fats</div>
+                                <div class="macro-value">18 Grams</div>
+                            </div>
+                        </div>
+                        <div class="meal-portions">
+                            <h4><i class="fas fa-list"></i> Portions</h4>
+                            <div class="portions-list">
+                                <div class="portion-item">
+                                    <span>Whole wheat pancakes</span>
+                                    <span>3 medium</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Protein powder (mixed in)</span>
+                                    <span>1 scoop</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Fresh strawberries</span>
+                                    <span>1 cup</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Turkey sausage</span>
+                                    <span>2 links</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Maple syrup (sugar-free)</span>
+                                    <span>2 tbsp</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Mid-Morning Snack -->
+                    <div class="meal-card">
+                        <div class="meal-header-info">
+                            <div class="meal-type">
+                                <div class="meal-icon">
+                                    <i class="fas fa-apple-alt"></i>
+                                </div>
+                                <div class="meal-type-info">
+                                    <h3>Mid-Morning Snack</h3>
+                                    <p class="meal-time"><i class="fas fa-clock"></i> 10:00 AM</p>
+                                </div>
+                            </div>
+                            <div class="meal-calories">
+                                <div class="cal-value">180</div>
+                                <div class="cal-label">Calories</div>
+                            </div>
+                        </div>
+                        <p class="meal-description">
+                            Quick and easy snack with protein and healthy fats.
+                        </p>
+                        <div class="meal-macros">
+                            <div class="macro-item">
+                                <div class="macro-label">Protein</div>
+                                <div class="macro-value">15 Grams</div>
+                            </div>
+                            <div class="macro-item">
+                                <div class="macro-label">Carbs</div>
+                                <div class="macro-value">12 Grams</div>
+                            </div>
+                            <div class="macro-item">
+                                <div class="macro-label">Fats</div>
+                                <div class="macro-value">8 Grams</div>
+                            </div>
+                        </div>
+                        <div class="meal-portions">
+                            <h4><i class="fas fa-list"></i> Portions</h4>
+                            <div class="portions-list">
+                                <div class="portion-item">
+                                    <span>Cottage cheese (low-fat)</span>
+                                    <span>½ cup</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Walnuts</span>
+                                    <span>6 halves</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Apple slices</span>
+                                    <span>½ medium apple</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Lunch -->
+                    <div class="meal-card">
+                        <div class="meal-header-info">
+                            <div class="meal-type">
+                                <div class="meal-icon">
+                                    <i class="fas fa-cloud-sun"></i>
+                                </div>
+                                <div class="meal-type-info">
+                                    <h3>Lunch</h3>
+                                    <p class="meal-time"><i class="fas fa-clock"></i> 12:30 PM</p>
+                                </div>
+                            </div>
+                            <div class="meal-calories">
+                                <div class="cal-value">695</div>
+                                <div class="cal-label">Calories</div>
+                            </div>
+                        </div>
+                        <p class="meal-description">
+                            Lean beef with sweet potato and greens for sustained energy and muscle support.
+                        </p>
+                        <div class="meal-macros">
+                            <div class="macro-item">
+                                <div class="macro-label">Protein</div>
+                                <div class="macro-value">55 Grams</div>
+                            </div>
+                            <div class="macro-item">
+                                <div class="macro-label">Carbs</div>
+                                <div class="macro-value">68 Grams</div>
+                            </div>
+                            <div class="macro-item">
+                                <div class="macro-label">Fats</div>
+                                <div class="macro-value">19 Grams</div>
+                            </div>
+                        </div>
+                        <div class="meal-portions">
+                            <h4><i class="fas fa-list"></i> Portions</h4>
+                            <div class="portions-list">
+                                <div class="portion-item">
+                                    <span>Lean ground beef (93/7)</span>
+                                    <span>6 oz</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Baked sweet potato</span>
+                                    <span>1 medium</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Sautéed spinach</span>
+                                    <span>1½ cups</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Bell peppers (mixed)</span>
+                                    <span>½ cup</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Avocado</span>
+                                    <span>¼ medium</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Afternoon Snack -->
+                    <div class="meal-card">
+                        <div class="meal-header-info">
+                            <div class="meal-type">
+                                <div class="meal-icon">
+                                    <i class="fas fa-cookie-bite"></i>
+                                </div>
+                                <div class="meal-type-info">
+                                    <h3>Afternoon Snack</h3>
+                                    <p class="meal-time"><i class="fas fa-clock"></i> 3:30 PM</p>
+                                </div>
+                            </div>
+                            <div class="meal-calories">
+                                <div class="cal-value">210</div>
+                                <div class="cal-label">Calories</div>
+                            </div>
+                        </div>
+                        <p class="meal-description">
+                            Energy-boosting snack before your workout session.
+                        </p>
+                        <div class="meal-macros">
+                            <div class="macro-item">
+                                <div class="macro-label">Protein</div>
+                                <div class="macro-value">10 Grams</div>
+                            </div>
+                            <div class="macro-item">
+                                <div class="macro-label">Carbs</div>
+                                <div class="macro-value">32 Grams</div>
+                            </div>
+                            <div class="macro-item">
+                                <div class="macro-label">Fats</div>
+                                <div class="macro-value">6 Grams</div>
+                            </div>
+                        </div>
+                        <div class="meal-portions">
+                            <h4><i class="fas fa-list"></i> Portions</h4>
+                            <div class="portions-list">
+                                <div class="portion-item">
+                                    <span>Rice cakes</span>
+                                    <span>2 cakes</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Almond butter</span>
+                                    <span>1 tbsp</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Sliced banana</span>
+                                    <span>½ medium</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dinner -->
+                    <div class="meal-card">
+                        <div class="meal-header-info">
+                            <div class="meal-type">
+                                <div class="meal-icon">
+                                    <i class="fas fa-moon"></i>
+                                </div>
+                                <div class="meal-type-info">
+                                    <h3>Dinner</h3>
+                                    <p class="meal-time"><i class="fas fa-clock"></i> 7:00 PM</p>
+                                </div>
+                            </div>
+                            <div class="meal-calories">
+                                <div class="cal-value">580</div>
+                                <div class="cal-label">Calories</div>
+                            </div>
+                        </div>
+                        <p class="meal-description">
+                            Light but satisfying dinner with lean turkey and colorful vegetables.
+                        </p>
+                        <div class="meal-macros">
+                            <div class="macro-item">
+                                <div class="macro-label">Protein</div>
+                                <div class="macro-value">50 Grams</div>
+                            </div>
+                            <div class="macro-item">
+                                <div class="macro-label">Carbs</div>
+                                <div class="macro-value">45 Grams</div>
+                            </div>
+                            <div class="macro-item">
+                                <div class="macro-label">Fats</div>
+                                <div class="macro-value">24 Grams</div>
+                            </div>
+                        </div>
+                        <div class="meal-portions">
+                            <h4><i class="fas fa-list"></i> Portions</h4>
+                            <div class="portions-list">
+                                <div class="portion-item">
+                                    <span>Grilled turkey breast</span>
+                                    <span>6 oz</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Roasted Brussels sprouts</span>
+                                    <span>1 cup</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Cauliflower rice</span>
+                                    <span>1 cup</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Asparagus</span>
+                                    <span>6 spears</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Olive oil</span>
+                                    <span>1½ tbsp</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Wednesday -->
+            <div class="day-section">
+                <div class="day-header">
+                    <h2><i class="fas fa-calendar-day"></i> Wednesday</h2>
+                    <div class="day-totals">
+                        <span><i class="fas fa-fire"></i> Total: <strong>2,195 Calories</strong></span>
+                        <span><i class="fas fa-drumstick-bite"></i> <strong>164 Grams</strong> Protein</span>
+                        <span><i class="fas fa-bread-slice"></i> <strong>220 Grams</strong> Carbs</span>
+                        <span><i class="fas fa-cheese"></i> <strong>72 Grams</strong> Fats</span>
+                    </div>
+                </div>
+
+                <div class="meals-grid">
+                    <!-- Breakfast -->
+                    <div class="meal-card">
+                        <div class="meal-header-info">
+                            <div class="meal-type">
+                                <div class="meal-icon">
+                                    <i class="fas fa-sun"></i>
+                                </div>
+                                <div class="meal-type-info">
+                                    <h3>Breakfast</h3>
+                                    <p class="meal-time"><i class="fas fa-clock"></i> 7:00 AM</p>
+                                </div>
+                            </div>
+                            <div class="meal-calories">
+                                <div class="cal-value">530</div>
+                                <div class="cal-label">Calories</div>
+                            </div>
+                        </div>
+                        <p class="meal-description">
+                            Power-packed breakfast with eggs, avocado, and whole grains for sustained energy throughout the morning.
+                        </p>
+                        <div class="meal-macros">
+                            <div class="macro-item">
+                                <div class="macro-label">Protein</div>
+                                <div class="macro-value">36 Grams</div>
+                            </div>
+                            <div class="macro-item">
+                                <div class="macro-label">Carbs</div>
+                                <div class="macro-value">60 Grams</div>
+                            </div>
+                            <div class="macro-item">
+                                <div class="macro-label">Fats</div>
+                                <div class="macro-value">16 Grams</div>
+                            </div>
+                        </div>
+                        <div class="meal-portions">
+                            <h4><i class="fas fa-list"></i> Portions</h4>
+                            <div class="portions-list">
+                                <div class="portion-item">
+                                    <span>Scrambled eggs</span>
+                                    <span>3 whole eggs</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Whole grain toast</span>
+                                    <span>2 slices</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Avocado</span>
+                                    <span>½ medium</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Spinach (sautéed)</span>
+                                    <span>1 cup</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Greek yogurt</span>
+                                    <span>½ cup</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Mid-Morning Snack -->
+                    <div class="meal-card">
+                        <div class="meal-header-info">
+                            <div class="meal-type">
+                                <div class="meal-icon">
+                                    <i class="fas fa-apple-alt"></i>
+                                </div>
+                                <div class="meal-type-info">
+                                    <h3>Mid-Morning Snack</h3>
+                                    <p class="meal-time"><i class="fas fa-clock"></i> 10:00 AM</p>
+                                </div>
+                            </div>
+                            <div class="meal-calories">
+                                <div class="cal-value">190</div>
+                                <div class="cal-label">Calories</div>
+                            </div>
+                        </div>
+                        <p class="meal-description">
+                            Protein-rich snack to maintain energy levels until lunch.
+                        </p>
+                        <div class="meal-macros">
+                            <div class="macro-item">
+                                <div class="macro-label">Protein</div>
+                                <div class="macro-value">14 Grams</div>
+                            </div>
+                            <div class="macro-item">
+                                <div class="macro-label">Carbs</div>
+                                <div class="macro-value">15 Grams</div>
+                            </div>
+                            <div class="macro-item">
+                                <div class="macro-label">Fats</div>
+                                <div class="macro-value">9 Grams</div>
+                            </div>
+                        </div>
+                        <div class="meal-portions">
+                            <h4><i class="fas fa-list"></i> Portions</h4>
+                            <div class="portions-list">
+                                <div class="portion-item">
+                                    <span>Cottage cheese</span>
+                                    <span>¾ cup</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Mixed nuts</span>
+                                    <span>12 pieces</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Blueberries</span>
+                                    <span>½ cup</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Lunch -->
+                    <div class="meal-card">
+                        <div class="meal-header-info">
+                            <div class="meal-type">
+                                <div class="meal-icon">
+                                    <i class="fas fa-cloud-sun"></i>
+                                </div>
+                                <div class="meal-type-info">
+                                    <h3>Lunch</h3>
+                                    <p class="meal-time"><i class="fas fa-clock"></i> 12:30 PM</p>
+                                </div>
+                            </div>
+                            <div class="meal-calories">
+                                <div class="cal-value">670</div>
+                                <div class="cal-label">Calories</div>
+                            </div>
+                        </div>
+                        <p class="meal-description">
+                            Balanced meal with lean protein, complex carbs, and vegetables for optimal nutrition.
+                        </p>
+                        <div class="meal-macros">
+                            <div class="macro-item">
+                                <div class="macro-label">Protein</div>
+                                <div class="macro-value">50 Grams</div>
+                            </div>
+                            <div class="macro-item">
+                                <div class="macro-label">Carbs</div>
+                                <div class="macro-value">70 Grams</div>
+                            </div>
+                            <div class="macro-item">
+                                <div class="macro-label">Fats</div>
+                                <div class="macro-value">17 Grams</div>
+                            </div>
+                        </div>
+                        <div class="meal-portions">
+                            <h4><i class="fas fa-list"></i> Portions</h4>
+                            <div class="portions-list">
+                                <div class="portion-item">
+                                    <span>Grilled chicken breast</span>
+                                    <span>6 oz</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Quinoa (cooked)</span>
+                                    <span>1 cup</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Steamed green beans</span>
+                                    <span>1 cup</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Roasted bell peppers</span>
+                                    <span>½ cup</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Olive oil</span>
+                                    <span>1 tbsp</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Afternoon Snack -->
+                    <div class="meal-card">
+                        <div class="meal-header-info">
+                            <div class="meal-type">
+                                <div class="meal-icon">
+                                    <i class="fas fa-cookie-bite"></i>
+                                </div>
+                                <div class="meal-type-info">
+                                    <h3>Afternoon Snack</h3>
+                                    <p class="meal-time"><i class="fas fa-clock"></i> 3:30 PM</p>
+                                </div>
+                            </div>
+                            <div class="meal-calories">
+                                <div class="cal-value">205</div>
+                                <div class="cal-label">Calories</div>
+                            </div>
+                        </div>
+                        <p class="meal-description">
+                            Quick energy boost before your workout.
+                        </p>
+                        <div class="meal-macros">
+                            <div class="macro-item">
+                                <div class="macro-label">Protein</div>
+                                <div class="macro-value">9 Grams</div>
+                            </div>
+                            <div class="macro-item">
+                                <div class="macro-label">Carbs</div>
+                                <div class="macro-value">30 Grams</div>
+                            </div>
+                            <div class="macro-item">
+                                <div class="macro-label">Fats</div>
+                                <div class="macro-value">6 Grams</div>
+                            </div>
+                        </div>
+                        <div class="meal-portions">
+                            <h4><i class="fas fa-list"></i> Portions</h4>
+                            <div class="portions-list">
+                                <div class="portion-item">
+                                    <span>Apple</span>
+                                    <span>1 medium</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Almond butter</span>
+                                    <span>1 tbsp</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Rice cake</span>
+                                    <span>1 cake</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dinner -->
+                    <div class="meal-card">
+                        <div class="meal-header-info">
+                            <div class="meal-type">
+                                <div class="meal-icon">
+                                    <i class="fas fa-moon"></i>
+                                </div>
+                                <div class="meal-type-info">
+                                    <h3>Dinner</h3>
+                                    <p class="meal-time"><i class="fas fa-clock"></i> 7:00 PM</p>
+                                </div>
+                            </div>
+                            <div class="meal-calories">
+                                <div class="cal-value">600</div>
+                                <div class="cal-label">Calories</div>
+                            </div>
+                        </div>
+                        <p class="meal-description">
+                            Hearty dinner with lean protein and nutrient-dense vegetables for recovery.
+                        </p>
+                        <div class="meal-macros">
+                            <div class="macro-item">
+                                <div class="macro-label">Protein</div>
+                                <div class="macro-value">48 Grams</div>
+                            </div>
+                            <div class="macro-item">
+                                <div class="macro-label">Carbs</div>
+                                <div class="macro-value">45 Grams</div>
+                            </div>
+                            <div class="macro-item">
+                                <div class="macro-label">Fats</div>
+                                <div class="macro-value">20 Grams</div>
+                            </div>
+                        </div>
+                        <div class="meal-portions">
+                            <h4><i class="fas fa-list"></i> Portions</h4>
+                            <div class="portions-list">
+                                <div class="portion-item">
+                                    <span>Baked cod fillet</span>
+                                    <span>6 oz</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Roasted sweet potato</span>
+                                    <span>1 medium</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Steamed asparagus</span>
+                                    <span>8 spears</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Mixed vegetables</span>
+                                    <span>1 cup</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Lemon butter sauce</span>
+                                    <span>1 tbsp</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Thursday -->
+            <div class="day-section">
+                <div class="day-header">
+                    <h2><i class="fas fa-calendar-day"></i> Thursday</h2>
+                    <div class="day-totals">
+                        <span><i class="fas fa-fire"></i> Total: <strong>2,200 Calories</strong></span>
+                        <span><i class="fas fa-drumstick-bite"></i> <strong>165 Grams</strong> Protein</span>
+                        <span><i class="fas fa-bread-slice"></i> <strong>220 Grams</strong> Carbs</span>
+                        <span><i class="fas fa-cheese"></i> <strong>73 Grams</strong> Fats</span>
+                    </div>
+                </div>
+
+                <div class="meals-grid">
+                    <!-- Breakfast -->
+                    <div class="meal-card">
+                        <div class="meal-header-info">
+                            <div class="meal-type">
+                                <div class="meal-icon">
+                                    <i class="fas fa-sun"></i>
+                                </div>
+                                <div class="meal-type-info">
+                                    <h3>Breakfast</h3>
+                                    <p class="meal-time"><i class="fas fa-clock"></i> 7:00 AM</p>
+                                </div>
+                            </div>
+                            <div class="meal-calories">
+                                <div class="cal-value">525</div>
+                                <div class="cal-label">Calories</div>
+                            </div>
+                        </div>
+                        <p class="meal-description">
+                            Classic breakfast with protein, whole grains, and fresh fruits to start your day right.
+                        </p>
+                        <div class="meal-macros">
+                            <div class="macro-item">
+                                <div class="macro-label">Protein</div>
+                                <div class="macro-value">35 Grams</div>
+                            </div>
+                            <div class="macro-item">
+                                <div class="macro-label">Carbs</div>
+                                <div class="macro-value">62 Grams</div>
+                            </div>
+                            <div class="macro-item">
+                                <div class="macro-label">Fats</div>
+                                <div class="macro-value">15 Grams</div>
+                            </div>
+                        </div>
+                        <div class="meal-portions">
+                            <h4><i class="fas fa-list"></i> Portions</h4>
+                            <div class="portions-list">
+                                <div class="portion-item">
+                                    <span>Oatmeal (cooked)</span>
+                                    <span>1 cup</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Protein powder</span>
+                                    <span>1 scoop</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Banana</span>
+                                    <span>1 medium</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Almonds</span>
+                                    <span>10 pieces</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Honey</span>
+                                    <span>1 tsp</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Mid-Morning Snack -->
+                    <div class="meal-card">
+                        <div class="meal-header-info">
+                            <div class="meal-type">
+                                <div class="meal-icon">
+                                    <i class="fas fa-apple-alt"></i>
+                                </div>
+                                <div class="meal-type-info">
+                                    <h3>Mid-Morning Snack</h3>
+                                    <p class="meal-time"><i class="fas fa-clock"></i> 10:00 AM</p>
+                                </div>
+                            </div>
+                            <div class="meal-calories">
+                                <div class="cal-value">195</div>
+                                <div class="cal-label">Calories</div>
+                            </div>
+                        </div>
+                        <p class="meal-description">
+                            Light and nutritious snack to keep you energized.
+                        </p>
+                        <div class="meal-macros">
+                            <div class="macro-item">
+                                <div class="macro-label">Protein</div>
+                                <div class="macro-value">12 Grams</div>
+                            </div>
+                            <div class="macro-item">
+                                <div class="macro-label">Carbs</div>
+                                <div class="macro-value">18 Grams</div>
+                            </div>
+                            <div class="macro-item">
+                                <div class="macro-label">Fats</div>
+                                <div class="macro-value">9 Grams</div>
+                            </div>
+                        </div>
+                        <div class="meal-portions">
+                            <h4><i class="fas fa-list"></i> Portions</h4>
+                            <div class="portions-list">
+                                <div class="portion-item">
+                                    <span>Greek yogurt (plain)</span>
+                                    <span>1 cup</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Walnuts</span>
+                                    <span>8 halves</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Berries</span>
+                                    <span>½ cup</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Lunch -->
+                    <div class="meal-card">
+                        <div class="meal-header-info">
+                            <div class="meal-type">
+                                <div class="meal-icon">
+                                    <i class="fas fa-cloud-sun"></i>
+                                </div>
+                                <div class="meal-type-info">
+                                    <h3>Lunch</h3>
+                                    <p class="meal-time"><i class="fas fa-clock"></i> 12:30 PM</p>
+                                </div>
+                            </div>
+                            <div class="meal-calories">
+                                <div class="cal-value">685</div>
+                                <div class="cal-label">Calories</div>
+                            </div>
+                        </div>
+                        <p class="meal-description">
+                            Satisfying lunch with lean protein and complex carbohydrates for sustained energy.
+                        </p>
+                        <div class="meal-macros">
+                            <div class="macro-item">
+                                <div class="macro-label">Protein</div>
+                                <div class="macro-value">53 Grams</div>
+                            </div>
+                            <div class="macro-item">
+                                <div class="macro-label">Carbs</div>
+                                <div class="macro-value">66 Grams</div>
+                            </div>
+                            <div class="macro-item">
+                                <div class="macro-label">Fats</div>
+                                <div class="macro-value">18 Grams</div>
+                            </div>
+                        </div>
+                        <div class="meal-portions">
+                            <h4><i class="fas fa-list"></i> Portions</h4>
+                            <div class="portions-list">
+                                <div class="portion-item">
+                                    <span>Grilled turkey breast</span>
+                                    <span>6 oz</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Brown rice (cooked)</span>
+                                    <span>1 cup</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Steamed broccoli</span>
+                                    <span>1 cup</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Carrots (steamed)</span>
+                                    <span>½ cup</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Olive oil</span>
+                                    <span>1 tbsp</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Afternoon Snack -->
+                    <div class="meal-card">
+                        <div class="meal-header-info">
+                            <div class="meal-type">
+                                <div class="meal-icon">
+                                    <i class="fas fa-cookie-bite"></i>
+                                </div>
+                                <div class="meal-type-info">
+                                    <h3>Afternoon Snack</h3>
+                                    <p class="meal-time"><i class="fas fa-clock"></i> 3:30 PM</p>
+                                </div>
+                            </div>
+                            <div class="meal-calories">
+                                <div class="cal-value">195</div>
+                                <div class="cal-label">Calories</div>
+                            </div>
+                        </div>
+                        <p class="meal-description">
+                            Pre-workout snack to fuel your training session.
+                        </p>
+                        <div class="meal-macros">
+                            <div class="macro-item">
+                                <div class="macro-label">Protein</div>
+                                <div class="macro-value">8 Grams</div>
+                            </div>
+                            <div class="macro-item">
+                                <div class="macro-label">Carbs</div>
+                                <div class="macro-value">28 Grams</div>
+                            </div>
+                            <div class="macro-item">
+                                <div class="macro-label">Fats</div>
+                                <div class="macro-value">7 Grams</div>
+                            </div>
+                        </div>
+                        <div class="meal-portions">
+                            <h4><i class="fas fa-list"></i> Portions</h4>
+                            <div class="portions-list">
+                                <div class="portion-item">
+                                    <span>Banana</span>
+                                    <span>1 medium</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Peanut butter</span>
+                                    <span>1 tbsp</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Protein bar</span>
+                                    <span>½ bar</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dinner -->
+                    <div class="meal-card">
+                        <div class="meal-header-info">
+                            <div class="meal-type">
+                                <div class="meal-icon">
+                                    <i class="fas fa-moon"></i>
+                                </div>
+                                <div class="meal-type-info">
+                                    <h3>Dinner</h3>
+                                    <p class="meal-time"><i class="fas fa-clock"></i> 7:00 PM</p>
+                                </div>
+                            </div>
+                            <div class="meal-calories">
+                                <div class="cal-value">600</div>
+                                <div class="cal-label">Calories</div>
+                            </div>
+                        </div>
+                        <p class="meal-description">
+                            Delicious dinner with omega-3 rich fish and nutrient-packed vegetables.
+                        </p>
+                        <div class="meal-macros">
+                            <div class="macro-item">
+                                <div class="macro-label">Protein</div>
+                                <div class="macro-value">45 Grams</div>
+                            </div>
+                            <div class="macro-item">
+                                <div class="macro-label">Carbs</div>
+                                <div class="macro-value">46 Grams</div>
+                            </div>
+                            <div class="macro-item">
+                                <div class="macro-label">Fats</div>
+                                <div class="macro-value">24 Grams</div>
+                            </div>
+                        </div>
+                        <div class="meal-portions">
+                            <h4><i class="fas fa-list"></i> Portions</h4>
+                            <div class="portions-list">
+                                <div class="portion-item">
+                                    <span>Baked salmon</span>
+                                    <span>5 oz</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Quinoa (cooked)</span>
+                                    <span>¾ cup</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Mixed green salad</span>
+                                    <span>2 cups</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Cherry tomatoes</span>
+                                    <span>½ cup</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Olive oil dressing</span>
+                                    <span>1 tbsp</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Friday -->
+            <div class="day-section">
+                <div class="day-header">
+                    <h2><i class="fas fa-calendar-day"></i> Friday</h2>
+                    <div class="day-totals">
+                        <span><i class="fas fa-fire"></i> Total: <strong>2,205 Calories</strong></span>
+                        <span><i class="fas fa-drumstick-bite"></i> <strong>166 Grams</strong> Protein</span>
+                        <span><i class="fas fa-bread-slice"></i> <strong>222 Grams</strong> Carbs</span>
+                        <span><i class="fas fa-cheese"></i> <strong>74 Grams</strong> Fats</span>
+                    </div>
+                </div>
+
+                <div class="meals-grid">
+                    <!-- Breakfast -->
+                    <div class="meal-card">
+                        <div class="meal-header-info">
+                            <div class="meal-type">
+                                <div class="meal-icon">
+                                    <i class="fas fa-sun"></i>
+                                </div>
+                                <div class="meal-type-info">
+                                    <h3>Breakfast</h3>
+                                    <p class="meal-time"><i class="fas fa-clock"></i> 7:00 AM</p>
+                                </div>
+                            </div>
+                            <div class="meal-calories">
+                                <div class="cal-value">540</div>
+                                <div class="cal-label">Calories</div>
+                            </div>
+                        </div>
+                        <p class="meal-description">
+                            Energizing breakfast to kickstart your Friday with whole grains and quality protein.
+                        </p>
+                        <div class="meal-macros">
+                            <div class="macro-item">
+                                <div class="macro-label">Protein</div>
+                                <div class="macro-value">37 Grams</div>
+                            </div>
+                            <div class="macro-item">
+                                <div class="macro-label">Carbs</div>
+                                <div class="macro-value">61 Grams</div>
+                            </div>
+                            <div class="macro-item">
+                                <div class="macro-label">Fats</div>
+                                <div class="macro-value">17 Grams</div>
+                            </div>
+                        </div>
+                        <div class="meal-portions">
+                            <h4><i class="fas fa-list"></i> Portions</h4>
+                            <div class="portions-list">
+                                <div class="portion-item">
+                                    <span>Whole wheat pancakes</span>
+                                    <span>3 medium</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Protein powder (mixed)</span>
+                                    <span>1 scoop</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Fresh berries</span>
+                                    <span>1 cup</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Turkey sausage</span>
+                                    <span>2 links</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Maple syrup (sugar-free)</span>
+                                    <span>2 tbsp</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Mid-Morning Snack -->
+                    <div class="meal-card">
+                        <div class="meal-header-info">
+                            <div class="meal-type">
+                                <div class="meal-icon">
+                                    <i class="fas fa-apple-alt"></i>
+                                </div>
+                                <div class="meal-type-info">
+                                    <h3>Mid-Morning Snack</h3>
+                                    <p class="meal-time"><i class="fas fa-clock"></i> 10:00 AM</p>
+                                </div>
+                            </div>
+                            <div class="meal-calories">
+                                <div class="cal-value">185</div>
+                                <div class="cal-label">Calories</div>
+                            </div>
+                        </div>
+                        <p class="meal-description">
+                            Light snack to maintain energy until lunch.
+                        </p>
+                        <div class="meal-macros">
+                            <div class="macro-item">
+                                <div class="macro-label">Protein</div>
+                                <div class="macro-value">13 Grams</div>
+                            </div>
+                            <div class="macro-item">
+                                <div class="macro-label">Carbs</div>
+                                <div class="macro-value">16 Grams</div>
+                            </div>
+                            <div class="macro-item">
+                                <div class="macro-label">Fats</div>
+                                <div class="macro-value">8 Grams</div>
+                            </div>
+                        </div>
+                        <div class="meal-portions">
+                            <h4><i class="fas fa-list"></i> Portions</h4>
+                            <div class="portions-list">
+                                <div class="portion-item">
+                                    <span>Cottage cheese (low-fat)</span>
+                                    <span>¾ cup</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Almonds</span>
+                                    <span>12 pieces</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Apple slices</span>
+                                    <span>½ medium</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Lunch -->
+                    <div class="meal-card">
+                        <div class="meal-header-info">
+                            <div class="meal-type">
+                                <div class="meal-icon">
+                                    <i class="fas fa-cloud-sun"></i>
+                                </div>
+                                <div class="meal-type-info">
+                                    <h3>Lunch</h3>
+                                    <p class="meal-time"><i class="fas fa-clock"></i> 12:30 PM</p>
+                                </div>
+                            </div>
+                            <div class="meal-calories">
+                                <div class="cal-value">690</div>
+                                <div class="cal-label">Calories</div>
+                            </div>
+                        </div>
+                        <p class="meal-description">
+                            Balanced meal with lean protein and complex carbohydrates for afternoon energy.
+                        </p>
+                        <div class="meal-macros">
+                            <div class="macro-item">
+                                <div class="macro-label">Protein</div>
+                                <div class="macro-value">54 Grams</div>
+                            </div>
+                            <div class="macro-item">
+                                <div class="macro-label">Carbs</div>
+                                <div class="macro-value">69 Grams</div>
+                            </div>
+                            <div class="macro-item">
+                                <div class="macro-label">Fats</div>
+                                <div class="macro-value">19 Grams</div>
+                            </div>
+                        </div>
+                        <div class="meal-portions">
+                            <h4><i class="fas fa-list"></i> Portions</h4>
+                            <div class="portions-list">
+                                <div class="portion-item">
+                                    <span>Grilled chicken breast</span>
+                                    <span>6 oz</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Brown rice (cooked)</span>
+                                    <span>1 cup</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Steamed broccoli</span>
+                                    <span>1 cup</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Roasted bell peppers</span>
+                                    <span>½ cup</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Olive oil</span>
+                                    <span>1 tbsp</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Afternoon Snack -->
+                    <div class="meal-card">
+                        <div class="meal-header-info">
+                            <div class="meal-type">
+                                <div class="meal-icon">
+                                    <i class="fas fa-cookie-bite"></i>
+                                </div>
+                                <div class="meal-type-info">
+                                    <h3>Afternoon Snack</h3>
+                                    <p class="meal-time"><i class="fas fa-clock"></i> 3:30 PM</p>
+                                </div>
+                            </div>
+                            <div class="meal-calories">
+                                <div class="cal-value">200</div>
+                                <div class="cal-label">Calories</div>
+                            </div>
+                        </div>
+                        <p class="meal-description">
+                            Energy-boosting snack before your workout.
+                        </p>
+                        <div class="meal-macros">
+                            <div class="macro-item">
+                                <div class="macro-label">Protein</div>
+                                <div class="macro-value">9 Grams</div>
+                            </div>
+                            <div class="macro-item">
+                                <div class="macro-label">Carbs</div>
+                                <div class="macro-value">29 Grams</div>
+                            </div>
+                            <div class="macro-item">
+                                <div class="macro-label">Fats</div>
+                                <div class="macro-value">7 Grams</div>
+                            </div>
+                        </div>
+                        <div class="meal-portions">
+                            <h4><i class="fas fa-list"></i> Portions</h4>
+                            <div class="portions-list">
+                                <div class="portion-item">
+                                    <span>Banana</span>
+                                    <span>1 medium</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Peanut butter</span>
+                                    <span>1 tbsp</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Protein bar</span>
+                                    <span>½ bar</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dinner -->
+                    <div class="meal-card">
+                        <div class="meal-header-info">
+                            <div class="meal-type">
+                                <div class="meal-icon">
+                                    <i class="fas fa-moon"></i>
+                                </div>
+                                <div class="meal-type-info">
+                                    <h3>Dinner</h3>
+                                    <p class="meal-time"><i class="fas fa-clock"></i> 7:00 PM</p>
+                                </div>
+                            </div>
+                            <div class="meal-calories">
+                                <div class="cal-value">590</div>
+                                <div class="cal-label">Calories</div>
+                            </div>
+                        </div>
+                        <p class="meal-description">
+                            Satisfying dinner with lean protein and colorful vegetables to end your week strong.
+                        </p>
+                        <div class="meal-macros">
+                            <div class="macro-item">
+                                <div class="macro-label">Protein</div>
+                                <div class="macro-value">47 Grams</div>
+                            </div>
+                            <div class="macro-item">
+                                <div class="macro-label">Carbs</div>
+                                <div class="macro-value">47 Grams</div>
+                            </div>
+                            <div class="macro-item">
+                                <div class="macro-label">Fats</div>
+                                <div class="macro-value">23 Grams</div>
+                            </div>
+                        </div>
+                        <div class="meal-portions">
+                            <h4><i class="fas fa-list"></i> Portions</h4>
+                            <div class="portions-list">
+                                <div class="portion-item">
+                                    <span>Baked salmon</span>
+                                    <span>5 oz</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Quinoa (cooked)</span>
+                                    <span>¾ cup</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Mixed green salad</span>
+                                    <span>2 cups</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Cherry tomatoes</span>
+                                    <span>½ cup</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Olive oil dressing</span>
+                                    <span>1 tbsp</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Saturday -->
+            <div class="day-section">
+                <div class="day-header">
+                    <h2><i class="fas fa-calendar-day"></i> Saturday</h2>
+                    <div class="day-totals">
+                        <span><i class="fas fa-fire"></i> Total: <strong>2,190 Calories</strong></span>
+                        <span><i class="fas fa-drumstick-bite"></i> <strong>163 Grams</strong> Protein</span>
+                        <span><i class="fas fa-bread-slice"></i> <strong>217 Grams</strong> Carbs</span>
+                        <span><i class="fas fa-cheese"></i> <strong>70 Grams</strong> Fats</span>
+                    </div>
+                </div>
+
+                <div class="meals-grid">
+                    <!-- Breakfast -->
+                    <div class="meal-card">
+                        <div class="meal-header-info">
+                            <div class="meal-type">
+                                <div class="meal-icon">
+                                    <i class="fas fa-sun"></i>
+                                </div>
+                                <div class="meal-type-info">
+                                    <h3>Breakfast</h3>
+                                    <p class="meal-time"><i class="fas fa-clock"></i> 8:00 AM</p>
+                                </div>
+                            </div>
+                            <div class="meal-calories">
+                                <div class="cal-value">515</div>
+                                <div class="cal-label">Calories</div>
+                            </div>
+                        </div>
+                        <p class="meal-description">
+                            Weekend breakfast with protein-rich eggs and whole grains for a relaxed morning.
+                        </p>
+                        <div class="meal-macros">
+                            <div class="macro-item">
+                                <div class="macro-label">Protein</div>
+                                <div class="macro-value">34 Grams</div>
+                            </div>
+                            <div class="macro-item">
+                                <div class="macro-label">Carbs</div>
+                                <div class="macro-value">59 Grams</div>
+                            </div>
+                            <div class="macro-item">
+                                <div class="macro-label">Fats</div>
+                                <div class="macro-value">16 Grams</div>
+                            </div>
+                        </div>
+                        <div class="meal-portions">
+                            <h4><i class="fas fa-list"></i> Portions</h4>
+                            <div class="portions-list">
+                                <div class="portion-item">
+                                    <span>Scrambled eggs</span>
+                                    <span>3 whole eggs</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Whole wheat toast</span>
+                                    <span>2 slices</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Avocado</span>
+                                    <span>½ medium</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Spinach (sautéed)</span>
+                                    <span>1 cup</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Greek yogurt</span>
+                                    <span>½ cup</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Mid-Morning Snack -->
+                    <div class="meal-card">
+                        <div class="meal-header-info">
+                            <div class="meal-type">
+                                <div class="meal-icon">
+                                    <i class="fas fa-apple-alt"></i>
+                                </div>
+                                <div class="meal-type-info">
+                                    <h3>Mid-Morning Snack</h3>
+                                    <p class="meal-time"><i class="fas fa-clock"></i> 11:00 AM</p>
+                                </div>
+                            </div>
+                            <div class="meal-calories">
+                                <div class="cal-value">185</div>
+                                <div class="cal-label">Calories</div>
+                            </div>
+                        </div>
+                        <p class="meal-description">
+                            Light snack to maintain energy levels.
+                        </p>
+                        <div class="meal-macros">
+                            <div class="macro-item">
+                                <div class="macro-label">Protein</div>
+                                <div class="macro-value">12 Grams</div>
+                            </div>
+                            <div class="macro-item">
+                                <div class="macro-label">Carbs</div>
+                                <div class="macro-value">17 Grams</div>
+                            </div>
+                            <div class="macro-item">
+                                <div class="macro-label">Fats</div>
+                                <div class="macro-value">8 Grams</div>
+                            </div>
+                        </div>
+                        <div class="meal-portions">
+                            <h4><i class="fas fa-list"></i> Portions</h4>
+                            <div class="portions-list">
+                                <div class="portion-item">
+                                    <span>Cottage cheese</span>
+                                    <span>¾ cup</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Mixed nuts</span>
+                                    <span>10 pieces</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Berries</span>
+                                    <span>½ cup</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Lunch -->
+                    <div class="meal-card">
+                        <div class="meal-header-info">
+                            <div class="meal-type">
+                                <div class="meal-icon">
+                                    <i class="fas fa-cloud-sun"></i>
+                                </div>
+                                <div class="meal-type-info">
+                                    <h3>Lunch</h3>
+                                    <p class="meal-time"><i class="fas fa-clock"></i> 1:00 PM</p>
+                                </div>
+                            </div>
+                            <div class="meal-calories">
+                                <div class="cal-value">675</div>
+                                <div class="cal-label">Calories</div>
+                            </div>
+                        </div>
+                        <p class="meal-description">
+                            Weekend lunch with lean protein and wholesome vegetables.
+                        </p>
+                        <div class="meal-macros">
+                            <div class="macro-item">
+                                <div class="macro-label">Protein</div>
+                                <div class="macro-value">51 Grams</div>
+                            </div>
+                            <div class="macro-item">
+                                <div class="macro-label">Carbs</div>
+                                <div class="macro-value">67 Grams</div>
+                            </div>
+                            <div class="macro-item">
+                                <div class="macro-label">Fats</div>
+                                <div class="macro-value">18 Grams</div>
+                            </div>
+                        </div>
+                        <div class="meal-portions">
+                            <h4><i class="fas fa-list"></i> Portions</h4>
+                            <div class="portions-list">
+                                <div class="portion-item">
+                                    <span>Grilled chicken breast</span>
+                                    <span>6 oz</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Brown rice (cooked)</span>
+                                    <span>1 cup</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Steamed green beans</span>
+                                    <span>1 cup</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Roasted bell peppers</span>
+                                    <span>½ cup</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Olive oil</span>
+                                    <span>1 tbsp</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Afternoon Snack -->
+                    <div class="meal-card">
+                        <div class="meal-header-info">
+                            <div class="meal-type">
+                                <div class="meal-icon">
+                                    <i class="fas fa-cookie-bite"></i>
+                                </div>
+                                <div class="meal-type-info">
+                                    <h3>Afternoon Snack</h3>
+                                    <p class="meal-time"><i class="fas fa-clock"></i> 4:00 PM</p>
+                                </div>
+                            </div>
+                            <div class="meal-calories">
+                                <div class="cal-value">195</div>
+                                <div class="cal-label">Calories</div>
+                            </div>
+                        </div>
+                        <p class="meal-description">
+                            Pre-workout snack for your weekend training.
+                        </p>
+                        <div class="meal-macros">
+                            <div class="macro-item">
+                                <div class="macro-label">Protein</div>
+                                <div class="macro-value">8 Grams</div>
+                            </div>
+                            <div class="macro-item">
+                                <div class="macro-label">Carbs</div>
+                                <div class="macro-value">27 Grams</div>
+                            </div>
+                            <div class="macro-item">
+                                <div class="macro-label">Fats</div>
+                                <div class="macro-value">7 Grams</div>
+                            </div>
+                        </div>
+                        <div class="meal-portions">
+                            <h4><i class="fas fa-list"></i> Portions</h4>
+                            <div class="portions-list">
+                                <div class="portion-item">
+                                    <span>Apple</span>
+                                    <span>1 medium</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Almond butter</span>
+                                    <span>1 tbsp</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Rice cake</span>
+                                    <span>1 cake</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dinner -->
+                    <div class="meal-card">
+                        <div class="meal-header-info">
+                            <div class="meal-type">
+                                <div class="meal-icon">
+                                    <i class="fas fa-moon"></i>
+                                </div>
+                                <div class="meal-type-info">
+                                    <h3>Dinner</h3>
+                                    <p class="meal-time"><i class="fas fa-clock"></i> 7:30 PM</p>
+                                </div>
+                            </div>
+                            <div class="meal-calories">
+                                <div class="cal-value">620</div>
+                                <div class="cal-label">Calories</div>
+                            </div>
+                        </div>
+                        <p class="meal-description">
+                            Weekend dinner with lean protein and fresh vegetables for recovery and relaxation.
+                        </p>
+                        <div class="meal-macros">
+                            <div class="macro-item">
+                                <div class="macro-label">Protein</div>
+                                <div class="macro-value">50 Grams</div>
+                            </div>
+                            <div class="macro-item">
+                                <div class="macro-label">Carbs</div>
+                                <div class="macro-value">47 Grams</div>
+                            </div>
+                            <div class="macro-item">
+                                <div class="macro-label">Fats</div>
+                                <div class="macro-value">21 Grams</div>
+                            </div>
+                        </div>
+                        <div class="meal-portions">
+                            <h4><i class="fas fa-list"></i> Portions</h4>
+                            <div class="portions-list">
+                                <div class="portion-item">
+                                    <span>Baked cod fillet</span>
+                                    <span>6 oz</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Roasted sweet potato</span>
+                                    <span>1 medium</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Steamed asparagus</span>
+                                    <span>8 spears</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Mixed vegetables</span>
+                                    <span>1 cup</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Lemon butter sauce</span>
+                                    <span>1 tbsp</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sunday -->
+            <div class="day-section">
+                <div class="day-header">
+                    <h2><i class="fas fa-calendar-day"></i> Sunday</h2>
+                    <div class="day-totals">
+                        <span><i class="fas fa-fire"></i> Total: <strong>2,185 Calories</strong></span>
+                        <span><i class="fas fa-drumstick-bite"></i> <strong>162 Grams</strong> Protein</span>
+                        <span><i class="fas fa-bread-slice"></i> <strong>218 Grams</strong> Carbs</span>
+                        <span><i class="fas fa-cheese"></i> <strong>71 Grams</strong> Fats</span>
+                    </div>
+                </div>
+
+                <div class="meals-grid">
+                    <!-- Breakfast -->
+                    <div class="meal-card">
+                        <div class="meal-header-info">
+                            <div class="meal-type">
+                                <div class="meal-icon">
+                                    <i class="fas fa-sun"></i>
+                                </div>
+                                <div class="meal-type-info">
+                                    <h3>Breakfast</h3>
+                                    <p class="meal-time"><i class="fas fa-clock"></i> 8:00 AM</p>
+                                </div>
+                            </div>
+                            <div class="meal-calories">
+                                <div class="cal-value">520</div>
+                                <div class="cal-label">Calories</div>
+                            </div>
+                        </div>
+                        <p class="meal-description">
+                            Relaxing Sunday breakfast to start your day with balanced nutrition.
+                        </p>
+                        <div class="meal-macros">
+                            <div class="macro-item">
+                                <div class="macro-label">Protein</div>
+                                <div class="macro-value">35 Grams</div>
+                            </div>
+                            <div class="macro-item">
+                                <div class="macro-label">Carbs</div>
+                                <div class="macro-value">62 Grams</div>
+                            </div>
+                            <div class="macro-item">
+                                <div class="macro-label">Fats</div>
+                                <div class="macro-value">15 Grams</div>
+                            </div>
+                        </div>
+                        <div class="meal-portions">
+                            <h4><i class="fas fa-list"></i> Portions</h4>
+                            <div class="portions-list">
+                                <div class="portion-item">
+                                    <span>Oatmeal (cooked)</span>
+                                    <span>1 cup</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Mixed berries</span>
+                                    <span>½ cup</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Scrambled eggs</span>
+                                    <span>3 whole eggs</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Whole wheat toast</span>
+                                    <span>2 slices</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Almond butter</span>
+                                    <span>1 tbsp</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Mid-Morning Snack -->
+                    <div class="meal-card">
+                        <div class="meal-header-info">
+                            <div class="meal-type">
+                                <div class="meal-icon">
+                                    <i class="fas fa-apple-alt"></i>
+                                </div>
+                                <div class="meal-type-info">
+                                    <h3>Mid-Morning Snack</h3>
+                                    <p class="meal-time"><i class="fas fa-clock"></i> 11:00 AM</p>
+                                </div>
+                            </div>
+                            <div class="meal-calories">
+                                <div class="cal-value">195</div>
+                                <div class="cal-label">Calories</div>
+                            </div>
+                        </div>
+                        <p class="meal-description">
+                            Light snack to maintain energy levels before lunch.
+                        </p>
+                        <div class="meal-macros">
+                            <div class="macro-item">
+                                <div class="macro-label">Protein</div>
+                                <div class="macro-value">12 Grams</div>
+                            </div>
+                            <div class="macro-item">
+                                <div class="macro-label">Carbs</div>
+                                <div class="macro-value">18 Grams</div>
+                            </div>
+                            <div class="macro-item">
+                                <div class="macro-label">Fats</div>
+                                <div class="macro-value">9 Grams</div>
+                            </div>
+                        </div>
+                        <div class="meal-portions">
+                            <h4><i class="fas fa-list"></i> Portions</h4>
+                            <div class="portions-list">
+                                <div class="portion-item">
+                                    <span>Greek yogurt (plain)</span>
+                                    <span>1 cup</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Almonds</span>
+                                    <span>10 pieces</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Honey</span>
+                                    <span>1 tsp</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Lunch -->
+                    <div class="meal-card">
+                        <div class="meal-header-info">
+                            <div class="meal-type">
+                                <div class="meal-icon">
+                                    <i class="fas fa-cloud-sun"></i>
+                                </div>
+                                <div class="meal-type-info">
+                                    <h3>Lunch</h3>
+                                    <p class="meal-time"><i class="fas fa-clock"></i> 1:00 PM</p>
+                                </div>
+                            </div>
+                            <div class="meal-calories">
+                                <div class="cal-value">680</div>
+                                <div class="cal-label">Calories</div>
+                            </div>
+                        </div>
+                        <p class="meal-description">
+                            Sunday lunch with balanced nutrition for your rest day.
+                        </p>
+                        <div class="meal-macros">
+                            <div class="macro-item">
+                                <div class="macro-label">Protein</div>
+                                <div class="macro-value">52 Grams</div>
+                            </div>
+                            <div class="macro-item">
+                                <div class="macro-label">Carbs</div>
+                                <div class="macro-value">65 Grams</div>
+                            </div>
+                            <div class="macro-item">
+                                <div class="macro-label">Fats</div>
+                                <div class="macro-value">18 Grams</div>
+                            </div>
+                        </div>
+                        <div class="meal-portions">
+                            <h4><i class="fas fa-list"></i> Portions</h4>
+                            <div class="portions-list">
+                                <div class="portion-item">
+                                    <span>Grilled chicken breast</span>
+                                    <span>6 oz</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Brown rice (cooked)</span>
+                                    <span>1 cup</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Steamed broccoli</span>
+                                    <span>1 cup</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Steamed carrots</span>
+                                    <span>½ cup</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Olive oil (for cooking)</span>
+                                    <span>1 tbsp</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Afternoon Snack -->
+                    <div class="meal-card">
+                        <div class="meal-header-info">
+                            <div class="meal-type">
+                                <div class="meal-icon">
+                                    <i class="fas fa-cookie-bite"></i>
+                                </div>
+                                <div class="meal-type-info">
+                                    <h3>Afternoon Snack</h3>
+                                    <p class="meal-time"><i class="fas fa-clock"></i> 4:00 PM</p>
+                                </div>
+                            </div>
+                            <div class="meal-calories">
+                                <div class="cal-value">200</div>
+                                <div class="cal-label">Calories</div>
+                            </div>
+                        </div>
+                        <p class="meal-description">
+                            Light afternoon snack to keep you satisfied.
+                        </p>
+                        <div class="meal-macros">
+                            <div class="macro-item">
+                                <div class="macro-label">Protein</div>
+                                <div class="macro-value">8 Grams</div>
+                            </div>
+                            <div class="macro-item">
+                                <div class="macro-label">Carbs</div>
+                                <div class="macro-value">28 Grams</div>
+                            </div>
+                            <div class="macro-item">
+                                <div class="macro-label">Fats</div>
+                                <div class="macro-value">7 Grams</div>
+                            </div>
+                        </div>
+                        <div class="meal-portions">
+                            <h4><i class="fas fa-list"></i> Portions</h4>
+                            <div class="portions-list">
+                                <div class="portion-item">
+                                    <span>Banana</span>
+                                    <span>1 medium</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Peanut butter</span>
+                                    <span>1 tbsp</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Protein bar</span>
+                                    <span>½ bar</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dinner -->
+                    <div class="meal-card">
+                        <div class="meal-header-info">
+                            <div class="meal-type">
+                                <div class="meal-icon">
+                                    <i class="fas fa-moon"></i>
+                                </div>
+                                <div class="meal-type-info">
+                                    <h3>Dinner</h3>
+                                    <p class="meal-time"><i class="fas fa-clock"></i> 7:00 PM</p>
+                                </div>
+                            </div>
+                            <div class="meal-calories">
+                                <div class="cal-value">590</div>
+                                <div class="cal-label">Calories</div>
+                            </div>
+                        </div>
+                        <p class="meal-description">
+                            Light Sunday dinner with omega-3 rich salmon and fresh vegetables to prepare for the week ahead.
+                        </p>
+                        <div class="meal-macros">
+                            <div class="macro-item">
+                                <div class="macro-label">Protein</div>
+                                <div class="macro-value">45 Grams</div>
+                            </div>
+                            <div class="macro-item">
+                                <div class="macro-label">Carbs</div>
+                                <div class="macro-value">45 Grams</div>
+                            </div>
+                            <div class="macro-item">
+                                <div class="macro-label">Fats</div>
+                                <div class="macro-value">22 Grams</div>
+                            </div>
+                        </div>
+                        <div class="meal-portions">
+                            <h4><i class="fas fa-list"></i> Portions</h4>
+                            <div class="portions-list">
+                                <div class="portion-item">
+                                    <span>Baked salmon</span>
+                                    <span>5 oz</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Quinoa (cooked)</span>
+                                    <span>¾ cup</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Mixed green salad</span>
+                                    <span>2 cups</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Cherry tomatoes</span>
+                                    <span>½ cup</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Olive oil dressing</span>
+                                    <span>1 tbsp</span>
+                                </div>
+                                <div class="portion-item">
+                                    <span>Lemon juice</span>
+                                    <span>Juice of 1 Lemon</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Chat Panel -->
+    <div class="chat-panel" id="chatPanel">
+        <div class="chat-header">
+            <h3><i class="fas fa-comments"></i> Messages</h3>
+            <button class="modal-close" onclick="closeChatPanel()" title="Close" aria-label="Close">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+            <div class="message received">
+                <div class="message-avatar">CM</div>
+                <div>
+                    <div class="message-content">
+                        <div class="message-sender">Coach Mike</div>
+                        <div class="message-text">Hey Ashley! How's your meal prep going? Remember to stay hydrated!</div>
+                        <div class="message-time">2 hours ago</div>
+                    </div>
+                </div>
+            </div>
+            <div class="message sent">
+                <div class="message-avatar">AQ</div>
+                <div>
+                    <div class="message-content">
+                        <div class="message-text">Thanks Coach! Meal prep is going well. The salmon recipe is amazing!</div>
+                        <div class="message-time">1 hour ago</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="chat-input-area">
+            <div class="chat-input-wrapper">
+                <textarea class="chat-input" id="chatInput" placeholder="Type your message..." rows="1"></textarea>
+                <button class="chat-send-btn" onclick="sendChatMessage()" title="Send message" aria-label="Send message">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Panel -->
+    <div class="notification-panel" id="notificationPanel">
+        <div class="notification-panel-header">
+            <h3><i class="fas fa-bell"></i> Notifications</h3>
+            <button class="modal-close" onclick="closeNotificationPanel()" title="Close" aria-label="Close">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="notification-panel-body">
+            <div class="notification-list-item unread">
+                <div style="display: flex; gap: 1rem;">
+                    <div class="notification-icon-box info">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <div style="flex: 1;">
+                        <h4 style="color: var(--text-primary); font-size: 0.95rem; font-weight: 500; margin-bottom: 0.4rem;">Meal Plan Updated</h4>
+                        <p style="color: var(--text-secondary); font-size: 0.82rem; line-height: 1.5; margin-bottom: 0.5rem;">Your meal plan has been adjusted based on your progress</p>
+                        <span class="notification-time">2 minutes ago</span>
+                    </div>
+                </div>
+            </div>
+            <div class="notification-list-item unread">
+                <div style="display: flex; gap: 1rem;">
+                    <div class="notification-icon-box success">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div style="flex: 1;">
+                        <h4 style="color: var(--text-primary); font-size: 0.95rem; font-weight: 500; margin-bottom: 0.4rem;">Nutrition Goal Met</h4>
+                        <p style="color: var(--text-secondary); font-size: 0.82rem; line-height: 1.5; margin-bottom: 0.5rem;">You've reached your daily protein target!</p>
+                        <span class="notification-time">1 hour ago</span>
+                    </div>
+                </div>
+            </div>
+            <div class="notification-list-item">
+                <div style="display: flex; gap: 1rem;">
+                    <div class="notification-icon-box info">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <div style="flex: 1;">
+                        <h4 style="color: var(--text-primary); font-size: 0.95rem; font-weight: 500; margin-bottom: 0.4rem;">Coach Message</h4>
+                        <p style="color: var(--text-secondary); font-size: 0.82rem; line-height: 1.5; margin-bottom: 0.5rem;">Coach Mike: "Great job sticking to your meal plan this week!"</p>
+                        <span class="notification-time">3 hours ago</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Request Adjustment Modal -->
+    <div class="modal-overlay" id="adjustmentModal">
+        <div class="modal" style="max-width: 600px;">
+            <div class="modal-header">
+                <h3><i class="fas fa-edit"></i> Request Meal Plan Adjustment</h3>
+                <button class="modal-close" onclick="closeAdjustmentModal()" title="Close" aria-label="Close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form id="adjustmentForm" onsubmit="submitAdjustmentRequest(event)">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="adjustmentType">
+                            <i class="fas fa-tag"></i> Type of Adjustment <span class="required">*</span>
+                        </label>
+                        <select id="adjustmentType" name="adjustmentType" required>
+                            <option value="" disabled selected>Select adjustment type</option>
+                            <option value="portion">Change Portion Sizes</option>
+                            <option value="swap">Swap Specific Foods</option>
+                            <option value="calories">Adjust Calorie Target</option>
+                            <option value="macros">Adjust Macronutrient Ratio</option>
+                            <option value="dietary">Dietary Restrictions</option>
+                            <option value="allergies">Food Allergies</option>
+                            <option value="preferences">Food Preferences</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="adjustmentDetails">
+                            <i class="fas fa-align-left"></i> Details <span class="required">*</span>
+                        </label>
+                        <textarea id="adjustmentDetails" name="adjustmentDetails" rows="4" placeholder="Please describe the adjustment you'd like to make. Be as specific as possible..." required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="adjustmentPriority">
+                            <i class="fas fa-exclamation-circle"></i> Priority
+                        </label>
+                        <select id="adjustmentPriority" name="adjustmentPriority">
+                            <option value="normal" selected>Normal</option>
+                            <option value="high">High - Need within 24 hours</option>
+                            <option value="low">Low - Can wait a few days</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="adjustmentNotes">
+                            <i class="fas fa-sticky-note"></i> Additional Notes (Optional)
+                        </label>
+                        <textarea id="adjustmentNotes" name="adjustmentNotes" rows="3" placeholder="Any additional information that would help your coach understand your request better..."></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-secondary" onclick="closeAdjustmentModal()">
+                        <i class="fas fa-times"></i> Cancel
+                    </button>
+                    <button type="submit" class="btn-primary">
+                        <i class="fas fa-paper-plane"></i> Submit Request
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Adjustment Success Modal -->
+    <div class="modal-overlay" id="adjustmentSuccessModal">
+        <div class="modal" style="max-width: 450px; text-align: center;">
+            <div class="modal-body" style="padding: 2.5rem;">
+                <div style="font-size: 4rem; color: #22c55e; margin-bottom: 1.5rem;">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h3 style="color: #22c55e; margin-bottom: 1rem; font-weight: 600; font-family: 'Poppins', sans-serif;">Request Submitted Successfully!</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 1.5rem; line-height: 1.6;">
+                    Your meal plan adjustment request has been submitted. Your coach will review it and update your meal plan within 24-48 hours. You'll receive a notification when it's ready.
+                </p>
+                <div style="display: flex; justify-content: center;">
+                    <button class="btn-primary" onclick="closeAdjustmentSuccessModal()" style="width: 100%; max-width: 200px; justify-content: center;">
+                        <i class="fas fa-check"></i> Got it
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coach Management - X-TRIM FIT GYM</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../CSS/coachmanagement.css">
+    <script src="../JS/coachmanagement.js" defer></script>
+</head>
+<body>
+    <!-- Logout Confirmation Modal -->
+    <div class="modal-overlay" id="logoutModal">
+        <div class="modal modal-center">
+            <div class="modal-body">
+                <div class="modal-logout-icon">
+                    <i class="fas fa-sign-out-alt"></i>
+                </div>
+                <h3 class="modal-logout-title">Are you sure you want to logout?</h3>
+                <p class="modal-logout-text">
+                    You'll need to log in again to access your admin account.
+                </p>
+                <div class="modal-logout-actions">
+                    <button type="button" class="btn-secondary" onclick="closeLogoutModal()">
+                        <i class="fas fa-times"></i> Cancel
+                    </button>
+                    <button type="button" class="btn-primary" onclick="confirmLogout()">
+                        <i class="fas fa-sign-out-alt"></i> Yes, Logout
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification Container -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <!-- Top Navbar -->
+    <nav class="top-navbar">
+        <div class="logo">
+            <img src="../../Client/imgs/logo.png" alt="X-TRIM FIT GYM" class="logo-img">
+        </div>
+        <div class="nav-right">
+            <div class="user-profile" onclick="event.stopPropagation(); toggleProfileDropdown();" id="userProfileDropdown">
+                <div class="user-avatar">AD</div>
+                <div class="user-info">
+                    <h4>Admin User</h4>
+                    <p>System Administrator</p>
+                </div>
+                <i class="fas fa-chevron-down"></i>
+                <div class="dropdown-menu">
+                    <a href="../HTML/settings.html" class="dropdown-item">
+                        <i class="fas fa-cog"></i>
+                        <span>Settings</span>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item" onclick="event.preventDefault(); openLogoutModal();">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Logout</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <ul class="sidebar-menu">
+            <li><a href="../HTML/dashboard.html"><i class="fas fa-home"></i><span>Dashboard</span></a></li>
+            <li><a href="../HTML/membermanagement.html"><i class="fas fa-users"></i><span>Member Management</span></a></li>
+            <li><a href="../HTML/coachmanagement.html" class="active"><i class="fas fa-user-tie"></i><span>Coach Management</span></a></li>
+            <li><a href="../HTML/membershipmanagement.html"><i class="fas fa-credit-card"></i><span>Membership Management</span></a></li>
+            <li><a href="../HTML/reports.html"><i class="fas fa-chart-bar"></i><span>Reports & Analytics</span></a></li>
+        </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="page-header">
+            <div>
+                <h1><i class="fas fa-user-tie"></i> Coach Management</h1>
+                <p>Manage all gym coaches, view details, and update information</p>
+            </div>
+            <button class="btn-primary" onclick="openAddCoachModal()">
+                <i class="fas fa-user-plus"></i> Add New Coach
+            </button>
+        </div>
+
+        <!-- Search and Filter Bar -->
+        <div class="search-filter-bar">
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" id="searchInput" placeholder="Search coaches by name, email, or specialization..." onkeyup="filterCoaches()">
+            </div>
+            <div class="filter-group">
+                <label for="statusFilter" class="filter-label">
+                    <i class="fas fa-filter"></i> Status
+                </label>
+                <select id="statusFilter" onchange="filterCoaches()" title="Filter by status" aria-label="Filter by status">
+                    <option value="all">All Status</option>
+                    <option value="Active">Active</option>
+                    <option value="Inactive">Inactive</option>
+                    <option value="On Leave">On Leave</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label for="specializationFilter" class="filter-label">
+                    <i class="fas fa-dumbbell"></i> Specialization
+                </label>
+                <select id="specializationFilter" onchange="filterCoaches()" title="Filter by specialization" aria-label="Filter by specialization">
+                    <option value="all">All Specializations</option>
+                    <option value="Strength & Conditioning">Strength & Conditioning</option>
+                    <option value="Fitness & Nutrition">Fitness & Nutrition</option>
+                    <option value="HIIT & Cardio">HIIT & Cardio</option>
+                    <option value="Body Transformation">Body Transformation</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Coaches Table -->
+        <div class="section-card">
+            <div class="table-container">
+                <table class="coaches-table">
+                    <thead>
+                        <tr>
+                            <th>Coach</th>
+                            <th>Contact</th>
+                            <th>Specialization</th>
+                            <th>Experience</th>
+                            <th>Status</th>
+                            <th>Performance</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="coachesTableBody">
+                        <!-- Dynamically populated -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <!-- View Coach Modal -->
+    <div class="modal-overlay" id="viewCoachModal">
+        <div class="modal modal-large">
+            <div class="modal-header">
+                <h3><i class="fas fa-user-tie"></i> Coach Details</h3>
+                <button class="modal-close" onclick="closeViewCoachModal()" title="Close" aria-label="Close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body" id="viewCoachContent">
+                <!-- Dynamically populated -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn-secondary" onclick="closeViewCoachModal()">
+                    <i class="fas fa-times"></i> Close
+                </button>
+                <button type="button" class="btn-primary" onclick="editCoachFromView()">
+                    <i class="fas fa-edit"></i> Edit Coach
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add/Edit Coach Modal -->
+    <div class="modal-overlay" id="addEditCoachModal">
+        <div class="modal modal-large">
+            <div class="modal-header">
+                <h3 id="addEditModalTitle"><i class="fas fa-user-plus"></i> Add New Coach</h3>
+                <button class="modal-close" onclick="closeAddEditCoachModal()" title="Close" aria-label="Close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form id="coachForm" onsubmit="saveCoach(event)">
+                <div class="modal-body">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="coachName">
+                                <i class="fas fa-user"></i> Full Name <span class="required">*</span>
+                            </label>
+                            <input type="text" id="coachName" name="coachName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="coachEmail">
+                                <i class="fas fa-envelope"></i> Email <span class="required">*</span>
+                            </label>
+                            <input type="email" id="coachEmail" name="coachEmail" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="coachPhone">
+                                <i class="fas fa-phone"></i> Phone <span class="required">*</span>
+                            </label>
+                            <input type="tel" id="coachPhone" name="coachPhone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="coachSpecialization">
+                                <i class="fas fa-dumbbell"></i> Specialization <span class="required">*</span>
+                            </label>
+                            <select id="coachSpecialization" name="coachSpecialization" required title="Select specialization" aria-label="Select specialization">
+                                <option value="">Select Specialization</option>
+                                <option value="Strength & Conditioning">Strength & Conditioning</option>
+                                <option value="Fitness & Nutrition">Fitness & Nutrition</option>
+                                <option value="HIIT & Cardio">HIIT & Cardio</option>
+                                <option value="Body Transformation">Body Transformation</option>
+                                <option value="Yoga & Flexibility">Yoga & Flexibility</option>
+                                <option value="Sports Performance">Sports Performance</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="coachExperience">
+                                <i class="fas fa-calendar-alt"></i> Years of Experience <span class="required">*</span>
+                            </label>
+                            <input type="text" id="coachExperience" name="coachExperience" placeholder="e.g., 10, 10+, 5-8" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="coachStatus">
+                                <i class="fas fa-toggle-on"></i> Status <span class="required">*</span>
+                            </label>
+                            <select id="coachStatus" name="coachStatus" required title="Select status" aria-label="Select status">
+                                <option value="Active">Active</option>
+                                <option value="Inactive">Inactive</option>
+                                <option value="On Leave">On Leave</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-secondary" onclick="closeAddEditCoachModal()">
+                        <i class="fas fa-times"></i> Cancel
+                    </button>
+                    <button type="submit" class="btn-primary">
+                        <i class="fas fa-save"></i> Save Coach
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div class="modal-overlay" id="deleteCoachModal">
+        <div class="modal modal-center">
+            <div class="modal-body">
+                <div class="modal-delete-icon">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <h3 class="modal-delete-title">Delete Coach?</h3>
+                <p class="modal-delete-text" id="deleteCoachText">
+                    Are you sure you want to delete this coach? This action cannot be undone.
+                </p>
+                <div class="modal-delete-actions">
+                    <button type="button" class="btn-secondary" onclick="closeDeleteCoachModal()">
+                        <i class="fas fa-times"></i> Cancel
+                    </button>
+                    <button type="button" class="btn-danger" onclick="confirmDeleteCoach()">
+                        <i class="fas fa-trash"></i> Delete
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

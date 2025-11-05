@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coaches - X-TRIM FIT GYM</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../CSS/coaches.css">
+    <script src="../JS/coaches.js" defer></script>
+</head>
+<body>
+    <nav class="top-navbar">
+        <div class="logo">
+            <img src="../imgs/logo.png" alt="X-TRIM FIT GYM" class="logo-img">
+        </div>
+        <div class="nav-right">
+            <div class="chat-icon" onclick="toggleChatPanel()">
+                <i class="fas fa-comments"></i>
+            </div>
+            <div class="notification-icon" onclick="toggleNotificationPanel()">
+                <i class="fas fa-bell"></i>
+                <span class="notification-badge">3</span>
+            </div>
+            <div class="user-profile" onclick="event.stopPropagation(); toggleProfileDropdown()">
+                <div class="user-avatar">AQ</div>
+                <div class="user-info">
+                    <h4>Ashley Quicho</h4>
+                    <p>PROMO Student Member</p>
+                </div>
+                <i class="fas fa-chevron-down"></i>
+                <div class="dropdown-menu">
+                    <a href="ClientSettings.html" class="dropdown-item">
+                        <i class="fas fa-cog"></i>
+                        <span>Settings</span>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Logout</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <aside class="sidebar" id="sidebar">
+        <ul class="sidebar-menu">
+            <li><a href="../HTML/dashboard.html"><i class="fas fa-home"></i><span>Dashboard</span></a></li>
+            <li><a href="../HTML/workouts.html"><i class="fas fa-dumbbell"></i><span>Workout Plans</span></a></li>
+            <li><a href="../HTML/schedule.html"><i class="fas fa-calendar-alt"></i><span>My Schedule</span></a></li>
+            <li><a href="../HTML/mealplan.html"><i class="fas fa-utensils"></i><span>Meal Plans</span></a></li>
+            <li><a href="../HTML/progress.html"><i class="fas fa-chart-line"></i><span>Progress</span></a></li>
+            <li><a href="../HTML/achievements.html"><i class="fas fa-trophy"></i><span>Achievements</span></a></li>
+            <li><a href="../HTML/coaches.html" class="active"><i class="fas fa-user-friends"></i><span>Coaches</span></a></li>
+            <li><a href="../HTML/membership.html"><i class="fas fa-credit-card"></i><span>Membership</span></a></li>
+        </ul>
+    </aside>
+
+    <main class="main-content">
+        <div class="page-header">
+            <div class="page-header-content">
+                <h1><i class="fas fa-user-tie"></i> Coaches</h1>
+                <p>Connect with expert coaches to achieve your fitness goals</p>
+            </div>
+        </div>
+
+        <!-- Current Coach Section -->
+        <div class="current-coach-section">
+            <span class="current-coach-badge">
+                <i class="fas fa-star"></i> YOUR CURRENT COACH
+            </span>
+            <h2><i class="fas fa-user-check"></i> Your Assigned Coach</h2>
+            
+            <div class="coach-card current">
+                <div class="coach-header">
+                    <div class="coach-photo">
+                        <i class="fas fa-user"></i>
+                    </div>
+                </div>
+                <div class="coach-content-right">
+                    <h3 class="coach-name">
+                        Coach Mike Rodriguez
+                        <span class="verified-badge" title="Verified Coach">
+                            <i class="fas fa-check-circle"></i>
+                        </span>
+                        <span class="current-badge">CURRENT</span>
+                    </h3>
+                    <p class="coach-title">
+                        <i class="fas fa-award"></i>
+                        Strength & Conditioning Specialist
+                    </p>
+                    <div class="coach-stats">
+                        <div class="coach-stat">
+                            <i class="fas fa-star"></i>
+                            <strong>4.9</strong> Rating
+                        </div>
+                        <div class="coach-stat">
+                            <i class="fas fa-calendar"></i>
+                            <strong>10+</strong> Years Experience
+                        </div>
+                        <div class="coach-stat">
+                            <i class="fas fa-users"></i>
+                            <strong>150+</strong> Clients Trained
+                        </div>
+                    </div>
+                    <p class="coach-description">
+                        Mike specializes in building muscle mass and strength training. With over a decade of experience, he has helped hundreds of clients transform their bodies and exceed their fitness goals. His personalized approach combines science-based training with motivational coaching.
+                    </p>
+                    <div class="coach-expertise">
+                        <h4><i class="fas fa-dumbbell"></i> Expertise Areas</h4>
+                        <div class="expertise-tags">
+                            <span class="expertise-tag">Strength Training</span>
+                            <span class="expertise-tag">Muscle Building</span>
+                            <span class="expertise-tag">Powerlifting</span>
+                            <span class="expertise-tag">Sports Performance</span>
+                            <span class="expertise-tag">Nutrition Guidance</span>
+                        </div>
+                    </div>
+                    <div class="coach-actions">
+                        <button class="btn btn-rating" onclick="openRatingModal('Coach Mike Rodriguez', '4.9')">
+                            <i class="fas fa-thumbs-up"></i>
+                            Rate Coach
+                        </button>
+                        <button class="btn btn-primary" onclick="openMessageModal('Coach Mike Rodriguez')">
+                            <i class="fas fa-paper-plane"></i>
+                            Message Coach
+                        </button>
+                        <button class="btn btn-secondary" onclick="openScheduleModal('Coach Mike Rodriguez')">
+                            <i class="fas fa-calendar-check"></i>
+                            View Schedule
+                        </button>
+                        <button class="btn btn-secondary" onclick="openViewProfileModal('Coach Mike Rodriguez', '4.9', '10+', 'Certified Personal Trainer')">
+                            <i class="fas fa-user-circle"></i>
+                            View Full Profile
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Filter Section -->
+        <div class="filter-section">
+            <div class="filter-group">
+                <label><i class="fas fa-filter"></i> Sort by:</label>
+                <select id="sortFilter" onchange="applyFilters()" title="Sort Coaches" aria-label="Sort Coaches">
+                    <option value="name">Name (A-Z)</option>
+                    <option value="rating">Rating (Highest)</option>
+                    <option value="rating-low">Rating (Lowest)</option>
+                    <option value="experience">Experience</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label><i class="fas fa-search"></i> Search:</label>
+                <input type="text" id="searchInput" placeholder="Search coaches..." oninput="applyFilters()" title="Search coaches" aria-label="Search coaches">
+            </div>
+            <button class="btn-reset" onclick="resetFilters()" title="Clear all filters" aria-label="Clear all filters">
+                <i class="fas fa-times"></i> Clear
+            </button>
+        </div>
+
+        <!-- Available Coaches Section -->
+        <div class="available-coaches-section">
+            <h2 class="section-title">
+                <i class="fas fa-users"></i>
+                All Available Coaches
+            </h2>
+
+            <div class="coaches-grid" id="coachesGrid">
+                <!-- Coach 1 -->
+                <div class="coach-card" data-name="Sarah Chen" data-rating="4.8" data-experience="8">
+                    <div class="coach-header">
+                        <div class="coach-photo">
+                            <i class="fas fa-user"></i>
+                        </div>
+                    </div>
+                    <div class="coach-content-wrapper">
+                        <div class="coach-main-info">
+                            <h3 class="coach-name">
+                                Coach Sarah Chen
+                                <span class="verified-badge" title="Verified Coach">
+                                    <i class="fas fa-check-circle"></i>
+                                </span>
+                            </h3>
+                            <p class="coach-title">
+                                <i class="fas fa-award"></i>
+                                Certified Personal Trainer & Yoga Instructor
+                            </p>
+                            <div class="coach-stats">
+                                <div class="coach-stat">
+                                    <i class="fas fa-star"></i>
+                                    <strong class="rating-value">4.8</strong> Rating
+                                </div>
+                                <div class="coach-stat">
+                                    <i class="fas fa-calendar"></i>
+                                    <strong>8</strong> Years Experience
+                                </div>
+                            </div>
+                        </div>
+
+                        <p class="coach-description">
+                            Sarah brings a holistic approach to fitness, combining strength training with flexibility and mindfulness. Perfect for those seeking balanced wellness and stress management through exercise.
+                        </p>
+
+                        <div class="coach-expertise">
+                            <h4><i class="fas fa-dumbbell"></i> Expertise Areas</h4>
+                            <div class="expertise-tags">
+                                <span class="expertise-tag">Weight Loss</span>
+                                <span class="expertise-tag">Yoga</span>
+                                <span class="expertise-tag">Flexibility</span>
+                                <span class="expertise-tag">Mind-Body Connection</span>
+                            </div>
+                        </div>
+
+                        <div class="coach-status-actions">
+                            <div class="availability-status available">
+                                <i class="fas fa-circle"></i>
+                                Available for Sessions
+                            </div>
+                            <div class="coach-actions">
+                                <button class="btn btn-rating" onclick="openRatingModal('Coach Sarah Chen', '4.8')">
+                                    <i class="fas fa-thumbs-up"></i>
+                                    Rate Coach
+                                </button>
+                                <button class="btn btn-switch" onclick="openSwitchModal('Coach Sarah Chen')">
+                                    <i class="fas fa-exchange-alt"></i>
+                                    Request to Switch
+                                </button>
+                                <button class="btn btn-secondary" onclick="openViewProfileModal('Coach Sarah Chen', '4.8', '8', 'Certified Personal Trainer & Yoga Instructor')">
+                                    <i class="fas fa-info-circle"></i>
+                                    View Profile
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Coach 2 -->
+                <div class="coach-card" data-name="James Wilson" data-rating="4.9" data-experience="12">
+                    <div class="coach-header">
+                        <div class="coach-photo">
+                            <i class="fas fa-user"></i>
+                        </div>
+                    </div>
+                    <div class="coach-content-wrapper">
+                        <div class="coach-main-info">
+                            <h3 class="coach-name">
+                                Coach James Wilson
+                                <span class="verified-badge" title="Verified Coach">
+                                    <i class="fas fa-check-circle"></i>
+                                </span>
+                            </h3>
+                            <p class="coach-title">
+                                <i class="fas fa-award"></i>
+                                HIIT & Cardio Specialist
+                            </p>
+                            <div class="coach-stats">
+                                <div class="coach-stat">
+                                    <i class="fas fa-star"></i>
+                                    <strong class="rating-value">4.9</strong> Rating
+                                </div>
+                                <div class="coach-stat">
+                                    <i class="fas fa-calendar"></i>
+                                    <strong>12</strong> Years Experience
+                                </div>
+                            </div>
+                        </div>
+
+                        <p class="coach-description">
+                            James is known for his high-energy training sessions and expertise in fat burning. His intense HIIT workouts deliver maximum results in minimum time, perfect for busy professionals.
+                        </p>
+
+                        <div class="coach-expertise">
+                            <h4><i class="fas fa-dumbbell"></i> Expertise Areas</h4>
+                            <div class="expertise-tags">
+                                <span class="expertise-tag">HIIT Training</span>
+                                <span class="expertise-tag">Fat Loss</span>
+                                <span class="expertise-tag">Cardio</span>
+                                <span class="expertise-tag">Circuit Training</span>
+                            </div>
+                        </div>
+
+                        <div class="coach-status-actions">
+                            <div class="availability-status busy">
+                                <i class="fas fa-circle"></i>
+                                Limited Availability
+                            </div>
+                            <div class="coach-actions">
+                                <button class="btn btn-rating" onclick="openRatingModal('Coach James Wilson', '4.9')">
+                                    <i class="fas fa-thumbs-up"></i>
+                                    Rate Coach
+                                </button>
+                                <button class="btn btn-switch" onclick="openSwitchModal('Coach James Wilson')">
+                                    <i class="fas fa-exchange-alt"></i>
+                                    Request to Switch
+                                </button>
+                                <button class="btn btn-secondary" onclick="openViewProfileModal('Coach James Wilson', '4.9', '12', 'HIIT & Cardio Specialist')">
+                                    <i class="fas fa-info-circle"></i>
+                                    View Profile
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Coach 3 -->
+                <div class="coach-card" data-name="Maria Garcia" data-rating="5.0" data-experience="9">
+                    <div class="coach-header">
+                        <div class="coach-photo">
+                            <i class="fas fa-user"></i>
+                        </div>
+                    </div>
+                    <div class="coach-content-wrapper">
+                        <div class="coach-main-info">
+                            <h3 class="coach-name">
+                                Coach Maria Garcia
+                                <span class="verified-badge" title="Verified Coach">
+                                    <i class="fas fa-check-circle"></i>
+                                </span>
+                            </h3>
+                            <p class="coach-title">
+                                <i class="fas fa-award"></i>
+                                Sports Nutrition & Fitness Coach
+                            </p>
+                            <div class="coach-stats">
+                                <div class="coach-stat">
+                                    <i class="fas fa-star"></i>
+                                    <strong class="rating-value">5.0</strong> Rating
+                                </div>
+                                <div class="coach-stat">
+                                    <i class="fas fa-calendar"></i>
+                                    <strong>9</strong> Years Experience
+                                </div>
+                            </div>
+                        </div>
+
+                        <p class="coach-description">
+                            Maria offers comprehensive fitness coaching with a strong focus on nutrition. Her dual expertise helps clients achieve sustainable results through proper training and eating habits.
+                        </p>
+
+                        <div class="coach-expertise">
+                            <h4><i class="fas fa-dumbbell"></i> Expertise Areas</h4>
+                            <div class="expertise-tags">
+                                <span class="expertise-tag">Nutrition Planning</span>
+                                <span class="expertise-tag">Body Composition</span>
+                                <span class="expertise-tag">Meal Prep</span>
+                                <span class="expertise-tag">Metabolic Training</span>
+                            </div>
+                        </div>
+
+                        <div class="coach-status-actions">
+                            <div class="availability-status available">
+                                <i class="fas fa-circle"></i>
+                                Available for Sessions
+                            </div>
+                            <div class="coach-actions">
+                                <button class="btn btn-rating" onclick="openRatingModal('Coach Maria Garcia', '5.0')">
+                                    <i class="fas fa-thumbs-up"></i>
+                                    Rate Coach
+                                </button>
+                                <button class="btn btn-switch" onclick="openSwitchModal('Coach Maria Garcia')">
+                                    <i class="fas fa-exchange-alt"></i>
+                                    Request to Switch
+                                </button>
+                                <button class="btn btn-secondary" onclick="openViewProfileModal('Coach Maria Garcia', '5.0', '9', 'Sports Nutrition & Fitness Coach')">
+                                    <i class="fas fa-info-circle"></i>
+                                    View Profile
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Coach 4 -->
+                <div class="coach-card" data-name="David Thompson" data-rating="4.7" data-experience="7">
+                    <div class="coach-header">
+                        <div class="coach-photo">
+                            <i class="fas fa-user"></i>
+                        </div>
+                    </div>
+                    <div class="coach-content-wrapper">
+                        <div class="coach-main-info">
+                            <h3 class="coach-name">
+                                Coach David Thompson
+                                <span class="verified-badge" title="Verified Coach">
+                                    <i class="fas fa-check-circle"></i>
+                                </span>
+                            </h3>
+                            <p class="coach-title">
+                                <i class="fas fa-award"></i>
+                                CrossFit & Functional Training Expert
+                            </p>
+                            <div class="coach-stats">
+                                <div class="coach-stat">
+                                    <i class="fas fa-star"></i>
+                                    <strong class="rating-value">4.7</strong> Rating
+                                </div>
+                                <div class="coach-stat">
+                                    <i class="fas fa-calendar"></i>
+                                    <strong>7</strong> Years Experience
+                                </div>
+                            </div>
+                        </div>
+
+                        <p class="coach-description">
+                            David specializes in functional movements and CrossFit training. His dynamic approach builds overall fitness, agility, and real-world strength for everyday activities and sports.
+                        </p>
+
+                        <div class="coach-expertise">
+                            <h4><i class="fas fa-dumbbell"></i> Expertise Areas</h4>
+                            <div class="expertise-tags">
+                                <span class="expertise-tag">CrossFit</span>
+                                <span class="expertise-tag">Functional Training</span>
+                                <span class="expertise-tag">Olympic Lifting</span>
+                                <span class="expertise-tag">Mobility</span>
+                            </div>
+                        </div>
+
+                        <div class="coach-status-actions">
+                            <div class="availability-status available">
+                                <i class="fas fa-circle"></i>
+                                Available for Sessions
+                            </div>
+                            <div class="coach-actions">
+                                <button class="btn btn-rating" onclick="openRatingModal('Coach David Thompson', '4.7')">
+                                    <i class="fas fa-thumbs-up"></i>
+                                    Rate Coach
+                                </button>
+                                <button class="btn btn-switch" onclick="openSwitchModal('Coach David Thompson')">
+                                    <i class="fas fa-exchange-alt"></i>
+                                    Request to Switch
+                                </button>
+                                <button class="btn btn-secondary" onclick="openViewProfileModal('Coach David Thompson', '4.7', '7', 'CrossFit & Functional Training Expert')">
+                                    <i class="fas fa-info-circle"></i>
+                                    View Profile
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Chat Panel -->
+    <div class="chat-panel" id="chatPanel">
+        <div class="chat-header">
+            <h3><i class="fas fa-comments"></i> Messages</h3>
+            <button class="modal-close" onclick="closeChatPanel()" title="Close" aria-label="Close">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+            <div class="message received">
+                <div class="message-avatar">CM</div>
+                <div>
+                    <div class="message-content">
+                        <div class="message-sender">Coach Mike</div>
+                        <div class="message-text">Hey Ashley! Great job on today's workout. Keep up the excellent form!</div>
+                        <div class="message-time">2 hours ago</div>
+                    </div>
+                </div>
+            </div>
+            <div class="message sent">
+                <div class="message-avatar">AQ</div>
+                <div>
+                    <div class="message-content">
+                        <div class="message-text">Thank you Coach! I'm feeling stronger already. Can we schedule an extra session this week?</div>
+                        <div class="message-time">1 hour ago</div>
+                    </div>
+                </div>
+            </div>
+            <div class="message received">
+                <div class="message-avatar">CM</div>
+                <div>
+                    <div class="message-content">
+                        <div class="message-sender">Coach Mike</div>
+                        <div class="message-text">Absolutely! I have slots available on Thursday at 7 PM. Does that work for you?</div>
+                        <div class="message-time">45 minutes ago</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="chat-input-area">
+            <div class="chat-input-wrapper">
+                <textarea class="chat-input" id="chatInput" placeholder="Type your message..." rows="1"></textarea>
+                <button class="chat-send-btn" onclick="sendChatMessage()" title="Send Message" aria-label="Send Message">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Switch Coach Modal -->
+    <div class="modal-overlay" id="switchModal">
+        <div class="modal" style="max-width: 500px;">
+            <div class="modal-header">
+                <h3><i class="fas fa-exchange-alt"></i> Request Coach Switch</h3>
+                <button class="modal-close" onclick="closeSwitchModal()" title="Close" aria-label="Close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p style="margin-bottom: 1.5rem; color: var(--text-secondary);">Tell us why you'd like to switch to <strong id="selectedCoachName" style="color: var(--text-primary);"></strong></p>
+                <div class="form-group">
+                    <label for="switchReason">Reason (Optional)</label>
+                    <textarea id="switchReason" placeholder="Please explain your reason for requesting a coach switch..." rows="4" style="width: 100%; padding: 0.9rem; border-radius: 12px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); color: var(--text-primary); font-family: 'Inter', sans-serif; resize: vertical;"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="closeSwitchModal()">
+                    <i class="fas fa-times"></i> Cancel
+                </button>
+                <button type="button" class="btn btn-primary" onclick="submitSwitchRequest()">
+                    <i class="fas fa-paper-plane"></i> Submit Request
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Rating Modal -->
+    <div class="modal-overlay" id="ratingModal">
+        <div class="modal" style="max-width: 500px;">
+            <div class="modal-header">
+                <h3><i class="fas fa-star"></i> Rate Coach</h3>
+                <button class="modal-close" onclick="closeRatingModal()" title="Close" aria-label="Close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p style="margin-bottom: 1.5rem; color: var(--text-secondary);">How would you rate <strong id="ratingCoachName"></strong>?</p>
+                <div class="rating-stars" id="ratingStars">
+                    <i class="far fa-star" data-rating="1"></i>
+                    <i class="far fa-star" data-rating="2"></i>
+                    <i class="far fa-star" data-rating="3"></i>
+                    <i class="far fa-star" data-rating="4"></i>
+                    <i class="far fa-star" data-rating="5"></i>
+                </div>
+                <div class="rating-value-display" id="ratingValueDisplay" style="margin-top: 1rem; font-size: 1.2rem; color: var(--primary-yellow); font-weight: 600; display: none;">
+                    <span id="selectedRating">0</span> / 5
+                </div>
+                <div class="form-group" style="margin-top: 2rem;">
+                    <label for="ratingFeedback">Feedback (Optional)</label>
+                    <textarea id="ratingFeedback" placeholder="Share your experience with this coach..." rows="4" style="width: 100%; padding: 0.9rem; border-radius: 12px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); color: var(--text-primary); font-family: 'Inter', sans-serif; resize: vertical;"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="closeRatingModal()">
+                    <i class="fas fa-times"></i> Cancel
+                </button>
+                <button type="button" class="btn btn-primary" onclick="submitRating()" id="submitRatingBtn" disabled>
+                    <i class="fas fa-check"></i> Submit Rating
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Rating Success Modal -->
+    <div class="modal-overlay" id="ratingSuccessModal">
+        <div class="modal" style="max-width: 450px;">
+            <div class="modal-body" style="text-align: center; padding: 3rem 2rem;">
+                <div style="font-size: 4rem; color: var(--primary-yellow); margin-bottom: 1.5rem;">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h3 style="margin-bottom: 1rem; font-family: 'Poppins', sans-serif;">Thank You!</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 2rem;">Your rating has been submitted successfully.</p>
+                <button type="button" class="btn btn-primary" onclick="closeRatingSuccessModal()" style="width: 100%;">
+                    <i class="fas fa-check"></i> Got it
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- View Profile Modal -->
+    <div class="modal-overlay" id="viewProfileModal">
+        <div class="modal" style="max-width: 600px;">
+            <div class="modal-header">
+                <h3><i class="fas fa-user"></i> Coach Profile</h3>
+                <button class="modal-close" onclick="closeViewProfileModal()" title="Close" aria-label="Close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body" id="profileModalContent">
+                <!-- Content will be populated by JavaScript -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeViewProfileModal()">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Notification Modal -->
+    <div class="notification-modal-overlay" id="notificationModal">
+        <div class="notification-modal">
+            <div class="notification-modal-icon success">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <div class="notification-modal-content">
+                <h3>Request Submitted!</h3>
+                <p id="notificationMessage">Switch request submitted for Coach Lisa Anderson! Our team will review your request and get back to you within 24 hours.</p>
+                <button class="modal-btn" onclick="closeNotificationModal()">
+                    <i class="fas fa-check"></i> Got it
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Message Coach Modal -->
+    <div class="modal-overlay" id="messageModal">
+        <div class="modal" style="max-width: 600px;">
+            <div class="modal-header">
+                <h3><i class="fas fa-paper-plane"></i> Message Coach</h3>
+                <button class="modal-close" onclick="closeMessageModal()" title="Close" aria-label="Close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div style="margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
+                    <div style="display: flex; align-items: center; gap: 1rem;">
+                        <div class="coach-photo" style="width: 60px; height: 60px; border-radius: 50%; font-size: 1.8rem;">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div>
+                            <h4 style="margin: 0; color: var(--text-primary); font-size: 1.1rem;" id="messageCoachName">Coach Name</h4>
+                            <p style="margin: 0.25rem 0 0 0; color: var(--text-secondary); font-size: 0.9rem;">
+                                <span class="availability-status available" style="display: inline-flex; font-size: 0.85rem;">
+                                    <i class="fas fa-circle"></i> Online
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="message-chat-container" id="messageChatContainer" style="height: 400px; overflow-y: auto; margin-bottom: 1.5rem; padding: 1rem; background: rgba(255, 255, 255, 0.02); border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.05);">
+                    <div class="message received" style="margin-bottom: 1rem;">
+                        <div class="message-avatar" style="width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg, var(--primary-yellow), #E6B800); display: flex; align-items: center; justify-content: center; font-size: 0.9rem; color: #1a1a1a; font-weight: 600; flex-shrink: 0;">MR</div>
+                        <div style="flex: 1; margin-left: 0.75rem;">
+                            <div class="message-content" style="background: rgba(255, 255, 255, 0.05); padding: 0.75rem 1rem; border-radius: 12px; display: inline-block; max-width: 80%;">
+                                <div class="message-text" style="color: var(--text-primary); font-size: 0.9rem; line-height: 1.5;">Hello! How can I help you today?</div>
+                                <div class="message-time" style="color: var(--text-secondary); font-size: 0.75rem; margin-top: 0.5rem;">2 hours ago</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group" style="margin: 0;">
+                    <div style="display: flex; gap: 0.75rem; align-items: flex-end;">
+                        <textarea id="messageInput" placeholder="Type your message..." rows="2" style="flex: 1; padding: 0.9rem; border-radius: 12px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); color: var(--text-primary); font-family: 'Inter', sans-serif; resize: vertical; min-height: 60px;"></textarea>
+                        <button type="button" class="btn btn-primary" onclick="sendCoachMessage()" style="padding: 0.9rem 1.5rem; height: fit-content;" title="Send Message" aria-label="Send Message">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- View Schedule Modal -->
+    <div class="modal-overlay" id="scheduleModal">
+        <div class="modal" style="max-width: 700px;">
+            <div class="modal-header">
+                <h3><i class="fas fa-calendar-check"></i> Coach Schedule</h3>
+                <button class="modal-close" onclick="closeScheduleModal()" title="Close" aria-label="Close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div style="margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
+                    <div style="display: flex; align-items: center; gap: 1rem;">
+                        <div class="coach-photo" style="width: 60px; height: 60px; border-radius: 50%; font-size: 1.8rem;">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div>
+                            <h4 style="margin: 0; color: var(--text-primary); font-size: 1.1rem;" id="scheduleCoachName">Coach Name</h4>
+                            <p style="margin: 0.25rem 0 0 0; color: var(--text-secondary); font-size: 0.9rem;">Available Sessions</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="scheduleContent">
+                    <div style="margin-bottom: 1.5rem;">
+                        <h4 style="color: var(--text-primary); margin-bottom: 1rem; font-size: 1rem;">
+                            <i class="fas fa-calendar-day" style="color: var(--primary-yellow); margin-right: 0.5rem;"></i>
+                            This Week
+                        </h4>
+                        <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+                            <div style="padding: 1rem; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px;">
+                                <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 0.5rem;">
+                                    <div>
+                                        <div style="color: var(--text-primary); font-weight: 600; margin-bottom: 0.25rem;">Monday, November 11</div>
+                                        <div style="color: var(--text-secondary); font-size: 0.9rem;">
+                                            <i class="fas fa-clock" style="margin-right: 0.5rem;"></i>
+                                            9:00 AM - 10:00 AM
+                                        </div>
+                                    </div>
+                                    <span style="padding: 0.4rem 0.8rem; background: rgba(249, 197, 19, 0.15); color: var(--primary-yellow); border-radius: 8px; font-size: 0.85rem; font-weight: 500;">Available</span>
+                                </div>
+                            </div>
+                            <div style="padding: 1rem; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px;">
+                                <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 0.5rem;">
+                                    <div>
+                                        <div style="color: var(--text-primary); font-weight: 600; margin-bottom: 0.25rem;">Wednesday, November 13</div>
+                                        <div style="color: var(--text-secondary); font-size: 0.9rem;">
+                                            <i class="fas fa-clock" style="margin-right: 0.5rem;"></i>
+                                            2:00 PM - 3:00 PM
+                                        </div>
+                                    </div>
+                                    <span style="padding: 0.4rem 0.8rem; background: rgba(249, 197, 19, 0.15); color: var(--primary-yellow); border-radius: 8px; font-size: 0.85rem; font-weight: 500;">Available</span>
+                                </div>
+                            </div>
+                            <div style="padding: 1rem; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px;">
+                                <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 0.5rem;">
+                                    <div>
+                                        <div style="color: var(--text-primary); font-weight: 600; margin-bottom: 0.25rem;">Friday, November 15</div>
+                                        <div style="color: var(--text-secondary); font-size: 0.9rem;">
+                                            <i class="fas fa-clock" style="margin-right: 0.5rem;"></i>
+                                            6:00 PM - 7:00 PM
+                                        </div>
+                                    </div>
+                                    <span style="padding: 0.4rem 0.8rem; background: rgba(249, 197, 19, 0.15); color: var(--primary-yellow); border-radius: 8px; font-size: 0.85rem; font-weight: 500;">Available</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="text-align: center; padding: 1.5rem; background: rgba(249, 197, 19, 0.05); border: 1px solid rgba(249, 197, 19, 0.15); border-radius: 12px;">
+                        <p style="color: var(--text-secondary); margin-bottom: 1rem;">Want to book a session with this coach?</p>
+                        <button type="button" class="btn btn-primary" onclick="window.location.href='schedule.html'; closeScheduleModal();">
+                            <i class="fas fa-calendar-plus"></i> Book Session
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeScheduleModal()">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Panel -->
+    <div class="notification-panel" id="notificationPanel">
+        <div class="notification-panel-header">
+            <h3><i class="fas fa-bell"></i> Notifications</h3>
+            <button class="modal-close" onclick="closeNotificationPanel()" title="Close" aria-label="Close">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="notification-panel-body">
+            <div class="notification-list-item unread">
+                <div style="display: flex; gap: 1rem;">
+                    <div class="notification-icon-box success">
+                        <i class="fas fa-user-check"></i>
+                    </div>
+                    <div style="flex: 1;">
+                        <h4>Coach Available</h4>
+                        <p>Coach Mike is available for your scheduled session today at 6:00 PM</p>
+                        <span class="notification-time">1 hour ago</span>
+                    </div>
+                </div>
+            </div>
+            <div class="notification-list-item unread">
+                <div style="display: flex; gap: 1rem;">
+                    <div class="notification-icon-box info">
+                        <i class="fas fa-info-circle"></i>
+                    </div>
+                    <div style="flex: 1;">
+                        <h4>New Message</h4>
+                        <p>You have a new message from Coach Mike</p>
+                        <span class="notification-time">3 hours ago</span>
+                    </div>
+                </div>
+            </div>
+            <div class="notification-list-item">
+                <div style="display: flex; gap: 1rem;">
+                    <div class="notification-icon-box success">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <div style="flex: 1;">
+                        <h4>Session Reminder</h4>
+                        <p>Don't forget your training session tomorrow at 7:00 AM</p>
+                        <span class="notification-time">1 day ago</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

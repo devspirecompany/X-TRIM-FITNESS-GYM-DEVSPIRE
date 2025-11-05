@@ -1,0 +1,242 @@
+/* Coach Registration Specific Styles */
+
+/* Certifications List */
+.certifications-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.certification-item {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.certification-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 107, 53, 0.3);
+}
+
+.certification-item input {
+    flex: 1;
+    padding: 0.75rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: #ffffff;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.certification-item input:focus {
+    outline: none;
+    border-color: #14B8A6;
+    box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
+}
+
+.certification-item input::placeholder {
+    color: #6A7B94;
+}
+
+.certification-item .btn-remove-cert {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    border: none;
+    background: rgba(239, 68, 68, 0.1);
+    color: #EF4444;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.certification-item .btn-remove-cert:hover {
+    background: rgba(239, 68, 68, 0.2);
+    transform: scale(1.1);
+}
+
+.btn-add-cert {
+    padding: 0.75rem 1.5rem;
+    border-radius: 12px;
+    border: 2px dashed rgba(255, 107, 53, 0.3);
+    background: rgba(255, 107, 53, 0.05);
+    color: #14B8A6;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-weight: 500;
+    font-size: 0.9rem;
+    width: 100%;
+}
+
+.btn-add-cert:hover {
+    background: rgba(255, 107, 53, 0.1);
+    border-color: #14B8A6;
+    transform: translateY(-2px);
+}
+
+/* Upload Section */
+.upload-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+
+.upload-item {
+    position: relative;
+}
+
+.upload-label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 2px dashed rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.upload-label:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: #14B8A6;
+    transform: translateY(-2px);
+}
+
+.upload-label i {
+    font-size: 2rem;
+    color: #14B8A6;
+}
+
+.upload-label span {
+    font-weight: 500;
+    color: #ffffff;
+    font-size: 0.9rem;
+}
+
+.upload-label small {
+    color: #6A7B94;
+    font-size: 0.75rem;
+}
+
+.upload-item input[type="file"]:focus + .upload-label,
+.upload-label:has(+ input[type="file"]:focus) {
+    border-color: #14B8A6;
+    box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
+}
+
+/* File Upload Preview */
+.upload-preview {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 8px;
+    margin-top: 0.5rem;
+    font-size: 0.85rem;
+    color: #b8bcc8;
+}
+
+.upload-preview i {
+    color: #14B8A6;
+}
+
+.upload-preview .file-name {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.upload-preview .file-remove {
+    color: #EF4444;
+    cursor: pointer;
+    padding: 0.25rem;
+    transition: all 0.3s ease;
+}
+
+.upload-preview .file-remove:hover {
+    transform: scale(1.2);
+}
+
+/* Coach-specific styling for step titles */
+.form-step .step-title i.fa-user-tie,
+.form-step .step-title i.fa-briefcase,
+.form-step .step-title i.fa-certificate {
+    color: #14B8A6;
+}
+
+/* Success Modal */
+.modal-success-icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(255, 107, 53, 0.2), rgba(255, 140, 66, 0.2));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    font-size: 2.5rem;
+    color: #14B8A6;
+}
+
+.modal-success-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 0.75rem;
+    color: #ffffff;
+}
+
+.modal-success-text {
+    text-align: center;
+    color: #b8bcc8;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+.modal-button-center {
+    display: flex;
+    justify-content: center;
+}
+
+.modal-button-full {
+    width: 100%;
+    max-width: 300px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .upload-section {
+        grid-template-columns: 1fr;
+    }
+    
+    .certification-item {
+        flex-direction: column;
+    }
+    
+    .certification-item .btn-remove-cert {
+        width: 100%;
+    }
+}
+

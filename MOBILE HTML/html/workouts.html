@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Workout Plans - X-TRIM FIT GYM</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="..//css/workouts.css">
+</head>
+<body>
+    <!-- Top Header -->
+    <header class="top-header">
+        <div class="header-content">
+            <h1 class="page-title">
+                <i class="fas fa-dumbbell"></i>
+                Workout Plans
+            </h1>
+            <button class="icon-btn search-btn" id="searchBtn">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+        
+        <!-- Search Bar (Hidden by default) -->
+        <div class="search-bar-container" id="searchBarContainer">
+            <div class="search-input-wrapper">
+                <i class="fas fa-search"></i>
+                <input type="text" class="search-input" id="searchInput" placeholder="Search workouts...">
+                <button class="clear-search" id="clearSearch">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Category Filters -->
+        <section class="categories-section">
+            <div class="categories-scroll" id="categoriesScroll">
+                <button class="category-chip active" data-category="all">
+                    <i class="fas fa-th"></i>
+                    All Workouts
+                </button>
+                <button class="category-chip" data-category="muscle-building">
+                    <i class="fas fa-dumbbell"></i>
+                    Muscle Building
+                </button>
+                <button class="category-chip" data-category="strength">
+                    <i class="fas fa-fist-raised"></i>
+                    Strength
+                </button>
+                <button class="category-chip" data-category="fat-loss">
+                    <i class="fas fa-fire"></i>
+                    Fat Loss
+                </button>
+                <button class="category-chip" data-category="cardio">
+                    <i class="fas fa-heartbeat"></i>
+                    Cardio
+                </button>
+                <button class="category-chip" data-category="endurance">
+                    <i class="fas fa-running"></i>
+                    Endurance
+                </button>
+                <button class="category-chip" data-category="flexibility">
+                    <i class="fas fa-child"></i>
+                    Flexibility
+                </button>
+            </div>
+        </section>
+
+        <!-- Recommended For You -->
+        <section class="section recommended-section">
+            <div class="section-header">
+                <h2>
+                    <i class="fas fa-star"></i>
+                    Recommended Programs
+                </h2>
+                <div class="view-more">
+                    <button class="btn-text">View All <i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+            
+            <div class="featured-workouts">
+                <div class="featured-workout-card">
+                    <div class="featured-image">
+                        <div class="image-placeholder strength">
+                            <i class="fas fa-dumbbell"></i>
+                        </div>
+                        <span class="difficulty-badge intermediate">Intermediate</span>
+                    </div>
+                    <div class="featured-content">
+                        <h3>Advanced Strength Training</h3>
+                        <p>Break through plateaus with scientific progressive overload</p>
+                        <div class="workout-stats">
+                            <span><i class="fas fa-clock"></i> 60-75 min</span>
+                            <span><i class="fas fa-calendar-alt"></i> 12 weeks</span>
+                            <span><i class="fas fa-fire"></i> 500+ cal</span>
+                        </div>
+                        <div class="featured-meta">
+                            <span class="coach-tag">Coach Mike Rodriguez</span>
+                            <span class="rating"><i class="fas fa-star"></i> 4.9</span>
+                        </div>
+                        <button class="btn-featured" data-workout="advanced-strength">
+                            <i class="fas fa-play"></i>
+                            View Program
+                        </button>
+                    </div>
+                </div>
+
+                <div class="featured-workout-card">
+                    <div class="featured-image">
+                        <div class="image-placeholder power">
+                            <i class="fas fa-fire"></i>
+                        </div>
+                        <span class="difficulty-badge intermediate">Intermediate</span>
+                    </div>
+                    <div class="featured-content">
+                        <h3>Elite Fat Loss Program</h3>
+                        <p>Scientifically designed fat loss while preserving muscle</p>
+                        <div class="workout-stats">
+                            <span><i class="fas fa-clock"></i> 45-60 min</span>
+                            <span><i class="fas fa-calendar-alt"></i> 8 weeks</span>
+                            <span><i class="fas fa-fire"></i> 600+ cal</span>
+                        </div>
+                        <div class="featured-meta">
+                            <span class="coach-tag">Coach Mike Rodriguez</span>
+                            <span class="rating"><i class="fas fa-star"></i> 4.9</span>
+                        </div>
+                        <button class="btn-featured" data-workout="elite-fat-loss">
+                            <i class="fas fa-play"></i>
+                            View Program
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- My Active Plan (synchronized with Client) -->
+        <section class="section active-plans-section">
+            <div class="section-header">
+                <h2>
+                    <i class="fas fa-running"></i>
+                    Active Plan
+                </h2>
+                <span class="plan-count">Muscle Building Program</span>
+            </div>
+
+            <div class="active-plan-single">
+                <div class="active-plan-card">
+                    <div class="plan-header">
+                        <div class="plan-icon strength">
+                            <i class="fas fa-fire"></i>
+                        </div>
+                        <div class="plan-info">
+                            <h3>Muscle Building Program</h3>
+                            <p class="plan-coach">Assigned Coach: Coach Mike Rodriguez</p>
+                        </div>
+                    </div>
+                    <div class="plan-progress-section">
+                        <div class="progress-info">
+                            <span class="progress-text">Started: June 15, 2024</span>
+                            <span class="progress-percent">Week 21 of 12</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 85%;"></div>
+                        </div>
+                    </div>
+                    <div class="plan-actions" style="margin-top:12px; display:flex; gap:8px;">
+                        <button class="btn-continue btn-primary" data-plan="muscle-building">
+                            <i class="fas fa-play-circle"></i>
+                            Continue Plan
+                        </button>
+                        <button class="btn-secondary" onclick="window.location.href='workouts.html#week-schedule'">
+                            <i class="fas fa-calendar-alt"></i>
+                            View Schedule
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Browse All Workouts -->
+        <section class="section browse-section">
+            <div class="section-header">
+                <h2>
+                    <i class="fas fa-th-large"></i>
+                    All Programs
+                </h2>
+                <div class="section-actions">
+                    <button class="filter-btn" id="filterBtn">
+                        <i class="fas fa-filter"></i>
+                        Filter
+                    </button>
+                    <button class="sort-btn" id="sortBtn">
+                        <i class="fas fa-sort"></i>
+                        Sort
+                    </button>
+                </div>
+            </div>
+            
+            <div class="workouts-library" id="workoutsLibrary">
+                <!-- Strength Training -->
+                <div class="workout-card" data-category="strength" data-difficulty="intermediate">
+                    <div class="workout-icon-wrapper">
+                        <div class="workout-icon strength">
+                            <i class="fas fa-dumbbell"></i>
+                        </div>
+                    </div>
+                    <div class="workout-details">
+                        <div class="workout-header-info">
+                            <h3>Power Building Plus</h3>
+                            <span class="difficulty-tag intermediate">Intermediate</span>
+                        </div>
+                        <p class="workout-description">Build strength and muscle with proven techniques</p>
+                        <div class="workout-meta">
+                            <span><i class="fas fa-calendar-alt"></i> 12 weeks</span>
+                            <span><i class="fas fa-clock"></i> 60 min</span>
+                            <div class="meta-divider"></div>
+                            <span class="coach-tag">Coach Mike Rodriguez</span>
+                        </div>
+                        <div class="rating-row">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="rating-count">4.8 (234)</span>
+                        </div>
+                    </div>
+                    <button class="btn-view" data-workout="power-building">
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+
+                <!-- Fat Loss -->
+                <div class="workout-card" data-category="fat-loss" data-difficulty="intermediate">
+                    <div class="workout-icon-wrapper">
+                        <div class="workout-icon fat-loss">
+                            <i class="fas fa-fire"></i>
+                        </div>
+                    </div>
+                    <div class="workout-details">
+                        <div class="workout-header-info">
+                            <h3>Elite Shred Program</h3>
+                            <span class="difficulty-tag intermediate">Intermediate</span>
+                        </div>
+                        <p class="workout-description">Science-based fat loss while preserving muscle mass</p>
+                        <div class="workout-meta">
+                            <span><i class="fas fa-calendar-alt"></i> 8 weeks</span>
+                            <span><i class="fas fa-clock"></i> 45 min</span>
+                            <div class="meta-divider"></div>
+                            <span class="coach-tag">Coach Mike Rodriguez</span>
+                        </div>
+                        <div class="rating-row">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="rating-count">4.9 (187)</span>
+                        </div>
+                    </div>
+                    <button class="btn-view" data-workout="elite-shred">
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+
+                <!-- Endurance -->
+                <div class="workout-card" data-category="endurance" data-difficulty="intermediate">
+                    <div class="workout-icon-wrapper">
+                        <div class="workout-icon endurance">
+                            <i class="fas fa-running"></i>
+                        </div>
+                    </div>
+                    <div class="workout-details">
+                        <div class="workout-header-info">
+                            <h3>Endurance Master</h3>
+                            <span class="difficulty-tag intermediate">Intermediate</span>
+                        </div>
+                        <p class="workout-description">Build stamina and cardiovascular fitness</p>
+                        <div class="workout-meta">
+                            <span><i class="fas fa-calendar-alt"></i> 10 weeks</span>
+                            <span><i class="fas fa-clock"></i> 45 min</span>
+                            <div class="meta-divider"></div>
+                            <span class="coach-tag">Coach Mike Rodriguez</span>
+                        </div>
+                        <div class="rating-row">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="rating-count">4.9 (156)</span>
+                        </div>
+                    </div>
+                    <button class="btn-view" data-workout="endurance-master">
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+
+                <!-- Flexibility -->
+                <div class="workout-card" data-category="flexibility" data-difficulty="beginner">
+                    <div class="workout-icon-wrapper">
+                        <div class="workout-icon flexibility">
+                            <i class="fas fa-child"></i>
+                        </div>
+                    </div>
+                    <div class="workout-details">
+                        <div class="workout-header-info">
+                            <h3>Mobility & Recovery</h3>
+                            <span class="difficulty-tag beginner">Beginner</span>
+                        </div>
+                        <p class="workout-description">Improve flexibility and prevent injuries</p>
+                        <div class="workout-meta">
+                            <span><i class="fas fa-calendar-alt"></i> 6 weeks</span>
+                            <span><i class="fas fa-clock"></i> 30 min</span>
+                            <div class="meta-divider"></div>
+                            <span class="coach-tag">Coach Mike Rodriguez</span>
+                        </div>
+                        <div class="rating-row">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="rating-count">4.7 (142)</span>
+                        </div>
+                    </div>
+                    <button class="btn-view" data-workout="mobility-recovery">
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+
+                <!-- Upper Body -->
+                <div class="workout-card" data-category="upper-body" data-difficulty="beginner">
+                    <div class="workout-icon-wrapper">
+                        <div class="workout-icon upper-body">
+                            <i class="fas fa-hand-rock"></i>
+                        </div>
+                    </div>
+                    <div class="workout-details">
+                        <div class="workout-header-info">
+                            <h3>Upper Body Blast</h3>
+                            <span class="difficulty-tag beginner">Beginner</span>
+                        </div>
+                        <p class="workout-description">Build strength in arms, chest, and back</p>
+                        <div class="workout-meta">
+                            <span><i class="fas fa-calendar-alt"></i> 14 days</span>
+                            <span><i class="fas fa-clock"></i> 30 min</span>
+                            <span><i class="fas fa-fire"></i> 250 cal</span>
+                        </div>
+                    </div>
+                    <button class="btn-view" data-workout="upper-blast">
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+
+                <!-- Cardio -->
+                <div class="workout-card" data-category="cardio" data-difficulty="intermediate">
+                    <div class="workout-icon-wrapper">
+                        <div class="workout-icon cardio">
+                            <i class="fas fa-heartbeat"></i>
+                        </div>
+                    </div>
+                    <div class="workout-details">
+                        <div class="workout-header-info">
+                            <h3>Cardio Crusher</h3>
+                            <span class="difficulty-tag intermediate">Intermediate</span>
+                        </div>
+                        <p class="workout-description">Burn calories and boost endurance</p>
+                        <div class="workout-meta">
+                            <span><i class="fas fa-calendar-alt"></i> 21 days</span>
+                            <span><i class="fas fa-clock"></i> 35 min</span>
+                            <span><i class="fas fa-fire"></i> 450 cal</span>
+                        </div>
+                    </div>
+                    <button class="btn-view" data-workout="cardio-crusher">
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+
+                <!-- HIIT -->
+                <div class="workout-card" data-category="hiit" data-difficulty="advanced">
+                    <div class="workout-icon-wrapper">
+                        <div class="workout-icon hiit">
+                            <i class="fas fa-fire"></i>
+                        </div>
+                    </div>
+                    <div class="workout-details">
+                        <div class="workout-header-info">
+                            <h3>HIIT Inferno</h3>
+                            <span class="difficulty-tag advanced">Advanced</span>
+                        </div>
+                        <p class="workout-description">Extreme intensity interval training</p>
+                        <div class="workout-meta">
+                            <span><i class="fas fa-calendar-alt"></i> 10 days</span>
+                            <span><i class="fas fa-clock"></i> 25 min</span>
+                            <span><i class="fas fa-fire"></i> 500 cal</span>
+                        </div>
+                    </div>
+                    <button class="btn-view" data-workout="hiit-inferno">
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+
+                <!-- Yoga -->
+                <div class="workout-card" data-category="yoga" data-difficulty="beginner">
+                    <div class="workout-icon-wrapper">
+                        <div class="workout-icon yoga">
+                            <i class="fas fa-spa"></i>
+                        </div>
+                    </div>
+                    <div class="workout-details">
+                        <div class="workout-header-info">
+                            <h3>Yoga Flow & Restore</h3>
+                            <span class="difficulty-tag beginner">Beginner</span>
+                        </div>
+                        <p class="workout-description">Flexibility and mindfulness practice</p>
+                        <div class="workout-meta">
+                            <span><i class="fas fa-calendar-alt"></i> 15 days</span>
+                            <span><i class="fas fa-clock"></i> 40 min</span>
+                            <span><i class="fas fa-fire"></i> 180 cal</span>
+                        </div>
+                    </div>
+                    <button class="btn-view" data-workout="yoga-flow">
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+
+                <!-- Strength -->
+                <div class="workout-card" data-category="strength" data-difficulty="intermediate">
+                    <div class="workout-icon-wrapper">
+                        <div class="workout-icon strength">
+                            <i class="fas fa-dumbbell"></i>
+                        </div>
+                    </div>
+                    <div class="workout-details">
+                        <div class="workout-header-info">
+                            <h3>Power Strength Training</h3>
+                            <span class="difficulty-tag intermediate">Intermediate</span>
+                        </div>
+                        <p class="workout-description">Build muscle and increase power</p>
+                        <div class="workout-meta">
+                            <span><i class="fas fa-calendar-alt"></i> 28 days</span>
+                            <span><i class="fas fa-clock"></i> 50 min</span>
+                            <span><i class="fas fa-fire"></i> 380 cal</span>
+                        </div>
+                    </div>
+                    <button class="btn-view" data-workout="power-strength">
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+
+                <!-- Lower Body -->
+                <div class="workout-card" data-category="lower-body" data-difficulty="beginner">
+                    <div class="workout-icon-wrapper">
+                        <div class="workout-icon lower-body">
+                            <i class="fas fa-walking"></i>
+                        </div>
+                    </div>
+                    <div class="workout-details">
+                        <div class="workout-header-info">
+                            <h3>Leg Day Mastery</h3>
+                            <span class="difficulty-tag beginner">Beginner</span>
+                        </div>
+                        <p class="workout-description">Strengthen legs, glutes, and core</p>
+                        <div class="workout-meta">
+                            <span><i class="fas fa-calendar-alt"></i> 18 days</span>
+                            <span><i class="fas fa-clock"></i> 40 min</span>
+                            <span><i class="fas fa-fire"></i> 320 cal</span>
+                        </div>
+                    </div>
+                    <button class="btn-view" data-workout="leg-mastery">
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+
+                <!-- Full Body Advanced -->
+                <div class="workout-card" data-category="full-body" data-difficulty="advanced">
+                    <div class="workout-icon-wrapper">
+                        <div class="workout-icon full-body">
+                            <i class="fas fa-user"></i>
+                        </div>
+                    </div>
+                    <div class="workout-details">
+                        <div class="workout-header-info">
+                            <h3>Elite Athlete Program</h3>
+                            <span class="difficulty-tag advanced">Advanced</span>
+                        </div>
+                        <p class="workout-description">Professional-level full body training</p>
+                        <div class="workout-meta">
+                            <span><i class="fas fa-calendar-alt"></i> 45 days</span>
+                            <span><i class="fas fa-clock"></i> 60 min</span>
+                            <span><i class="fas fa-fire"></i> 550 cal</span>
+                        </div>
+                    </div>
+                    <button class="btn-view" data-workout="elite-athlete">
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Floating Action Button -->
+    <button class="fab" id="createNewBtn">
+        <i class="fas fa-plus"></i>
+    </button>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <button class="nav-item" onclick="window.location.href='dashboard.html'">
+            <i class="fas fa-home"></i>
+            <span>Dashboard</span>
+        </button>
+        <button class="nav-item active">
+            <i class="fas fa-dumbbell"></i>
+            <span>Workouts</span>
+        </button>
+        <a class="nav-item" href="progress.html">
+            <i class="fas fa-chart-line"></i>
+            <span>Progress</span>
+        </a>
+        <button class="nav-item">
+            <i class="fas fa-user-friends"></i>
+            <span>Coach</span>
+        </button>
+    </nav>
+
+    <script src="..//js/workouts.js"></script>
+</body>
+</html>

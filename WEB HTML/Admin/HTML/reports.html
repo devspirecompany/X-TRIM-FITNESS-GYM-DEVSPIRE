@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reports & Analytics - X-TRIM FIT GYM</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../CSS/reports.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script src="../JS/reports.js" defer></script>
+</head>
+<body>
+    <!-- Logout Confirmation Modal -->
+    <div class="modal-overlay" id="logoutModal">
+        <div class="modal modal-center">
+            <div class="modal-body">
+                <div class="modal-logout-icon">
+                    <i class="fas fa-sign-out-alt"></i>
+                </div>
+                <h3 class="modal-logout-title">Are you sure you want to logout?</h3>
+                <p class="modal-logout-text">
+                    You'll need to log in again to access your admin account.
+                </p>
+                <div class="modal-logout-actions">
+                    <button type="button" class="btn-secondary" onclick="closeLogoutModal()">
+                        <i class="fas fa-times"></i> Cancel
+                    </button>
+                    <button type="button" class="btn-primary" onclick="confirmLogout()">
+                        <i class="fas fa-sign-out-alt"></i> Yes, Logout
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification Container -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <!-- Top Navbar -->
+    <nav class="top-navbar">
+        <div class="logo">
+            <img src="../../Client/imgs/logo.png" alt="X-TRIM FIT GYM" class="logo-img">
+        </div>
+        <div class="nav-right">
+            <div class="user-profile" onclick="event.stopPropagation(); toggleProfileDropdown();" id="userProfileDropdown">
+                <div class="user-avatar">AD</div>
+                <div class="user-info">
+                    <h4>Admin User</h4>
+                    <p>System Administrator</p>
+                </div>
+                <i class="fas fa-chevron-down"></i>
+                <div class="dropdown-menu">
+                    <a href="../HTML/settings.html" class="dropdown-item">
+                        <i class="fas fa-cog"></i>
+                        <span>Settings</span>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item" onclick="event.preventDefault(); openLogoutModal();">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Logout</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <ul class="sidebar-menu">
+            <li><a href="../HTML/dashboard.html"><i class="fas fa-home"></i><span>Dashboard</span></a></li>
+            <li><a href="../HTML/membermanagement.html"><i class="fas fa-users"></i><span>Member Management</span></a></li>
+            <li><a href="../HTML/coachmanagement.html"><i class="fas fa-user-tie"></i><span>Coach Management</span></a></li>
+            <li><a href="../HTML/membershipmanagement.html"><i class="fas fa-credit-card"></i><span>Membership Management</span></a></li>
+            <li><a href="../HTML/reports.html" class="active"><i class="fas fa-chart-bar"></i><span>Reports & Analytics</span></a></li>
+        </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="page-header">
+            <div>
+                <h1><i class="fas fa-chart-bar"></i> Reports & Analytics</h1>
+                <p>Comprehensive insights and analytics for your gym operations</p>
+            </div>
+            <div class="header-actions">
+                <select class="period-select" id="reportPeriod" title="Select report period" aria-label="Select report period" onchange="updateReports()">
+                    <option value="month">This Month</option>
+                    <option value="week">This Week</option>
+                    <option value="year">This Year</option>
+                    <option value="all">All Time</option>
+                </select>
+                <button class="btn-primary" onclick="exportReport()">
+                    <i class="fas fa-download"></i> Export Report
+                </button>
+            </div>
+        </div>
+
+        <!-- Summary Cards -->
+        <div class="summary-grid">
+            <div class="summary-card">
+                <div class="summary-icon revenue">
+                    <i class="fas fa-peso-sign"></i>
+                </div>
+                <div class="summary-content">
+                    <h3>Total Revenue</h3>
+                    <p class="summary-value" id="totalRevenue">₱0</p>
+                    <span class="summary-change positive" id="revenueChange">+0%</span>
+                </div>
+            </div>
+            <div class="summary-card">
+                <div class="summary-icon members">
+                    <i class="fas fa-users"></i>
+                </div>
+                <div class="summary-content">
+                    <h3>Total Members</h3>
+                    <p class="summary-value" id="totalMembers">0</p>
+                    <span class="summary-change positive" id="membersChange">+0%</span>
+                </div>
+            </div>
+            <div class="summary-card">
+                <div class="summary-icon coaches">
+                    <i class="fas fa-user-tie"></i>
+                </div>
+                <div class="summary-content">
+                    <h3>Active Coaches</h3>
+                    <p class="summary-value" id="totalCoaches">0</p>
+                    <span class="summary-change">0%</span>
+                </div>
+            </div>
+            <div class="summary-card">
+                <div class="summary-icon workouts">
+                    <i class="fas fa-dumbbell"></i>
+                </div>
+                <div class="summary-content">
+                    <h3>Total Workouts</h3>
+                    <p class="summary-value" id="totalWorkouts">0</p>
+                    <span class="summary-change positive" id="workoutsChange">+0%</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Charts Section -->
+        <div class="charts-grid">
+            <!-- Revenue Chart -->
+            <div class="section-card">
+                <div class="section-header">
+                    <h2><i class="fas fa-chart-line"></i> Revenue Trends</h2>
+                </div>
+                <div class="chart-container">
+                    <canvas id="revenueChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Membership Distribution Chart -->
+            <div class="section-card">
+                <div class="section-header">
+                    <h2><i class="fas fa-chart-pie"></i> Membership Distribution</h2>
+                </div>
+                <div class="chart-container">
+                    <canvas id="membershipChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Analytics Section -->
+        <div class="analytics-grid">
+            <!-- Member Growth -->
+            <div class="section-card">
+                <div class="section-header">
+                    <h2><i class="fas fa-user-plus"></i> Member Growth</h2>
+                </div>
+                <div class="chart-container">
+                    <canvas id="memberGrowthChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Coach Performance -->
+            <div class="section-card">
+                <div class="section-header">
+                    <h2><i class="fas fa-star"></i> Coach Performance</h2>
+                </div>
+                <div class="coach-performance-list" id="coachPerformanceList">
+                    <!-- Dynamically populated -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Detailed Reports -->
+        <div class="reports-grid">
+            <!-- Revenue Breakdown -->
+            <div class="section-card">
+                <div class="section-header">
+                    <h2><i class="fas fa-money-bill-wave"></i> Revenue Breakdown</h2>
+                </div>
+                <div class="report-table-container">
+                    <table class="report-table">
+                        <thead>
+                            <tr>
+                                <th>Membership Plan</th>
+                                <th>Members</th>
+                                <th>Monthly Price</th>
+                                <th>Monthly Revenue</th>
+                                <th>Annual Revenue</th>
+                            </tr>
+                        </thead>
+                        <tbody id="revenueBreakdownBody">
+                            <!-- Dynamically populated -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Member Statistics -->
+            <div class="section-card">
+                <div class="section-header">
+                    <h2><i class="fas fa-chart-area"></i> Member Statistics</h2>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h4>Active Members</h4>
+                            <p id="activeMembers">0</p>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-icon">
+                            <i class="fas fa-user-clock"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h4>New This Month</h4>
+                            <p id="newMembers">0</p>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-icon">
+                            <i class="fas fa-weight"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h4>Total Weight Lost</h4>
+                            <p id="totalWeightLost">0 kg</p>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-icon">
+                            <i class="fas fa-fire"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h4>Workouts Completed</h4>
+                            <p id="workoutsCompleted">0</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Activity -->
+        <div class="section-card">
+            <div class="section-header">
+                <h2><i class="fas fa-history"></i> Recent Activity</h2>
+            </div>
+            <div class="activity-list" id="activityList">
+                <!-- Dynamically populated -->
+            </div>
+        </div>
+    </main>
+</body>
+</html>
+

@@ -1,0 +1,95 @@
+/* Coaches page styles - consistent with dashboard/workouts/progress */
+:root{
+    --primary-red: #E41E26;
+    --primary-yellow: #F9C513;
+    --primary-gray: #6A7B94;
+    --bg-dark: #1a1d29;
+    --bg-darker: #13161f;
+    --bg-light: #22252f;
+    --card-bg: rgba(255,255,255,0.06);
+    --card-border: rgba(255,255,255,0.1);
+    --text-primary: #ffffff;
+    --text-secondary: #b8bcc8;
+    --transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+    --safe-area-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{
+    font-family: 'Inter', sans-serif;
+    min-height:100vh;
+    background:linear-gradient(135deg,var(--bg-darker) 0%,var(--bg-dark) 100%);
+    color:var(--text-primary);
+    padding-bottom:calc(80px + var(--safe-area-bottom));
+    -webkit-font-smoothing:antialiased;
+}
+
+/* Top header (reused pattern) */
+.top-header{
+    position:sticky;top:0;z-index:100;background:rgba(19,22,31,0.95);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,0.08);padding:16px 20px 12px;
+}
+.header-content{display:flex;justify-content:space-between;align-items:center}
+.page-title{font-family:'Poppins',sans-serif;font-size:1.35rem;font-weight:700;display:flex;align-items:center;gap:10px}
+.page-title i{color:var(--primary-yellow)}
+.icon-btn{width:44px;height:44px;border-radius:12px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);color:var(--text-secondary);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:var(--transition)}
+
+.main-content{padding:20px}
+.section{margin-bottom:22px}
+.section-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.section-header h2{font-family:'Poppins',sans-serif;font-size:1.05rem;font-weight:600;color:var(--text-primary)}
+
+/* Profile card */
+.profile-card{display:flex;gap:14px;align-items:center;background:var(--card-bg);border:1px solid var(--card-border);border-radius:14px;padding:14px;backdrop-filter:blur(10px)}
+.profile-pic{width:68px;height:68px;border-radius:50%;background:linear-gradient(135deg,#E41E26,#F9C513);display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.6rem;flex-shrink:0}
+.coach-name{font-family:'Poppins',sans-serif;font-size:1.05rem;font-weight:700;color:var(--text-primary)}
+.coach-title{color:var(--text-secondary);font-size:0.85rem;margin-top:4px}
+.profile-actions{margin-top:10px}
+
+/* Inline stats & description */
+.coach-stats-inline{display:flex;gap:10px;margin-top:8px}
+.coach-stats-inline .stat{display:inline-flex;align-items:center;gap:6px;color:var(--text-secondary);font-weight:600}
+.coach-stats-inline .stat i{color:var(--primary-yellow)}
+.coach-short{color:var(--text-secondary);margin-top:10px;font-size:0.9rem;line-height:1.5}
+.coach-expertise-inline{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.coach-expertise-inline .expertise-tag{background:rgba(249,197,19,0.12);border:1px solid rgba(249,197,19,0.18);color:var(--primary-yellow);padding:6px 10px;border-radius:999px;font-size:0.8rem}
+
+
+/* Buttons */
+.btn-primary{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:12px;border:none;background:linear-gradient(135deg,var(--primary-yellow),#e0a800);color:var(--bg-darker);font-weight:700;cursor:pointer;transition:var(--transition)}
+.btn-primary:active{transform:translateY(-2px)}
+.btn-block{width:100%;justify-content:center}
+
+/* Updates list */
+.updates-list{display:flex;flex-direction:column;gap:10px}
+.item-card{display:flex;align-items:center;gap:12px;background:var(--card-bg);border:1px solid var(--card-border);padding:12px;border-radius:12px;backdrop-filter:blur(10px)}
+.item-left{width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,rgba(249,197,19,0.12),rgba(228,30,38,0.08));display:flex;align-items:center;justify-content:center;color:var(--primary-yellow);font-size:1.1rem;flex-shrink:0}
+.item-body{flex:1;min-width:0}
+.item-title{font-weight:600;color:var(--text-primary)}
+.item-sub{font-size:0.85rem;color:var(--text-secondary);margin-top:4px}
+.item-action{background:transparent;border:none;color:var(--text-secondary);font-size:1.2rem;cursor:pointer}
+.item-action.acknowledged{color:var(--primary-yellow)}
+
+/* Resources */
+.resources-list{display:flex;flex-direction:column;gap:10px}
+.resource-card{display:flex;align-items:center;gap:12px;background:var(--card-bg);border:1px solid var(--card-border);padding:12px;border-radius:12px;backdrop-filter:blur(10px)}
+.resource-left{width:44px;height:44px;border-radius:10px;background:rgba(255,255,255,0.03);display:flex;align-items:center;justify-content:center;color:var(--text-secondary);font-size:1.05rem;flex-shrink:0}
+.resource-body{flex:1;min-width:0}
+.resource-title{font-weight:600}
+.resource-meta{font-size:0.82rem;color:var(--text-secondary);margin-top:4px}
+.resource-actions{display:flex;gap:8px;align-items:center}
+.resource-actions button{background:transparent;border:none;color:var(--text-secondary);font-size:1.05rem;cursor:pointer}
+
+/* CTA spacing */
+.cta-section{padding:6px 0}
+
+/* Hidden state */
+.hidden{display:none !important}
+
+/* Bottom nav - reuse pattern */
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:rgba(19,22,31,0.95);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-top:1px solid rgba(255,255,255,0.08);display:flex;justify-content:space-around;padding:12px 16px calc(12px + var(--safe-area-bottom));z-index:100}
+.nav-item{display:flex;flex-direction:column;align-items:center;gap:4px;background:transparent;border:none;color:var(--text-secondary);cursor:pointer;transition:var(--transition);padding:8px 16px;border-radius:12px;flex:1;text-decoration:none}
+.nav-item i{font-size:1.3rem}
+.nav-item span{font-size:0.7rem;font-weight:500}
+.nav-item.active{color:var(--primary-yellow);background:rgba(249,197,19,0.1)}
+
+@media(max-width:360px){.page-title{font-size:1.15rem}.profile-pic{width:60px;height:60px}}

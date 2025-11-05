@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>X-TRIM FIT GYM - Coach Registration</title>
+    <link rel="stylesheet" href="../../Client/CSS/registration.css">
+    <link rel="stylesheet" href="../CSS/coach-registration.css">
+    <script src="../JS/coach-registration.js" defer></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">
+            <img src="../../Client/imgs/logo.png" alt="X-TRIM FIT GYM" class="logo-img">
+        </div>
+        <a href="../../Client/HTML/homepage.html" class="nav-link">
+            <i class="fas fa-arrow-left"></i> Back to Home
+        </a>
+    </nav>
+
+    <!-- Signup Container -->
+    <div class="signup-container">
+        <div class="signup-card">
+            <!-- Left Sidebar -->
+            <div class="sidebar">
+                <div class="gym-logo">
+                    <i class="fas fa-user-tie"></i>
+                </div>
+                
+                <div class="signup-header">
+                    <h1>Join as Coach</h1>
+                    <p>Share your expertise with us</p>
+                </div>
+
+                <!-- Progress Steps -->
+                <div class="progress-steps">
+                    <div class="progress-step active" data-step-num="1">
+                        <div class="step-number">1</div>
+                        <div class="step-info">
+                            <span class="step-label">Basic Info</span>
+                            <span class="step-desc">Personal details</span>
+                        </div>
+                    </div>
+                    <div class="progress-step" data-step-num="2">
+                        <div class="step-number">2</div>
+                        <div class="step-info">
+                            <span class="step-label">Contact</span>
+                            <span class="step-desc">Address & emergency</span>
+                        </div>
+                    </div>
+                    <div class="progress-step" data-step-num="3">
+                        <div class="step-number">3</div>
+                        <div class="step-info">
+                            <span class="step-label">Professional</span>
+                            <span class="step-desc">Experience & skills</span>
+                        </div>
+                    </div>
+                    <div class="progress-step" data-step-num="4">
+                        <div class="step-number">4</div>
+                        <div class="step-info">
+                            <span class="step-label">Credentials</span>
+                            <span class="step-desc">Certifications & documents</span>
+                        </div>
+                    </div>
+                    <div class="progress-step" data-step-num="5">
+                        <div class="step-number">5</div>
+                        <div class="step-info">
+                            <span class="step-label">Agreements</span>
+                            <span class="step-desc">Terms & conditions</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Content Area -->
+            <div class="content-area">
+                <!-- Multi-Step Form -->
+                <form id="coachSignupForm">
+                    <!-- Step 1: Basic Information -->
+                    <div class="form-step active" data-step="1">
+                        <h3 class="step-title">
+                            <i class="fas fa-user"></i>
+                            Basic Information
+                        </h3>
+                        <p class="step-description">Let's start with your basic details</p>
+
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="firstName">First Name <span class="required">*</span></label>
+                                <input type="text" id="firstName" name="firstName" placeholder="Enter your first name" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="lastName">Last Name <span class="required">*</span></label>
+                                <input type="text" id="lastName" name="lastName" placeholder="Enter your last name" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">Email Address <span class="required">*</span></label>
+                                <input type="email" id="email" name="email" placeholder="example@email.com" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="phone">Phone Number <span class="required">*</span></label>
+                                <input type="tel" id="phone" name="phone" placeholder="+63 XXX XXX XXXX" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="dob">Date of Birth <span class="required">*</span></label>
+                                <input type="date" id="dob" name="dob" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="gender">Gender</label>
+                                <select id="gender" name="gender">
+                                    <option value="">Select Gender</option>
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                    <option value="other">Other</option>
+                                    <option value="prefer-not-to-say">Prefer not to say</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 2: Contact & Address -->
+                    <div class="form-step" data-step="2">
+                        <h3 class="step-title">
+                            <i class="fas fa-map-marker-alt"></i>
+                            Contact & Address
+                        </h3>
+                        <p class="step-description">Where can we reach you?</p>
+
+                        <div class="form-group full-width">
+                            <label for="address">Complete Address <span class="required">*</span></label>
+                            <textarea id="address" name="address" rows="3" placeholder="Street, Barangay, City, Province" required></textarea>
+                        </div>
+
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="emergencyName">Emergency Contact Name <span class="required">*</span></label>
+                                <input type="text" id="emergencyName" name="emergencyName" placeholder="Contact name" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="emergencyPhone">Emergency Contact Number <span class="required">*</span></label>
+                                <input type="tel" id="emergencyPhone" name="emergencyPhone" placeholder="+63 XXX XXX XXXX" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 3: Professional Information -->
+                    <div class="form-step" data-step="3">
+                        <h3 class="step-title">
+                            <i class="fas fa-briefcase"></i>
+                            Professional Information
+                        </h3>
+                        <p class="step-description">Tell us about your coaching experience and expertise</p>
+
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="yearsExperience">Years of Experience <span class="required">*</span></label>
+                                <select id="yearsExperience" name="yearsExperience" required>
+                                    <option value="">Select Experience</option>
+                                    <option value="0-1">Less than 1 year</option>
+                                    <option value="1-3">1-3 years</option>
+                                    <option value="3-5">3-5 years</option>
+                                    <option value="5-10">5-10 years</option>
+                                    <option value="10+">10+ years</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="specialization">Primary Specialization <span class="required">*</span></label>
+                                <select id="specialization" name="specialization" required>
+                                    <option value="">Select Specialization</option>
+                                    <option value="strength">Strength & Conditioning</option>
+                                    <option value="cardio">Cardio & Endurance</option>
+                                    <option value="weight-loss">Weight Loss</option>
+                                    <option value="muscle-building">Muscle Building</option>
+                                    <option value="powerlifting">Powerlifting</option>
+                                    <option value="bodybuilding">Bodybuilding</option>
+                                    <option value="functional">Functional Training</option>
+                                    <option value="yoga">Yoga & Flexibility</option>
+                                    <option value="nutrition">Nutrition Coaching</option>
+                                    <option value="general">General Fitness</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group full-width">
+                                <label for="otherSpecializations">Other Specializations (Optional)</label>
+                                <input type="text" id="otherSpecializations" name="otherSpecializations" placeholder="e.g., HIIT, Pilates, CrossFit">
+                                <small style="color: #b8bcc8; font-size: 0.8rem; margin-top: 0.25rem; display: block;">Separate multiple specializations with commas</small>
+                            </div>
+
+                            <div class="form-group full-width">
+                                <label for="bio">Professional Bio <span class="required">*</span></label>
+                                <textarea id="bio" name="bio" rows="4" placeholder="Tell us about yourself, your coaching philosophy, and what makes you unique..." required></textarea>
+                                <small style="color: #b8bcc8; font-size: 0.8rem; margin-top: 0.25rem; display: block;">This will be visible to clients</small>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="availability">Availability <span class="required">*</span></label>
+                                <select id="availability" name="availability" required>
+                                    <option value="">Select Availability</option>
+                                    <option value="full-time">Full-Time</option>
+                                    <option value="part-time">Part-Time</option>
+                                    <option value="flexible">Flexible Schedule</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="preferredTime">Preferred Working Hours</label>
+                                <select id="preferredTime" name="preferredTime">
+                                    <option value="">Select Time</option>
+                                    <option value="morning">Morning (5AM - 12PM)</option>
+                                    <option value="afternoon">Afternoon (12PM - 6PM)</option>
+                                    <option value="evening">Evening (6PM - 10PM)</option>
+                                    <option value="anytime">Anytime</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 4: Credentials & Certifications -->
+                    <div class="form-step" data-step="4">
+                        <h3 class="step-title">
+                            <i class="fas fa-certificate"></i>
+                            Credentials & Certifications
+                        </h3>
+                        <p class="step-description">Showcase your qualifications and certifications</p>
+
+                        <div class="form-group full-width">
+                            <label>Certifications <span class="required">*</span></label>
+                            <div id="certificationsList" class="certifications-list">
+                                <!-- Dynamically added certifications -->
+                            </div>
+                            <button type="button" class="btn-add-cert" onclick="addCertificationField()">
+                                <i class="fas fa-plus"></i> Add Certification
+                            </button>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="education">Education Background</label>
+                            <textarea id="education" name="education" rows="3" placeholder="e.g., Bachelor's in Sports Science, Master's in Exercise Physiology"></textarea>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="previousExperience">Previous Work Experience</label>
+                            <textarea id="previousExperience" name="previousExperience" rows="3" placeholder="List any previous gyms, fitness centers, or related work experience"></textarea>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label>Upload Documents (Optional)</label>
+                            <div class="upload-section">
+                                <div class="upload-item">
+                                    <label for="certificateUpload" class="upload-label">
+                                        <i class="fas fa-file-upload"></i>
+                                        <span>Upload Certificates</span>
+                                        <small>PDF, JPG, PNG (Max 5MB)</small>
+                                    </label>
+                                    <input type="file" id="certificateUpload" name="certificateUpload" accept=".pdf,.jpg,.jpeg,.png" multiple style="display: none;">
+                                </div>
+                                <div class="upload-item">
+                                    <label for="resumeUpload" class="upload-label">
+                                        <i class="fas fa-file-alt"></i>
+                                        <span>Upload Resume/CV</span>
+                                        <small>PDF, DOC, DOCX (Max 5MB)</small>
+                                    </label>
+                                    <input type="file" id="resumeUpload" name="resumeUpload" accept=".pdf,.doc,.docx" style="display: none;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 5: Terms & Agreements -->
+                    <div class="form-step" data-step="5">
+                        <h3 class="step-title">
+                            <i class="fas fa-file-contract"></i>
+                            Terms & Agreements
+                        </h3>
+                        <p class="step-description">Please read and agree to complete your registration</p>
+
+                        <div class="agreement-section">
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="terms" name="terms" required>
+                                <label for="terms">I agree to the <a href="#" onclick="showTerms(event)">Terms and Conditions</a> <span class="required">*</span></label>
+                            </div>
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="privacy" name="privacy" required>
+                                <label for="privacy">I agree to the <a href="#" onclick="showPrivacy(event)">Privacy Policy</a> <span class="required">*</span></label>
+                            </div>
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="coachAgreement" name="coachAgreement" required>
+                                <label for="coachAgreement">I agree to the <a href="#" onclick="showCoachAgreement(event)">Coach Agreement</a> <span class="required">*</span></label>
+                            </div>
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="backgroundCheck" name="backgroundCheck" required>
+                                <label for="backgroundCheck">I consent to a background check <span class="required">*</span></label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Navigation Buttons -->
+                    <div class="button-container">
+                        <button type="button" class="btn btn-back hidden" id="backBtn" onclick="previousStep()">
+                            <i class="fas fa-arrow-left"></i>
+                            <span>Back</span>
+                        </button>
+                        <button type="button" class="btn btn-next" id="nextBtn" onclick="nextStep()">
+                            <span>Next</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                        <button type="submit" class="btn btn-submit hidden" id="submitBtn">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Submit Application</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="modal-overlay" id="successModal">
+        <div class="modal modal-center">
+            <div class="modal-body">
+                <div class="modal-success-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h3 class="modal-success-title">Application Submitted!</h3>
+                <p class="modal-success-text">
+                    Thank you for your interest in joining X-TRIM FIT GYM as a coach. We've received your application and will review it shortly. You'll receive an email notification once your application has been reviewed.
+                </p>
+                <div class="modal-button-center">
+                    <button class="btn btn-submit modal-button-full" onclick="closeSuccessModal()">
+                        <i class="fas fa-check"></i> Got it
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
